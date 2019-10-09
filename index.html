@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Grenze:400,700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Oswald:400,700&display=swap&subset=cyrillic-ext" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
   <link rel="stylesheet" href="./css/reset.css">
   <link rel="stylesheet" href="./css/style.css">
   <title>Doctors visit</title>
@@ -19,7 +20,18 @@
         <img src="./img/logo.png" alt="" class="logo-pic">
       </div>
       <div class="header-button-container">
-        <button class="create-button" id="modal">Create appointment</button>
+        <button class="create-button" id="openModalButton">Create appointment</button>
+      </div>
+    </div>
+    <div class="modal" id="modal">
+      <div class="modal-content">
+        <span class="modal-close" id="closeModal">&times;</span>
+        <select name="choose-doctor" id="" class="modal-select">
+          <option value="" disabled selected class="modal-option">Select your visit</option>
+          <option value="Кардиолог" class="modal-option">Кардиолог</option>
+          <option value="Стоматолог" class="modal-option">Стоматолог</option>
+          <option value="Терапевт" class="modal-option">Терапевт</option>
+        </select>
       </div>
     </div>
   </header>
@@ -28,6 +40,9 @@
       <p class="empty-container-text">No items have been added</p>
     </div>
   </main>
+  <footer class="footer-wrapper">
+    <p class="footer-text">&copy; 2019 Alexander Kaminsky & Glib Slivko</p>
+  </footer>
   
 </body>
 <script src="./js/script.js"></script>

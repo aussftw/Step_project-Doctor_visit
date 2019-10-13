@@ -5,6 +5,7 @@ const modal = document.getElementById("modal")
 const closeModal = document.getElementById("closeModal")
 const chooseDoctor = document.getElementById("chooseDoctorId")
 const modalContent = document.querySelector('#modalContentId')
+
 console.log(modalContent);
 
 modalButton.addEventListener("click", (e) => {
@@ -21,95 +22,88 @@ closeModal.addEventListener("click", (e) => {
   modal.style.display = "none"
 })
 
-// chooseDoctor.addEventListener("click", (e) => {
-//  pacient.createWrapper()
-// })
+ // finder of chosen doctor
 
 chooseDoctor.addEventListener("change", (event) => {
-  console.log("keks");
   pacient.createWrapper()
   if (event.target.value === 'Кардиолог') {
-    console.log("CORDIOLIG");
-  } else if (event.target.value === 'Терапевт<') {
-    console.log("THERAPIST");
+    console.log("Кардиолог");
+  } else if (event.target.value === 'Терапевт') {
+    console.log("Терапевт");
   } else if (event.target.value === 'Стоматолог') {
-    console.log("dantistIdT");
+    console.log("Стоматолог");
+  } else  {
+    return false
   }
 })
-
-
-
-// doctorClass.addEventListener("click", (e) => {
-//   if (doctorClass.value == event.target.value) {
-//     selectedDoctor = event.targert.value
-//   } else {
-//     return false
-//   }
-// })
-const clickBtn = document.createElement('button');
-clickBtn.innerText = 'Click me';
-document.querySelector('script').before(clickBtn);
-
-
-
-// const rectangle = document.createElement("div");
-// rectangle.classList.add("rectangle");
-// rectangle.style.backgroundColor = "red";
-// rectangle.style.width = "100px";
-// rectangle.style.height = "100px";
-// document.querySelector('script').before(rectangle);
-
-// var iDiv = document.createElement('div');
-// iDiv.id = 'block';
-// iDiv.className = 'block';
-// iDiv.style.width = "100px";
-// iDiv.style.height = "100px";
-// iDiv.style.backgroundColor = "black";
-// document.getElementsByTagName('body')[0].appendChild(iDiv);
-
 
 // _____________________functional_____________
 
 
 class Visit {
-  constructor(fullName, visitPurpose) {
+  constructor(fullName, visitPurpose, visitComment) {
     this.fullName = fullName;
     this.visitPurpose = visitPurpose;
+    this.visitComment = visitComment;
   }
-  createWrapper() {
-    // const container = document.createElement("div");
-    // container.classList.add("container");
-    // container.style.backgroundColor = "red";
-    // container.style.width = "100px";
-    // container.style.height = "100px";
-    // document.querySelector('modal').before(container)
 
-    var container = document.createElement('div');
-    container.id = 'block';
-    container.className = 'block';
-    container.style.width = "100px";
-    container.style.height = "100px";
-    container.style.backgroundColor = "black";
+
+    // form builder
+
+    createWrapper() {
+    
+    //creating div-wrapper for form
+
+    const container = document.createElement('div');
+    container.classList.add('form-wrapper')
     document.getElementById('modal').appendChild(container);
 
+    //creating form
+
+    const form = document.createElement('form')
+    form.classList.add("form")
+    container.appendChild(form)
+
+    // creating input for FullName
+
+    const inputFullName = document.createElement("input")
+    inputFullName.classList.add("inputData")
+    inputFullName.placeholder = "Ф.И.О"
+    form.appendChild(inputFullName)
+
+    // creating input for Visit Purpose  
+
+    const inputVisitPurpose = document.createElement("input")
+    inputVisitPurpose.classList.add("inputData")
+    inputVisitPurpose.placeholder = "Цель визита"
+    form.appendChild(inputVisitPurpose)
+
+    //creating text area for comments
+
+    const textAreaComment = document.createElement("textArea")
+    textAreaComment.classList.add("inputData")
+    textAreaComment.placeholder = "Вы можете оставить свой комментарий здесь"
+    form.appendChild(textAreaComment)
+
+    // button "Create Visit" builder
+
+    const createVisitButton = document.createElement('button')
+    createVisitButton.classList.add('create-visit-button')
+    createVisitButton.innerText = "Create"
+    container.appendChild(createVisitButton)
+    
+
+    // hiding previous modal 
     modalContent.style.display = 'none'; 
-
-
-    return console.log('3 Доктора');
 
     const doctorCardiolog = document.querySelector('#cardiologId');
     const doctorTherapist = document.querySelector('#therapistId');
     const doctorDantist = document.querySelector('#dantistId');
 
-    doctorClass.addEventListener("click", (e) => {
-      if (doctorClass.value == event.target.value) {
-        selectedDoctor = event.targert.value
-      } else {
-        return false
-      }
-    })
 
   }
+
+
   // createFields(mainClass, ...classes) {
   //   let inputs = document.createDocumentFragment();
   //   for (let cl of classes) {
@@ -124,24 +118,25 @@ class Visit {
 }
 
 class therapist extends Visit {
-  constructor(fullName, visitPurpose, pressure, BMI, diseases) {
+  constructor(fullName, visitPurpose, visitComment, pressure, BMI, diseases) {
     super(fullName, visitPurpose)
     this.pressure = pressure;
     this.BMI = BMI;
     this.diseases = diseases;
   }
+
+
   render(element) {
     const wrapper = this.createWrapper();
     const fullName = document.createElement('input');
     const visitPurpose = document.createElement('input')
+    const visitComment = document.createElement("textArea")
 
   }
 
 }
 
-const pacient = new therapist("Pupkin Ivan Ivanich", "Pain", "420:190", 65, ["bronhit", "Aritmiyah", "infarct"])
+const pacient = new therapist("Pupkin Ivan Ivanich", "Pain", "some info", "420:190", 65, ["bronhit", "Aritmiyah", "infarct"])
 
 console.log(pacient);
 console.log(JSON.stringify(pacient));
-
-// 

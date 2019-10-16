@@ -29,8 +29,8 @@ chooseDoctor.addEventListener("change", event => {
   createdForm.render()
   if (event.target.value === "Кардиолог") {
     console.log("Кардиолог")
-
-    form.render()
+    const cardio = new FormCreator("Name", "Pain", "...", 12 / 54, 56, 25, [])
+    cardio.render()
   } else if (event.target.value === "Терапевт") {
     console.log("Терапевт")
   } else if (event.target.value === "Стоматолог") {
@@ -44,10 +44,25 @@ chooseDoctor.addEventListener("change", event => {
 // finder of chosen doctor
 
 class FormCreator {
-  constructor(fullName, visitPurpose, visitComment) {
+  constructor(fullName, visitPurpose, visitComment, ...formElemnts) {
     this.fullName = fullName
     this.visitPurpose = visitPurpose
     this.visitComment = visitComment
+    this._formElements = [...formElemnts]
+  }
+
+  //create form to the memory
+
+  createForm() {
+    console.log()
+    const formInputs = document.createElement("form")
+    for (let i = 0; i < this._formElements; i++) {
+      const element = document.createElement(this.formElemnts[i].name)
+      element.type = this._formElements[i].type
+      element.placeholder = this._formElements[i].placeholder
+      element.classList.add("inputData")
+      form.append(element.render())
+    }
   }
 
   // form builder
@@ -113,34 +128,5 @@ class FormCreator {
   // }
 }
 
-// _____________________functional_____________
-
-// class therapist extends Visit {
-//   constructor(fullName, visitPurpose, visitComment, pressure, BMI, diseases) {
-//     super(fullName, visitPurpose)
-//     this.pressure = pressure
-//     this.BMI = BMI
-//     this.diseases = diseases
-//   }
-
-//   render(element) {
-//     const wrapper = this.createWrapper()
-//     const fullName = document.createElement("input")
-//     const visitPurpose = document.createElement("input")
-//     const visitComment = document.createElement("textArea")
-//   }
-// }
-
-// const pacient = new therapist(
-//   "Pupkin Ivan Ivanich",
-//   "Pain",
-//   "some info",
-//   "420:190",
-//   65,
-//   ["bronhit", "Aritmiyah", "infarct"]
-// )
-
-// console.log(pacient)
-// console.log(JSON.stringify(pacient))
-
 const createdForm = new FormCreator("NAme Full", "atat", "ur comment")
+createdForm.createForm()

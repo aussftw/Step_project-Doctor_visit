@@ -29,19 +29,27 @@ chooseDoctor.addEventListener("change", event => {
   createdForm.render()
   if (event.target.value === "Кардиолог") {
     console.log("Кардиолог")
-    const cardio = new FormCreator("Name", "Pain", "...", 12 / 54, 56, 25, [])
+    const cardio = new FormCreator(
+      "Anatoliy",
+      "Pain",
+      "...",
+      12 / 54,
+      56,
+      25,
+      []
+    )
     cardio.render()
   } else if (event.target.value === "Терапевт") {
     console.log("Терапевт")
+    const therapist = new FormCreator("Oleg", "BrainDamage", 57)
   } else if (event.target.value === "Стоматолог") {
     console.log("Стоматолог")
+    const dentist = new FormCreator("Alma", "rotten_somewhere", "12.11.2017")
   } else {
     return false
     console.log("check failed")
   }
 })
-
-// finder of chosen doctor
 
 class FormCreator {
   constructor(fullName, visitPurpose, visitComment, ...formElemnts) {

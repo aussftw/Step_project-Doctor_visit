@@ -51,6 +51,49 @@ chooseDoctor.addEventListener("change", event => {
   }
 })
 
+//=========================== inputs data ===========================//
+
+const _formElements = [
+  {
+    name: "cardio",
+    typo: "input",
+    val: [
+      {
+        type: "text",
+        placeholder: "lllll"
+        // reqired: true
+      },
+      {
+        type: "text",
+        placeholder: "bmi"
+        // reqired: true
+      },
+      {
+        type: "text",
+        placeholder: "llll"
+        // reqired: true
+      },
+      {
+        type: "text",
+        placeholder: "llll"
+        // reqired: true
+      },
+      {
+        type: "text",
+        placeholder: "lll"
+        // reqired: true
+      },
+      {
+        type: "text",
+        placeholder: ""
+        // reqired: true
+      }
+    ]
+  }
+]
+
+// console.log(formElemnts[0].val[0].type)
+
 //=========================== Form construcor ===========================//
 
 class FormCreator {
@@ -59,20 +102,24 @@ class FormCreator {
     this.visitPurpose = visitPurpose
     this.visitComment = visitComment
     this._formElements = [...formElemnts]
+    // this.dataInput=dataInput;
   }
 
   //create form to the memory
 
   createForm() {
     const formInputs = document.createElement("form")
-    for (let i = 0; i < this._formElements; i++) {
-      const element = document.createElement(this.formElemnts[i].name)
-      element.type = this._formElements[i].type
-      element.placeholder = this._formElements[i].placeholder
+    console.log(_formElements)
+    for (let i = 0; i < _formElements.length; i++) {
+      const element = document.createElement(this._formElements[i].typo)
+      element.type = this._formElements[i].val[i].type
+      element.placeholder = this._formElements[i].val[i].placeholder
       element.classList.add("inputData")
-      form.append(element)
+      element.setAttribute("reqired", true)
+      formInputs.append(element)
     }
-    return form
+    console.log(formInputs)
+    return formInputs
   }
 
   // Form render
@@ -94,8 +141,7 @@ class FormCreator {
     // hiding previous modal
 
     modalContent.style.display = "none"
-
-    createForm()
+    container.appendChild(this.createForm())
 
     //creating form
 
@@ -137,4 +183,11 @@ class FormCreator {
   // }
 }
 
-const createdForm = new FormCreator("NAme Full", "atat", "ur comment")
+const createdForm = new FormCreator(
+  "NAme Full",
+  "atat",
+  "ur comment",
+  "ddd",
+  "",
+  ""
+)

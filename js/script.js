@@ -1,66 +1,67 @@
+// import { FormCreator } from "../classes"
+// console.log(FormCreator)
+
 //=========================== modal ===========================//
 
 const modalButton = document.getElementById("openModalButton")
 const modal = document.getElementById("modal")
 const closeModal = document.getElementById("closeModal")
 const chooseDoctor = document.getElementById("chooseDoctorId")
-const modalContent = document.querySelector('#modalContentId')
+const modalContent = document.querySelector("#modalContentId")
 
-console.log(modalContent);
-
-modalButton.addEventListener("click", (e) => {
+modalButton.addEventListener("click", e => {
   if (e.target === modal) {
     modal.style.display = "none"
   }
 })
 
-modalButton.addEventListener("click", (e) => {
+modalButton.addEventListener("click", e => {
   modal.style.display = "block"
 })
 
-closeModal.addEventListener("click", (e) => {
+closeModal.addEventListener("click", e => {
   modal.style.display = "none"
 })
 
- // finder of chosen doctor
+// doctorChecker
 
-chooseDoctor.addEventListener("change", (event) => {
-  pacient.createWrapper()
-  if (event.target.value === 'Кардиолог') {
-    console.log("Кардиолог");
-  } else if (event.target.value === 'Терапевт') {
-    console.log("Терапевт");
-  } else if (event.target.value === 'Стоматолог') {
-    console.log("Стоматолог");
-  } else  {
+chooseDoctor.addEventListener("change", event => {
+  createdForm.render()
+  if (event.target.value === "Кардиолог") {
+    console.log("Кардиолог")
+
+    form.render()
+  } else if (event.target.value === "Терапевт") {
+    console.log("Терапевт")
+  } else if (event.target.value === "Стоматолог") {
+    console.log("Стоматолог")
+  } else {
     return false
+    console.log("check failed")
   }
 })
 
-// _____________________functional_____________
+// finder of chosen doctor
 
-
-class Visit {
+class FormCreator {
   constructor(fullName, visitPurpose, visitComment) {
-    this.fullName = fullName;
-    this.visitPurpose = visitPurpose;
-    this.visitComment = visitComment;
+    this.fullName = fullName
+    this.visitPurpose = visitPurpose
+    this.visitComment = visitComment
   }
 
+  // form builder
 
-    // form builder
-
-    createWrapper() {
-    
+  render() {
     //creating div-wrapper for form
 
-    const container = document.createElement('div');
-    container.classList.add('form-wrapper')
-    document.getElementById('modal').appendChild(container);
+    const container = document.createElement("div")
+    container.classList.add("form-wrapper")
+    document.getElementById("modal").appendChild(container)
 
     //creating form
 
-    const form = document.createElement('form')
+    const form = document.createElement("form")
     form.classList.add("form")
     container.appendChild(form)
 
@@ -71,7 +72,7 @@ class Visit {
     inputFullName.placeholder = "Ф.И.О"
     form.appendChild(inputFullName)
 
-    // creating input for Visit Purpose  
+    // creating input for Visit Purpose
 
     const inputVisitPurpose = document.createElement("input")
     inputVisitPurpose.classList.add("inputData")
@@ -87,22 +88,18 @@ class Visit {
 
     // button "Create Visit" builder
 
-    const createVisitButton = document.createElement('button')
-    createVisitButton.classList.add('create-visit-button')
+    const createVisitButton = document.createElement("button")
+    createVisitButton.classList.add("create-visit-button")
     createVisitButton.innerText = "Create"
     container.appendChild(createVisitButton)
-    
 
-    // hiding previous modal 
-    modalContent.style.display = 'none'; 
+    // hiding previous modal
+    modalContent.style.display = "none"
 
-    const doctorCardiolog = document.querySelector('#cardiologId');
-    const doctorTherapist = document.querySelector('#therapistId');
-    const doctorDantist = document.querySelector('#dantistId');
-
-
+    const doctorCardiolog = document.querySelector("#cardiologId")
+    const doctorTherapist = document.querySelector("#therapistId")
+    const doctorDantist = document.querySelector("#dantistId")
   }
-
 
   // createFields(mainClass, ...classes) {
   //   let inputs = document.createDocumentFragment();
@@ -114,29 +111,36 @@ class Visit {
   //   }
   //   return inputs;
   // }
-
 }
 
-class therapist extends Visit {
-  constructor(fullName, visitPurpose, visitComment, pressure, BMI, diseases) {
-    super(fullName, visitPurpose)
-    this.pressure = pressure;
-    this.BMI = BMI;
-    this.diseases = diseases;
-  }
+// _____________________functional_____________
 
+// class therapist extends Visit {
+//   constructor(fullName, visitPurpose, visitComment, pressure, BMI, diseases) {
+//     super(fullName, visitPurpose)
+//     this.pressure = pressure
+//     this.BMI = BMI
+//     this.diseases = diseases
+//   }
 
-  render(element) {
-    const wrapper = this.createWrapper();
-    const fullName = document.createElement('input');
-    const visitPurpose = document.createElement('input')
-    const visitComment = document.createElement("textArea")
+//   render(element) {
+//     const wrapper = this.createWrapper()
+//     const fullName = document.createElement("input")
+//     const visitPurpose = document.createElement("input")
+//     const visitComment = document.createElement("textArea")
+//   }
+// }
 
-  }
+// const pacient = new therapist(
+//   "Pupkin Ivan Ivanich",
+//   "Pain",
+//   "some info",
+//   "420:190",
+//   65,
+//   ["bronhit", "Aritmiyah", "infarct"]
+// )
 
-}
+// console.log(pacient)
+// console.log(JSON.stringify(pacient))
 
-const pacient = new therapist("Pupkin Ivan Ivanich", "Pain", "some info", "420:190", 65, ["bronhit", "Aritmiyah", "infarct"])
-
-console.log(pacient);
-console.log(JSON.stringify(pacient));
+const createdForm = new FormCreator("NAme Full", "atat", "ur comment")

@@ -27,16 +27,21 @@ chooseDoctor.addEventListener("change", event => {
 
   if (event.target.value === "Кардиолог") {
     console.log("Кардиолог")
-    const cardio = new FormCreator(
+    const cardiologist = new FormCreator(
       "Anatoliy",
       "Pain",
       "...",
       _formElements.cardio
     )
-    cardio.render()
+    cardiologist.render()
   } else if (event.target.value === "Терапевт") {
     console.log("Терапевт")
-    const therapist = new FormCreator("Oleg", "BrainDamage", 57, _formElements.teraphist)
+    const therapist = new FormCreator(
+      "Oleg",
+      "BrainDamage",
+      57,
+      _formElements.teraphist
+    )
     therapist.render()
   } else if (event.target.value === "Стоматолог") {
     console.log("Стоматолог")
@@ -51,93 +56,94 @@ chooseDoctor.addEventListener("change", event => {
 //=========================== inputs data ===========================//
 
 const _formElements = {
-  cardio: {
-    name: "cardio",
+  cardiologist: {
     typo: "input",
     val: [
       {
         type: "text",
-        placeholder: "lllll"
+        placeholder: "Цель визита"
         // reqired: true
       },
       {
         type: "text",
-        placeholder: "bmi"
+        placeholder: "Обычное давление"
         // reqired: true
       },
       {
         type: "text",
-        placeholder: "llll"
+        placeholder: "Индекс массы тела"
         // reqired: true
       },
       {
         type: "text",
-        placeholder: "llll"
+        placeholder: "Перенесенные заболевания сердечно-сосудистой системы"
         // reqired: true
       },
       {
         type: "text",
-        placeholder: "lll"
+        placeholder: "возраст"
         // reqired: true
       },
       {
         type: "text",
-        placeholder: ""
+        placeholder: "ФИО"
         // reqired: true
-      },
-      {type: "checkbox"}
+      }
+      // { type: "checkbox" }
     ]
   },
 
   teraphist: {
-    name: "teraphist",
     typo: "input",
     val: [
       {
         type: "text",
-        placeholder: "aaaaaalllll"
+        placeholder: "Цель визита"
         // reqired: true
       },
       {
         type: "text",
-        placeholder: "bmi"
+        placeholder: "Возраст"
         // reqired: true
       },
       {
         type: "text",
-        placeholder: "llll"
+        placeholder: "ФИО"
+        // reqired: true
+      }
+    ]
+  },
+
+  dentist: {
+    typo: "input",
+    val: [
+      {
+        type: "text",
+        placeholder: "Цель визита"
         // reqired: true
       },
       {
         type: "text",
-        placeholder: "llll"
+        placeholder: "Дата последнего посещения"
         // reqired: true
       },
       {
         type: "text",
-        placeholder: "lll"
-        // reqired: true
-      },
-      {
-        type: "text",
-        placeholder: ""
+        placeholder: "ФИО"
         // reqired: true
       }
     ]
   }
 }
 
-// console.log(formElemnts[0].val[0].type)
-
 //=========================== Form construcor ===========================//
 
 class FormCreator {
-
   constructor(fullName, visitPurpose, visitComment, formElemnts) {
     this.fullName = fullName
     this.visitPurpose = visitPurpose
     this.visitComment = visitComment
-    this._formElements = formElemnts;
+    this._formElements = formElemnts
     // this.dataInput=dataInput;
   }
 
@@ -147,7 +153,6 @@ class FormCreator {
     const formInputs = document.createElement("form")
 
     for (let i = 0; i < this._formElements.val.length; i++) {
-
       const element = document.createElement(this._formElements.typo)
 
       element.type = this._formElements.val[i].type
@@ -180,52 +185,5 @@ class FormCreator {
 
     modalContent.style.display = "none"
     container.appendChild(this.createForm())
-
-    //creating form
-
-    // const form = document.createElement("form")
-    // form.classList.add("form")
-    // container.appendChild(form)
-
-    // creating input for FullName
-
-    // const inputFullName = document.createElement("input")
-    // inputFullName.classList.add("inputData")
-    // inputFullName.placeholder = "Ф.И.О"
-    // form.appendChild(inputFullName)
-
-    // creating input for Visit Purpose
-
-    // const inputVisitPurpose = document.createElement("input")
-    // inputVisitPurpose.classList.add("inputData")
-    // inputVisitPurpose.placeholder = "Цель визита"
-    // form.appendChild(inputVisitPurpose)
-
-    //creating text area for comments
-
-    // const textAreaComment = document.createElement("textArea")
-    // textAreaComment.classList.add("inputData")
-    // textAreaComment.placeholder = "Вы можете оставить свой комментарий здесь"
-    // form.appendChild(textAreaComment)
   }
-
-  // createFields(mainClass, ...classes) {
-  //   let inputs = document.createDocumentFragment();
-  //   for (let cl of classes) {
-  //     let input = document.createElement('input');
-  //     input.classList.add(mainClass);
-  //     input.classList.add(cl);
-  //     inputs.appendChild(input);
-  //   }
-  //   return inputs;
-  // }
 }
-
-// const createdForm = new FormCreator(
-//   "NAme Full",
-//   "atat",
-//   "ur comment",
-//   "ddd",
-//   "",
-//   ""
-// )

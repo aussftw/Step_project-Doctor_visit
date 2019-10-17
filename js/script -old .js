@@ -31,12 +31,15 @@ chooseDoctor.addEventListener("change", event => {
       "Anatoliy",
       "Pain",
       "...",
-      _formElements.cardio
+      12 / 54,
+      56,
+      25,
+      []
     )
     cardio.render()
   } else if (event.target.value === "Терапевт") {
     console.log("Терапевт")
-    const therapist = new FormCreator("Oleg", "BrainDamage", 57, _formElements.teraphist)
+    const therapist = new FormCreator("Oleg", "BrainDamage", 57)
     therapist.render()
   } else if (event.target.value === "Стоматолог") {
     console.log("Стоматолог")
@@ -50,8 +53,8 @@ chooseDoctor.addEventListener("change", event => {
 
 //=========================== inputs data ===========================//
 
-const _formElements = {
-  cardio: {
+const _formElements = [
+  {
     name: "cardio",
     typo: "input",
     val: [
@@ -84,60 +87,21 @@ const _formElements = {
         type: "text",
         placeholder: ""
         // reqired: true
-      },
-      {type: "checkbox"}
-    ]
-  },
-
-  teraphist: {
-    name: "teraphist",
-    typo: "input",
-    val: [
-      {
-        type: "text",
-        placeholder: "aaaaaalllll"
-        // reqired: true
-      },
-      {
-        type: "text",
-        placeholder: "bmi"
-        // reqired: true
-      },
-      {
-        type: "text",
-        placeholder: "llll"
-        // reqired: true
-      },
-      {
-        type: "text",
-        placeholder: "llll"
-        // reqired: true
-      },
-      {
-        type: "text",
-        placeholder: "lll"
-        // reqired: true
-      },
-      {
-        type: "text",
-        placeholder: ""
-        // reqired: true
       }
     ]
   }
-}
+]
 
 // console.log(formElemnts[0].val[0].type)
 
 //=========================== Form construcor ===========================//
 
 class FormCreator {
-
-  constructor(fullName, visitPurpose, visitComment, formElemnts) {
+  constructor(fullName, visitPurpose, visitComment, ...formElemnts) {
     this.fullName = fullName
     this.visitPurpose = visitPurpose
     this.visitComment = visitComment
-    this._formElements = formElemnts;
+    this._formElements = [...formElemnts]
     // this.dataInput=dataInput;
   }
 
@@ -145,13 +109,11 @@ class FormCreator {
 
   createForm() {
     const formInputs = document.createElement("form")
-
-    for (let i = 0; i < this._formElements.val.length; i++) {
-
-      const element = document.createElement(this._formElements.typo)
-
-      element.type = this._formElements.val[i].type
-      element.placeholder = this._formElements.val[i].placeholder
+    console.log(_formElements)
+    for (let i = 0; i < _formElements.length; i++) {
+      const element = document.createElement(this._formElements[i].typo)
+      element.type = this._formElements[i].val[i].type
+      element.placeholder = this._formElements[i].val[i].placeholder
       element.classList.add("inputData")
       element.setAttribute("reqired", true)
       formInputs.append(element)
@@ -221,11 +183,11 @@ class FormCreator {
   // }
 }
 
-// const createdForm = new FormCreator(
-//   "NAme Full",
-//   "atat",
-//   "ur comment",
-//   "ddd",
-//   "",
-//   ""
-// )
+const createdForm = new FormCreator(
+  "NAme Full",
+  "atat",
+  "ur comment",
+  "ddd",
+  "",
+  ""
+)

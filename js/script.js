@@ -31,7 +31,7 @@ chooseDoctor.addEventListener("change", event => {
       "Anatoliy",
       "Pain",
       "...",
-      _formElements.cardio
+      _formElements.cardiologist
     )
     cardiologist.render()
   } else if (event.target.value === "Терапевт") {
@@ -45,13 +45,70 @@ chooseDoctor.addEventListener("change", event => {
     therapist.render()
   } else if (event.target.value === "Стоматолог") {
     console.log("Стоматолог")
-    const dentist = new FormCreator("Alma", "rotten_somewhere", "12.11.2017")
+    const dentist = new FormCreator(
+      "Alma",
+      "rotten_somewhere",
+      "12.11.2017",
+      _formElements.dentist
+    )
     dentist.render()
   } else {
     return false
     console.log("check failed")
   }
 })
+
+//=========================== Form construcor ===========================//
+
+class FormCreator {
+  constructor(fullName, visitPurpose, visitComment, formElemnts) {
+    this.fullName = fullName
+    this.visitPurpose = visitPurpose
+    this.visitComment = visitComment
+    this._formElements = formElemnts
+    // this.dataInput=dataInput;
+  }
+
+  //create form to the memory
+
+  createForm() {
+    const formInputs = document.createElement("form")
+
+    for (let i = 0; i < this._formElements.val.length; i++) {
+      const element = document.createElement(this._formElements.typo)
+
+      element.type = this._formElements.val[i].type
+      element.placeholder = this._formElements.val[i].placeholder
+      element.classList.add("inputData")
+      element.setAttribute("reqired", true)
+      formInputs.append(element)
+    }
+    console.log(formInputs)
+    return formInputs
+  }
+
+  // Form render
+
+  render() {
+    //creating div-wrapper for form
+
+    const container = document.createElement("div")
+    container.classList.add("form-wrapper")
+    document.getElementById("modal").appendChild(container)
+
+    // button "Create Visit" builder
+
+    const createVisitButton = document.createElement("button")
+    createVisitButton.classList.add("create-visit-button")
+    createVisitButton.innerText = "Create"
+    container.appendChild(createVisitButton)
+
+    // hiding previous modal
+
+    modalContent.style.display = "none"
+    container.appendChild(this.createForm())
+  }
+}
 
 //=========================== inputs data ===========================//
 
@@ -133,57 +190,5 @@ const _formElements = {
         // reqired: true
       }
     ]
-  }
-}
-
-//=========================== Form construcor ===========================//
-
-class FormCreator {
-  constructor(fullName, visitPurpose, visitComment, formElemnts) {
-    this.fullName = fullName
-    this.visitPurpose = visitPurpose
-    this.visitComment = visitComment
-    this._formElements = formElemnts
-    // this.dataInput=dataInput;
-  }
-
-  //create form to the memory
-
-  createForm() {
-    const formInputs = document.createElement("form")
-
-    for (let i = 0; i < this._formElements.val.length; i++) {
-      const element = document.createElement(this._formElements.typo)
-
-      element.type = this._formElements.val[i].type
-      element.placeholder = this._formElements.val[i].placeholder
-      element.classList.add("inputData")
-      element.setAttribute("reqired", true)
-      formInputs.append(element)
-    }
-    console.log(formInputs)
-    return formInputs
-  }
-
-  // Form render
-
-  render() {
-    //creating div-wrapper for form
-
-    const container = document.createElement("div")
-    container.classList.add("form-wrapper")
-    document.getElementById("modal").appendChild(container)
-
-    // button "Create Visit" builder
-
-    const createVisitButton = document.createElement("button")
-    createVisitButton.classList.add("create-visit-button")
-    createVisitButton.innerText = "Create"
-    container.appendChild(createVisitButton)
-
-    // hiding previous modal
-
-    modalContent.style.display = "none"
-    container.appendChild(this.createForm())
   }
 }

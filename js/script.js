@@ -1,60 +1,43 @@
-//=========================== modal ===========================//
-
-const modalButton = document.getElementById("openModalButton")
-const modal = document.getElementById("modal")
-const closeModal = document.getElementById("closeModal")
-const chooseDoctor = document.getElementById("chooseDoctorId")
-const modalContent = document.querySelector("#modalContentId")
-
-modalButton.addEventListener("click", e => {
-  if (e.target === modal) {
-    modal.style.display = "none"
-  }
-})
-
-modalButton.addEventListener("click", e => {
-  modal.style.display = "block"
-})
-
-closeModal.addEventListener("click", e => {
-  modal.style.display = "none"
-})
+// import { vistClass } from "./vistClass.js"
+import { _formElements } from "./partials/inputsData.js"
+import { modal } from "./partials/modal.js"
+import { modalContent } from "./partials/modal.js"
 
 //=========================== Doctor checker ===========================//
 
+const chooseDoctor = document.getElementById("chooseDoctorId")
+
 chooseDoctor.addEventListener("change", event => {
-  // createdForm.createForm()
+  // ===== Extra idea ============
+
+  // const doktos = {
+  //   cardio: []
+  // }
 
   if (event.target.value === "Кардиолог") {
-    console.log("Кардиолог")
-    const cardiologist = new FormCreator(
+    const cardiologistForm = new FormCreator(
       "Anatoliy",
       "Pain",
       "...",
       _formElements.cardiologist
     )
-    cardiologist.render()
+    cardiologistForm.render()
   } else if (event.target.value === "Терапевт") {
-    console.log("Терапевт")
-    const therapist = new FormCreator(
+    const therapistForm = new FormCreator(
       "Oleg",
       "BrainDamage",
       57,
       _formElements.teraphist
     )
-    therapist.render()
+    therapistForm.render()
   } else if (event.target.value === "Стоматолог") {
-    console.log("Стоматолог")
-    const dentist = new FormCreator(
+    const dentistForm = new FormCreator(
       "Alma",
       "rotten_somewhere",
       "12.11.2017",
       _formElements.dentist
     )
-    dentist.render()
-  } else {
-    return false
-    console.log("check failed")
+    dentistForm.render()
   }
 })
 
@@ -66,7 +49,7 @@ class FormCreator {
     this.visitPurpose = visitPurpose
     this.visitComment = visitComment
     this._formElements = formElemnts
-    // this.dataInput=dataInput;
+    // this.dataInput=dataInput; <<==== related to extra idea
   }
 
   //create form to the memory
@@ -84,7 +67,6 @@ class FormCreator {
       element.setAttribute("reqired", true)
       formInputs.append(element)
     }
-    console.log(formInputs)
     return formInputs
   }
 
@@ -104,20 +86,6 @@ class FormCreator {
     createVisitButton.innerText = "Create"
     container.appendChild(createVisitButton)
 
-    //=========================== Create card doctor checker ===========================//
-
-    createVisitButton.addEventListener("click", e => {
-      function doctorCard(doctorArg) {
-        if (doctorArg === therapist) {
-          return new Therapist("Kolya")
-        } else if (doctorArg === dentist) {
-          return new Dentist()
-        } else {
-          return new Cardiologist()
-        }
-      }
-    })
-
     // hiding previous modal
 
     modalContent.style.display = "none"
@@ -128,7 +96,9 @@ class FormCreator {
 //=========================== Card constructor ===========================//
 
 class Visit {
-  constructor(fullName) {
+  constructor(reason, date, fullName) {
+    this.reason = reason
+    this.date = date
     this.fullName = fullName
   }
 
@@ -146,102 +116,48 @@ class Visit {
 }
 
 class Dentist extends Visit {
-  constructor(fullName) {
-    super(fullName)
+  constructor(reason, date, fullName, ...other) {
+    super(reason, date, fullName)
   }
 }
 
 class Therapist extends Visit {
-  constructor(fullName) {
-    super(fullName)
+  constructor(reason, date, fullName, ...other) {
+    super(reason, date, fullName)
   }
 }
 
 class Cardiologist extends Visit {
-  constructor(fullName) {
-    super(fullName)
+  constructor(reason, date, fullName, ...other) {
+    super(reason, date, fullName)
   }
 }
 
-//=========================== inputs data ===========================//
+//=========================== Create card doctor checker ===========================//
 
-const _formElements = {
-  cardiologist: {
-    typo: "input",
-    val: [
-      {
-        type: "text",
-        placeholder: "Цель визита"
-        // reqired: true
-      },
-      {
-        type: "text",
-        placeholder: "Обычное давление"
-        // reqired: true
-      },
-      {
-        type: "text",
-        placeholder: "Индекс массы тела"
-        // reqired: true
-      },
-      {
-        type: "text",
-        placeholder: "Перенесенные заболевания сердечно-сосудистой системы"
-        // reqired: true
-      },
-      {
-        type: "text",
-        placeholder: "возраст"
-        // reqired: true
-      },
-      {
-        type: "text",
-        placeholder: "ФИО"
-        // reqired: true
-      }
-      // { type: "checkbox" }
-    ]
-  },
+// chooseDoctor.addEventListener("select", e => {
+//   if (event.target.value === "Кардиолог") {
+//     const doctorArg = "cardiologist"
+//     return doctorArg
+//   } else if (event.target.value === "Терапевт") {
+//     const doctorArg = "therapist"
+//     return doctorArg
+//   } else {
+//     const doctorArg = "dentist"
+//     return doctorArg
+//   }
+// })
 
-  teraphist: {
-    typo: "input",
-    val: [
-      {
-        type: "text",
-        placeholder: "Цель визита"
-        // reqired: true
-      },
-      {
-        type: "text",
-        placeholder: "Возраст"
-        // reqired: true
-      },
-      {
-        type: "text",
-        placeholder: "ФИО"
-        // reqired: true
-      }
-    ]
-  },
+//=========================== Selected doctor Card constructor ===========================//
 
-  dentist: {
-    typo: "input",
-    val: [
-      {
-        type: "text",
-        placeholder: "Цель визита"
-        // reqired: true
-      },
-      {
-        type: "text",
-        placeholder: "Дата последнего посещения"
-        // reqired: true
-      },
-      {
-        type: "text",
-        placeholder: "ФИО"
-        // reqired: true
-      }
-    ]
-  }
-}
+// createVisitButton.addEventListener("click", e => {
+//   function doctorCard(doctorArg) {
+//     if (doctorArg === "therapist") {
+//       return new Therapist("Kolya")
+//     } else if (doctorArg === "dentist") {
+//       return new Dentist()
+//     } else {
+//       return new Cardiologist()
+//     }
+//   }
+// })

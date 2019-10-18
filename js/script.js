@@ -58,7 +58,7 @@ chooseDoctor.addEventListener("change", event => {
   }
 })
 
-//=========================== Form construcor ===========================//
+//=========================== Form constructor ===========================//
 
 class FormCreator {
   constructor(fullName, visitPurpose, visitComment, formElemnts) {
@@ -73,6 +73,7 @@ class FormCreator {
 
   createForm() {
     const formInputs = document.createElement("form")
+    formInputs.classList.add("form")
 
     for (let i = 0; i < this._formElements.val.length; i++) {
       const element = document.createElement(this._formElements.typo)
@@ -103,10 +104,62 @@ class FormCreator {
     createVisitButton.innerText = "Create"
     container.appendChild(createVisitButton)
 
+    //=========================== Create card doctor checker ===========================//
+
+    createVisitButton.addEventListener("click", e => {
+      function doctorCard(doctorArg) {
+        if (doctorArg === therapist) {
+          return new Therapist("Kolya")
+        } else if (doctorArg === dentist) {
+          return new Dentist()
+        } else {
+          return new Cardiologist()
+        }
+      }
+    })
+
     // hiding previous modal
 
     modalContent.style.display = "none"
     container.appendChild(this.createForm())
+  }
+}
+
+//=========================== Card constructor ===========================//
+
+class Visit {
+  constructor(fullName) {
+    this.fullName = fullName
+  }
+
+  createCard() {
+    console.log("created")
+  }
+
+  cardDrag() {
+    console.log("draggged")
+  }
+
+  cardDrop() {
+    console.log("dropped")
+  }
+}
+
+class Dentist extends Visit {
+  constructor(fullName) {
+    super(fullName)
+  }
+}
+
+class Therapist extends Visit {
+  constructor(fullName) {
+    super(fullName)
+  }
+}
+
+class Cardiologist extends Visit {
+  constructor(fullName) {
+    super(fullName)
   }
 }
 

@@ -132,6 +132,10 @@ select {
   transform: translate(-50%, -50%);
 }
 
+.modal-option {
+  font-family: "Oswald", serif;
+}
+
 /*========================= form-styles =========================*/
 
 .form-wrapper {
@@ -160,6 +164,7 @@ select {
   width: 70%;
   padding: 0.2rem;
   padding-left: 0.4rem;
+  font-family: "Oswald", sans-serif;
 }
 
 textarea {

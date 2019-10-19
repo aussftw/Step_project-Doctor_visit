@@ -15,28 +15,13 @@ chooseDoctor.addEventListener("change", event => {
   // }
 
   if (event.target.value === "Кардиолог") {
-    const cardiologistForm = new FormCreator(
-      "Anatoliy",
-      "Pain",
-      "...",
-      _formElements.cardiologist
-    )
+    const cardiologistForm = new FormCreator(_formElements.cardiologist)
     cardiologistForm.render()
   } else if (event.target.value === "Терапевт") {
-    const therapistForm = new FormCreator(
-      "Oleg",
-      "BrainDamage",
-      57,
-      _formElements.teraphist
-    )
+    const therapistForm = new FormCreator(_formElements.teraphist)
     therapistForm.render()
   } else if (event.target.value === "Стоматолог") {
-    const dentistForm = new FormCreator(
-      "Alma",
-      "rotten_somewhere",
-      "12.11.2017",
-      _formElements.dentist
-    )
+    const dentistForm = new FormCreator(_formElements.dentist)
     dentistForm.render()
   }
 })
@@ -44,10 +29,7 @@ chooseDoctor.addEventListener("change", event => {
 //=========================== Form constructor ===========================//
 
 class FormCreator {
-  constructor(fullName, visitPurpose, visitComment, formElemnts) {
-    this.fullName = fullName
-    this.visitPurpose = visitPurpose
-    this.visitComment = visitComment
+  constructor(formElemnts) {
     this._formElements = formElemnts
     // this.dataInput=dataInput; <<==== related to extra idea
   }
@@ -59,7 +41,7 @@ class FormCreator {
     formInputs.classList.add("form")
 
     for (let i = 0; i < this._formElements.val.length; i++) {
-      const element = document.createElement(this._formElements.typo)
+      const element = document.createElement(this._formElements.elementName)
 
       element.type = this._formElements.val[i].type
       element.placeholder = this._formElements.val[i].placeholder

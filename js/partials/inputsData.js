@@ -1,6 +1,6 @@
 const _formElements = {
   cardiologist: {
-    typo: "input",
+    elementName: "input",
     val: [
       {
         type: "text",
@@ -37,7 +37,7 @@ const _formElements = {
   },
 
   teraphist: {
-    typo: "input",
+    elementName: "input",
     val: [
       {
         type: "text",
@@ -58,7 +58,7 @@ const _formElements = {
   },
 
   dentist: {
-    typo: "input",
+    elementName: "input",
     val: [
       {
         type: "text",

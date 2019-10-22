@@ -50,9 +50,8 @@ Alexander Kaminskiy, Glib Slivko -->
   - [Prerequisites](#prerequisites)
     <!-- - [Installation](#installation) -->
 - [Usage](#usage)
-- [Contributing](#contributing)
+
 - [Contact](#contact)
-- [Acknowledgements](#acknowledgements)
 
 <!-- ABOUT THE PROJECT -->
 

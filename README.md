@@ -64,7 +64,7 @@ Step project #3 wich will demonstrate OOP skills of authors.
 
 ### Built With
 
-PROJECT STACK: HTML5, CSS3, VANILLA JS.
+PROJECT STACK: HTML5, CSS3 and VANILLA JS.
 
 - [FontAwesome](https://fontawesome.com/)
 
@@ -87,6 +87,8 @@ _For more examples, please refer to the [Documentation](https://example.com)_ --
 ## Contact
 
 Project Link: [https://github.com/aussftw/Step_project-Doctor_visit](https://github.com/aussftw/Step_project-Doctor_visit)
+Alexander Kamsinkiy: [https://github.com/aussftw]
+Glib Slivko: [https://github.com/GlebSlivko]
 
 <!-- ACKNOWLEDGEMENTS -->
 

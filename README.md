@@ -20,9 +20,9 @@ Alexander Kaminskiy, Glib Slivko -->
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <!-- <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="logo.png" alt="Logo" width="80" height="80">
-  </a> -->
+  <a href="https://github.com/aussftw/Step_project-Doctor_visit">
+    <img src="./img/logo.png" alt="Logo" width="80" height="80">
+  </a>
 
   <h3 align="center">Step project №3 Docotors Vist</h3>
 

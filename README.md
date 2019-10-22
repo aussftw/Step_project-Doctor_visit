@@ -58,7 +58,7 @@ Alexander Kaminskiy, Glib Slivko -->
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](https://imgur.com/NOG6pBt)
 
 Step project #3 wich will demonstrate OOP skills of authors.
 

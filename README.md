@@ -21,7 +21,7 @@ Alexander Kaminskiy, Glib Slivko -->
 <br />
 <p align="center">
   <a href="https://github.com/aussftw/Step_project-Doctor_visit">
-    <img src="./img/logo.png" alt="Logo" width="80" height="80">
+    <img src="./img/logo.png" alt="Logo" width="250" height="250">
   </a>
 
   <h3 align="center">Step project №3 Docotors Vist</h3>
@@ -114,4 +114,4 @@ Glib Slivko: [https://github.com/GlebSlivko](https://github.com/GlebSlivko)
 [license-url]: https://choosealicense.com/licenses/mit
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: https://raw.githubusercontent.com/othneildrew/Best-README-Template/master/screenshot.png
+[product-screenshot]: https://i.imgur.com/XxXr9bD.png

@@ -49,8 +49,7 @@ Alexander Kaminskiy, Glib Slivko -->
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
     <!-- - [Installation](#installation) -->
-- [Usage](#usage)
-
+    <!-- - [Usage](#usage) -->
 - [Contact](#contact)
 
 <!-- ABOUT THE PROJECT -->

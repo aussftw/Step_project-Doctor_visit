@@ -1,4 +1,3 @@
-// import { vistClass } from "./vistClass.js"
 import { _formElements } from "./partials/inputsData.js"
 import { modal } from "./partials/modal.js"
 import { modalContent } from "./partials/modal.js"
@@ -8,21 +7,24 @@ import { modalContent } from "./partials/modal.js"
 const chooseDoctor = document.getElementById("chooseDoctorId")
 
 chooseDoctor.addEventListener("change", event => {
-  // ===== Extra idea ============
+  // ===== Extra idea =====//
 
   // const doktos = {
   //   cardio: []
   // }
 
-  if (event.target.value === "Кардиолог") {
+  if (chooseDoctor.value === "Кардиолог") {
     const cardiologistForm = new FormCreator(_formElements.cardiologist)
     cardiologistForm.render()
-  } else if (event.target.value === "Терапевт") {
+    // cardiologistForm.serialize()
+  } else if (chooseDoctor.value === "Терапевт") {
     const therapistForm = new FormCreator(_formElements.teraphist)
     therapistForm.render()
-  } else if (event.target.value === "Стоматолог") {
+    // therapistForm.serialize()
+  } else if (chooseDoctor.value === "Стоматолог") {
     const dentistForm = new FormCreator(_formElements.dentist)
     dentistForm.render()
+    // dentistForm.serialize()
   }
 })
 
@@ -32,6 +34,7 @@ class FormCreator {
   constructor(formElemnts) {
     this._formElements = formElemnts
     // this.dataInput=dataInput; <<==== related to extra idea
+    this.form = null
   }
 
   //create form to the memory
@@ -39,6 +42,17 @@ class FormCreator {
   createForm() {
     const formInputs = document.createElement("form")
     formInputs.classList.add("form")
+
+    const createVisitButton = document.createElement("button")
+    createVisitButton.setAttribute("type", "submit")
+    createVisitButton.classList.add("create-visit-button")
+    createVisitButton.innerText = "Create"
+    formInputs.appendChild(createVisitButton)
+
+    formInputs.addEventListener("submit", e => {
+      e.preventDefault()
+      this.serialize()
+    })
 
     for (let i = 0; i < this._formElements.val.length; i++) {
       const element = document.createElement(this._formElements.elementName)
@@ -52,25 +66,45 @@ class FormCreator {
     return formInputs
   }
 
+  serialize() {
+    const arr = []
+    const inputData = document.querySelectorAll(".inputData")
+    inputData.forEach(elem => {
+      arr.push(`${elem.placeholder}: ${elem.value}`)
+      return arr
+    })
+
+    // arr.map(element => {
+    //   const i = arr.indexOf(":")
+    //   const first = arr.slice(0, i)
+    //   const second = arr.slice(i + 1, arr.length)
+    //   console.log(first)
+    //   console.log(second)
+    // })
+
+    // console.log(arr)
+
+    function finxgArr(array) {
+      for (let i = 0; i < array.length; i++) {
+        return array[i].split(":", 1)
+      }
+    }
+
+    const newArr = finxgArr(arr)
+    console.log(newArr)
+  }
+
   // Form render
 
   render() {
-    //creating div-wrapper for form
-
     const container = document.createElement("div")
     container.classList.add("form-wrapper")
     document.getElementById("modal").appendChild(container)
 
-    // button "Create Visit" builder
-
-    const createVisitButton = document.createElement("button")
-    createVisitButton.classList.add("create-visit-button")
-    createVisitButton.innerText = "Create"
-    container.appendChild(createVisitButton)
-
     // hiding previous modal
 
     modalContent.style.display = "none"
+
     container.appendChild(this.createForm())
   }
 }
@@ -115,31 +149,19 @@ class Cardiologist extends Visit {
   }
 }
 
+// _______------------___________ STASH  _______------------___________
+
 //=========================== Create card doctor checker ===========================//
 
-// chooseDoctor.addEventListener("select", e => {
-//   if (event.target.value === "Кардиолог") {
-//     const doctorArg = "cardiologist"
-//     return doctorArg
-//   } else if (event.target.value === "Терапевт") {
-//     const doctorArg = "therapist"
-//     return doctorArg
-//   } else {
-//     const doctorArg = "dentist"
-//     return doctorArg
-//   }
-// })
+// if (choseDocgor.value === "Кардиолог") {
 
-//=========================== Selected doctor Card constructor ===========================//
+//   return const doctorArg = "cardiologist"
+// } else if (event.target.value === "Терапевт") {
+//   const doctorArg = "therapist"
+//   return doctorArg
+// } else {
+//   const doctorArg = "dentist"
+//   return doctorArg
+// }
 
-// createVisitButton.addEventListener("click", e => {
-//   function doctorCard(doctorArg) {
-//     if (doctorArg === "therapist") {
-//       return new Therapist("Kolya")
-//     } else if (doctorArg === "dentist") {
-//       return new Dentist()
-//     } else {
-//       return new Cardiologist()
-//     }
-//   }
-// })
+// console.log(doctrArg)

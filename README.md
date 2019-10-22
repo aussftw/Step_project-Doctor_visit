@@ -87,8 +87,9 @@ _For more examples, please refer to the [Documentation](https://example.com)_ --
 ## Contact
 
 Project Link: [https://github.com/aussftw/Step_project-Doctor_visit](https://github.com/aussftw/Step_project-Doctor_visit)<br/>
-Alexander Kamsinkiy: [https://github.com/aussftw]<br/>
+Alexander Kamsinkiy: [https://github.com/aussftw](https://github.com/aussftw)<br/>
 Glib Slivko: [https://github.com/GlebSlivko]<br/>
+(https://github.com/GlebSlivko)
 
 <!-- ACKNOWLEDGEMENTS -->
 

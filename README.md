@@ -12,17 +12,17 @@ Alexander Kaminskiy, Glib Slivko -->
 
 <!-- PROJECT SHIELDS -->
 
-[![Build Status][build-shield]]()
+<!-- [![Build Status][build-shield]]()
 [![Contributors][contributors-shield]]()
 [![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+[![LinkedIn][linkedin-shield]][linkedin-url] -->
 
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  <!-- <a href="https://github.com/othneildrew/Best-README-Template">
     <img src="logo.png" alt="Logo" width="80" height="80">
-  </a>
+  </a> -->
 
   <h3 align="center">Step project №3 Docotors Vist</h3>
 
@@ -35,7 +35,7 @@ Alexander Kaminskiy, Glib Slivko -->
     <a href="#">View Demo</a>
     ·
     <a href="https://github.com/aussftw/Step_project-Doctor_visit/issues">Report Bug</a>
-    ·
+    .
     <a href="https://github.com/aussftw/Step_project-Doctor_visit/issues">Request Feature</a>
   </p>
 </p>
@@ -76,17 +76,17 @@ PROJECT STACK: HTML5, CSS3, VANILLA JS.
 
 For correct work of this project you need some liver-server extension for your IDE.
 
-## Usage
+<!-- ## Usage
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+_For more examples, please refer to the [Documentation](https://example.com)_ -->
 
 <!-- CONTACT -->
 
 ## Contact
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/aussftw/Step_project-Doctor_visit)
+Project Link: [https://github.com/aussftw/Step_project-Doctor_visit](https://github.com/aussftw/Step_project-Doctor_visit)
 
 <!-- ACKNOWLEDGEMENTS -->
 

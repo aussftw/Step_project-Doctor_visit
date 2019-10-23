@@ -3,11 +3,12 @@
 
 ###Authors
 
-Student 1: Maksym Pliushch
+Student 1: Alexander Kamsinkiy: [https://github.com/aussftw](https://github.com/aussftw)
 
-Student 2: Sergey Statechny
+Student 2: Glib Slivko: [https://github.com/GlebSlivko](https://github.com/GlebSlivko)
 
-Gulp & Webpack Build: Sergey Statechny
+Student 3: Sergey Statechny: [https://github.com/statechny](https://github.com/statechny)
+
 
 
 ## Overview

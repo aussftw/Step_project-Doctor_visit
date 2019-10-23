@@ -1,0 +1,20 @@
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background-color: #fff;
+  font-family: $proxima, sans-serif;
+  width: 100%;
+}
+a {
+  text-decoration: none;
+  display: block;
+}
+img {
+  display: block;
+  width: 100%;
+}
+svg {
+  height: 100%;
+  width: 100%;
+}

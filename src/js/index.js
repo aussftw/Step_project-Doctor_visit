@@ -1,7 +1,6 @@
-import { _formElements } from "./partials/inputsData.js"
-import { modal } from "./partials/modal.js"
-import { modalContent } from "./partials/modal.js"
-
+import { _formElements } from './partials/inputsData.js';
+import { modal } from './partials/modal.js';
+import { modalContent } from './partials/modal.js';
 //=========================== Doctor checker ===========================//
 
 const chooseDoctor = document.getElementById("chooseDoctorId")
@@ -51,7 +50,12 @@ class FormCreator {
 
     formInputs.addEventListener("submit", e => {
       e.preventDefault()
-      this.serialize()
+      let data = new FormData(formInputs);
+      console.dir(data);
+      console.log([...data])
+      for (let [key, value] of data.entries()) {
+        console.log(key, ':', value);
+      }
     })
 
     for (let i = 0; i < this._formElements.val.length; i++) {
@@ -59,6 +63,7 @@ class FormCreator {
 
       element.type = this._formElements.val[i].type
       element.placeholder = this._formElements.val[i].placeholder
+      element.name = this._formElements.val[i].name
       element.classList.add("inputData")
       element.setAttribute("reqired", true)
       formInputs.append(element)
@@ -74,6 +79,14 @@ class FormCreator {
       return arr
     })
 
+
+
+
+    // obj.elem.placeholder
+    //
+    // {
+    //
+    // }
     // arr.map(element => {
     //   const i = arr.indexOf(":")
     //   const first = arr.slice(0, i)

@@ -6,6 +6,7 @@ const modalContent = document.querySelector("#modalContentId")
 modalButton.addEventListener("click", e => {
   if (e.target === modal) {
     modal.style.display = "none"
+    console.log(e.target);
   }
 })
 

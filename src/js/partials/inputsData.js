@@ -41,17 +41,20 @@ const _formElements = {
     val: [
       {
         type: "text",
-        placeholder: "Цель визита"
+        placeholder: "Цель визита",
+        name: "reason"
         // reqired: true
       },
       {
         type: "text",
-        placeholder: "Возраст"
+        placeholder: "Возраст",
+        name: "age",
         // reqired: true
       },
       {
         type: "text",
-        placeholder: "ФИО"
+        placeholder: "ФИО",
+        name: "name",
         // reqired: true
       }
     ]

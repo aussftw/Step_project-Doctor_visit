@@ -1,115 +1,201 @@
-<!-- # Step Project #003 - Doctor_visit
-Project Stack: HTML, CSS and Vanilla JS
-Developers:
-Alexander Kaminskiy, Glib Slivko -->
+# Step-project Online Shop
 
-<!--
-*** Thanks for checking out this README Template. If you have a suggestion that would
-*** make this better please fork the repo and create a pull request or simple open
-*** an issue with the tag "enhancement".
-*** Thanks again! Now go create something AMAZING! :D
--->
 
-<!-- PROJECT SHIELDS -->
+###Authors
 
-<!-- [![Build Status][build-shield]]()
-[![Contributors][contributors-shield]]()
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url] -->
+Student 1: Maksym Pliushch
 
-<!-- PROJECT LOGO -->
-<br />
-<p align="center">
-  <a href="https://github.com/aussftw/Step_project-Doctor_visit">
-    <img src="./img/logo.png" alt="Logo" width="250" height="250">
-  </a>
+Student 2: Sergey Statechny
 
-  <h3 align="center">Step project №3 Docotors Vist</h3>
+Gulp & Webpack Build: Sergey Statechny
 
-  <p align="center">
-    OOP STEP PROJECT
-    <br />
-    <p>Project stack</p>
-    <br />
-    <br />
-    <a href="#">View Demo</a>
-    ·
-    <a href="https://github.com/aussftw/Step_project-Doctor_visit/issues">Report Bug</a>
-    .
-    <a href="https://github.com/aussftw/Step_project-Doctor_visit/issues">Request Feature</a>
-  </p>
-</p>
 
-<!-- TABLE OF CONTENTS -->
+## Overview
 
-## Table of Contents
+* [Installation](#markdown-header-installation)
+* [WebStorm configuration](#markdown-header-webstorm-configuration)
+* [NPM scripts](#markdown-header-npm-scripts)
+* [File structure](#file-structure)
+* [JS structure explanation](#js-structure-explanation)
+* [Public API](#markdown-header-public-api)
+* [Common scripts](#common-scripts)
+* [JSDoc](#markdown-header-jsdoc)
+* [Notes](#markdown-header-notes)
 
-- [About the Project](#about-the-project)
-  - [Built With](#built-with)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-    <!-- - [Installation](#installation) -->
-    <!-- - [Usage](#usage) -->
-- [Contact](#contact)
+## Installation
 
-<!-- ABOUT THE PROJECT -->
+In order to start working with project, you must:
 
-## About The Project
+#### Install dependencies
 
-[![Product Name Screen Shot][product-screenshot]](https://imgur.com/NOG6pBt)
+npm
+```
+npm i
+```
 
-Step project #3 wich will demonstrate OOP skills of authors.
+yarn
+```
+yarn install
+```
 
-### Built With
+## WebStorm configuration
 
-PROJECT STACK: HTML5, CSS3 and VANILLA JS.
+Turn off 'Safe write' option
+```
+Preferences | Appearance & Behavior | System Settings | Use "safe write"
+```
 
-- [FontAwesome](https://fontawesome.com/)
+Change ECMAScript version
+```
+Preferences | Languages & Frameworks | Javascript | Javascript language version: "ECMAScript6"
+```
 
-<!-- GETTING STARTED -->
+Enable JSCS linter
+```
+Preferences | Languages & Frameworks | Javascript | Code Quality Tools | JSCS | "Enable"
+```
 
-## Getting Started
+## NPM scripts
 
-### Prerequisites
+Start development
 
-For correct work of this project you need some liver-server extension for your IDE.
+```
+npm run dev
+```
 
-<!-- ## Usage
+Build production bundle (build '.min' files, prettify html)
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+```
+npm run prod
+```
 
-_For more examples, please refer to the [Documentation](https://example.com)_ -->
+## File structure
 
-<!-- CONTACT -->
+```
+|-- project
+    |-- gulp
+    |   |-- config.js
+    |   |-- tasks
+    |-- src
+    |   |-- js
+    |   |-- styles
+    |   |-- svg
+    |   |-- template
+    |-- dist
+    |   |-- static
+    |   |   |-- js
+    |   |   |-- css
+    |   |   |-- fonts
+    |   |   |-- favicon.ico
+    |   |   |-- img
+    |   |   |-- video
+    |-- .gitignore
+    |-- gulpfile.js
+    |-- jsdoc.json
+    |-- package.json
+    |-- README.md
+    |-- rules.jscsrc
+    |-- frontend.json
+    |-- webpack.config.js
+```
 
-## Contact
+### JS
 
-Project Link: [https://github.com/aussftw/Step_project-Doctor_visit](https://github.com/aussftw/Step_project-Doctor_visit)<br/>
-Alexander Kamsinkiy: [https://github.com/aussftw](https://github.com/aussftw)<br/>
-Glib Slivko: [https://github.com/GlebSlivko](https://github.com/GlebSlivko)
+Main JS entry point: `src/js/index.js`
+Will be compiled to: `dist/static/js/index.js`
 
-<!-- ACKNOWLEDGEMENTS -->
+### SCSS
 
-<!-- ## Acknowledgements
+Main SCSS entry point: `src/styles/index.scss`
+Will be compiled to: `dist/static/css/index.css`
 
-- [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-- [Img Shields](https://shields.io)
-- [Choose an Open Source License](https://choosealicense.com)
-- [GitHub Pages](https://pages.github.com)
-- [Animate.css](https://daneden.github.io/animate.css)
-- [Loaders.css](https://connoratherton.com/loaders)
-- [Slick Carousel](https://kenwheeler.github.io/slick)
-- [Smooth Scroll](https://github.com/cferdinandi/smooth-scroll)
-- [Sticky Kit](http://leafo.net/sticky-kit)
-- [JVectorMap](http://jvectormap.com)
-- [Font Awesome](https://fontawesome.com) -->
+### HTML
 
-<!-- MARKDOWN LINKS & IMAGES -->
+Pages directory: `src/template/pages`
+Will be compiled to: `dist/`
 
-[build-shield]: https://img.shields.io/badge/build-passing-brightgreen.svg?style=flat-square
-[contributors-shield]: https://img.shields.io/badge/contributors-1-orange.svg?style=flat-square
-[license-shield]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square
-[license-url]: https://choosealicense.com/licenses/mit
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: https://i.imgur.com/XxXr9bD.png
+### SVG
+
+Put your SVG-icons to: `src/svg`
+Start-workflow will create sprite and inject it into the HTML layout (on each page)
+
+## JS structure explanation
+
+```
+|-- js
+    |-- components
+    |-- modules
+    |   |-- dep
+    |   |-- dev
+    |-- pages
+    index.js
+```
+
+### `components`
+
+`PublicAPI.ts`, `Common.ts` and other components (`Header.js` or `Footer.js` etc.).
+Components from this directory should be used only by `pages` and `index`.
+
+### `modules/dep`
+
+Libs and modules that could not be installed via 'npm install'
+
+### `modules/dev`
+
+User-written modules. They shouldn't import anything (except packages from `node_modules` and other modules).
+
+### `pages`
+
+Scripts for each page (will be evaluated only on corresponding page).
+
+## Public API
+
+Path: `js/components/publicAPI` (example)
+
+Public API is created for back-end developers.
+
+It should contain methods to attach / initialize / destroy jquery plugins etc.
+
+If there is no need in API, simply delete `publicAPI.js` file and it's `import`.
+
+## Common scripts
+
+Path: `js/components/common` (example)
+
+Common scripts should always be executed, regardless of active 'data-page'.
+
+If there is no need in them, simply delete `common.js` file and it's `import`.
+
+## JSDoc
+
+Install JSDoc globally
+
+```
+npm install jsdoc -g
+```
+
+Generate docs
+
+```
+npm run-script compileDocs
+```
+
+Open docs
+```
+npm run-script openDocs
+```
+
+## Notes
+
+1. Each page should have corresponding `data-page` attribute (e.g. `<main data-page="home" />`.
+2. Before pushing to GIT repository (or before transferring the project to Back-end department) make sure to run `production` bundle.
+3. Ensure all of your Public API's has both `init` and `destroy` methods.
+4. In case of Public API or Common scripts are not-in-use - make sure to delete those files.
+
+## Built with
+
+* [Gulp](http://gulpjs.com/)
+* [Pug](https://github.com/pugjs/pug)
+* [Webpack](https://webpack.js.org/)
+* [Sass](http://sass-lang.com/)
+* [Babel](https://babeljs.io/)

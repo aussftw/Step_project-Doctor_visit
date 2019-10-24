@@ -1,6 +1,6 @@
-import { _formElements } from './partials/inputsData.js';
-import { modal } from './partials/modal.js';
-import { modalContent } from './partials/modal.js';
+import { _formElements } from "./partials/inputsData.js"
+import { modal } from "./partials/modal.js"
+import { modalContent } from "./partials/modal.js"
 //=========================== Doctor checker ===========================//
 
 const chooseDoctor = document.getElementById("chooseDoctorId")
@@ -50,11 +50,11 @@ class FormCreator {
 
     formInputs.addEventListener("submit", e => {
       e.preventDefault()
-      let data = new FormData(formInputs);
-      console.dir(data);
+      let data = new FormData(formInputs)
+      console.dir(data)
       console.log([...data])
       for (let [key, value] of data.entries()) {
-        console.log(key, ':', value);
+        console.log(key, ":", value)
       }
     })
 
@@ -79,31 +79,6 @@ class FormCreator {
       return arr
     })
 
-
-
-
-    // obj.elem.placeholder
-    //
-    // {
-    //
-    // }
-    // arr.map(element => {
-    //   const i = arr.indexOf(":")
-    //   const first = arr.slice(0, i)
-    //   const second = arr.slice(i + 1, arr.length)
-    //   console.log(first)
-    //   console.log(second)
-    // })
-
-    // console.log(arr)
-
-    function finxgArr(array) {
-      for (let i = 0; i < array.length; i++) {
-        return array[i].split(":", 1)
-      }
-    }
-
-    const newArr = finxgArr(arr)
     console.log(newArr)
   }
 
@@ -119,6 +94,15 @@ class FormCreator {
     modalContent.style.display = "none"
 
     container.appendChild(this.createForm())
+
+    const closeModal = document.createElement("span")
+    closeModal.innerText = "Закрыть"
+    closeModal.classList.add("modal-close")
+    container.appendChild(closeModal)
+
+    closeModal.addEventListener("click", e => {
+      modal.style.display = "none"
+    })
   }
 }
 

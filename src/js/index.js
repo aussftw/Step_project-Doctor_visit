@@ -1,6 +1,6 @@
-import { _formElements } from "./partials/inputsData.js"
 import { modal } from "./partials/modal.js"
 import { modalContent } from "./partials/modal.js"
+import { _formElements } from "./partials/inputsData.js"
 import { _personal } from "./partials/selectandTextAreaValues.js"
 import { _priority } from "./partials/selectandTextAreaValues.js"
 import { _description } from "./partials/selectandTextAreaValues.js"
@@ -49,16 +49,16 @@ class FormCreator {
   //create form to the memory
 
   createForm() {
-    const formInputs = document.createElement("form")
-    formInputs.classList.add("form")
+    const form = document.createElement("form")
+    form.classList.add("form")
 
     const createVisitButton = document.createElement("button")
     createVisitButton.setAttribute("type", "submit")
     createVisitButton.classList.add("create-visit-button")
     createVisitButton.innerText = "Create"
-    formInputs.appendChild(createVisitButton)
+    form.appendChild(createVisitButton)
 
-    formInputs.addEventListener("submit", e => {
+    form.addEventListener("submit", e => {
       e.preventDefault()
       this.serialize()
     })
@@ -73,18 +73,19 @@ class FormCreator {
       element.name = this._formElements.val[i].name
       element.classList.add("inputData")
       element.setAttribute("reqired", true)
-      formInputs.append(element)
+      form.append(element)
     }
+
+    // selects constructor
 
     const select = document.createElement("select")
     select.classList.add("select")
-    formInputs.append(select)
+    form.append(select)
 
     for (let i = 0; i < this._personal.val.length; i++) {
       const option = document.createElement(this._personal.elementName)
       const optionName = document.createElement("p")
       optionName.innerHTML = this._personal.val[i]
-      console.log(this._personal.val[i])
       option.classList.add("select")
       select.append(option)
       option.append(optionName)
@@ -92,7 +93,7 @@ class FormCreator {
 
     const selectPriority = document.createElement("select")
     selectPriority.classList.add("select")
-    formInputs.append(selectPriority)
+    form.append(selectPriority)
 
     for (let i = 0; i < this._priority.val.length; i++) {
       const option = document.createElement(this._priority.elementName)
@@ -104,15 +105,12 @@ class FormCreator {
     }
 
     for (let i = 0; i < this._description.val.length; i++) {
-      console.log("keks")
       const description = document.createElement(this._description.elementName)
-      console.log(description)
       description.placeholder = this._description.val[i].placeholder
-      console.log(description.placeholder)
       description.classList.add("description")
-      formInputs.append(description)
+      form.append(description)
     }
-    return formInputs
+    return form
   }
 
   serialize() {

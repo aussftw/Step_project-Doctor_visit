@@ -1,4 +1,5 @@
 import axios from "axios"
+import { selectDoctor } from "../index"
 const modalButton = document.getElementById("openModalButton")
 const modal = document.getElementById("modal")
 const closeModal = document.getElementById("closeModal")
@@ -49,6 +50,7 @@ function initDoctorsSelector() {
         </select>
     `;
   $('.ui.dropdown').dropdown();
+    selectDoctor()
 }
 function initLogInForm() {
     $('.ui.modal').modal('show');

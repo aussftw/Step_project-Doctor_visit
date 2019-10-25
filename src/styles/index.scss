@@ -105,12 +105,15 @@
   width: 70%;
   padding: 0.2rem;
   padding-left: 0.4rem;
+  margin-bottom: 12px !important;
 }
 
 textarea {
   resize: none;
 }
-
+.select {
+  margin-bottom: 12px !important;
+}
 .create-visit-button {
   display: block;
   height: 10%;

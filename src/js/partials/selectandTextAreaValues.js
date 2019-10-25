@@ -10,17 +10,17 @@ const _personal = {
   },
   therapist: {
     elementName: "option",
-    val: ["Петрович Перович", "Сергей Петрович", "Пётр Петрович"]
+    val: ["Выберите доктора", "Петрович Перович", "Сергей Петрович", "Пётр Петрович"]
   },
   dentist: {
     elementName: "option",
-    val: ["Петрович Перович", "Сергей Петрович", "Пётр Петрович"]
+    val: ["Выберите доктора", "Петрович Перович", "Сергей Петрович", "Пётр Петрович"]
   }
 }
 
 const _priority = {
   elementName: "option",
-  val: ["important", "medium", "low"]
+  val: [ "Выберите срочность", "important", "medium", "low"]
 }
 
 const _description = {

@@ -53,12 +53,6 @@ class FormCreator {
     form.classList.add("ui")
     form.classList.add("form")
 
-    const createVisitButton = document.createElement("button")
-    createVisitButton.setAttribute("type", "submit")
-    createVisitButton.classList.add("create-visit-button")
-    createVisitButton.innerText = "Create"
-    form.appendChild(createVisitButton)
-
     form.addEventListener("submit", e => {
       e.preventDefault()
       this.serialize()
@@ -81,6 +75,8 @@ class FormCreator {
 
     const select = document.createElement("select")
     select.classList.add("select")
+    // select.classList.add("ui")
+    // select.classList.add("dropdown")
     form.append(select)
 
     for (let i = 0; i < this._personal.val.length; i++) {
@@ -94,6 +90,8 @@ class FormCreator {
 
     const selectPriority = document.createElement("select")
     selectPriority.classList.add("select")
+    // selectPriority.classList.add("ui")
+    // selectPriority.classList.add("dropdown")
     form.append(selectPriority)
 
     for (let i = 0; i < this._priority.val.length; i++) {
@@ -111,6 +109,14 @@ class FormCreator {
       description.classList.add("description")
       form.append(description)
     }
+
+    const createVisitButton = document.createElement("button")
+    createVisitButton.setAttribute("type", "submit")
+    createVisitButton.classList.add("create-visit-button")
+    createVisitButton.classList.add("ui", "blue", "button", "large")
+    createVisitButton.innerText = "Create"
+    form.appendChild(createVisitButton)
+
     return form
   }
 
@@ -135,9 +141,11 @@ class FormCreator {
       container.classList.add("form-wrapper")
       document.getElementById("modal").appendChild(container)
     // hiding previous modal
-      modalContent.style.display = "none"
       container.appendChild(this.createForm())
     }
+    modalContent.style.display = "none"
+    $('.ui.dropdown').dropdown();
+
   }
 }
 

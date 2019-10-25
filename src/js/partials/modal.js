@@ -7,6 +7,7 @@ const form = document.querySelector(".form-wrapper");
 
 modalButton.addEventListener("click", e => {
   $('.ui.modal').modal('show');
+  $('.ui.dropdown').dropdown();
 })
 
 closeModal.addEventListener("click", e => {

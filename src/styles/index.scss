@@ -34,8 +34,6 @@
   display: none;
   position: fixed;
   z-index: 1;
-  left: 0;
-  top: 0;
   width: 100%;
   height: 100%;
   overflow: auto;
@@ -60,30 +58,27 @@
   cursor: pointer;
 }
 
-select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
+//select {
+//  -webkit-appearance: none;
+//  -moz-appearance: none;
+//  appearance: none;
+//}
 
-.modal-select {
-  height: 5rem;
-  background-color: #fff;
-  border: 1px solid #084fc7;
-  font-size: 1.3rem;
-  font-family: 'Proxima Nova', serif;
-  padding: 1rem;
-  outline: none;
-  cursor: pointer;
-  position: absolute;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-}
+//.modal-select {
+//  height: 5rem;
+//  background-color: #fff;
+//  border: 1px solid #084fc7;
+//  font-size: 1.3rem;
+//  font-family: 'Proxima Nova', serif;
+//  padding: 1rem;
+//  outline: none;
+//  cursor: pointer;
+//  position: absolute;
+//  left: 50%;
+//  margin-right: -50%;
+//  transform: translate(-50%, -50%);
+//}
 
-.modal-option {
-  font-family: 'Proxima Nova', serif;
-}
 
 /*========================= form-styles =========================*/
 
@@ -93,10 +88,8 @@ select {
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
-  background: linear-gradient(to right, rgb(146, 199, 255), rgb(196, 113, 241));
   height: 70%;
   width: 50%;
-  border: 3px solid #084fc7;
 }
 
 .form {
@@ -107,13 +100,11 @@ select {
 }
 
 .inputData {
-  border: 1px solid #084fc7;
   margin: 0.5rem 0;
   display: block;
   width: 70%;
   padding: 0.2rem;
   padding-left: 0.4rem;
-  font-family: 'Proxima Nova', sans-serif;
 }
 
 textarea {

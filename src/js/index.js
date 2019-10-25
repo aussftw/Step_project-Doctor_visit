@@ -1,4 +1,4 @@
-import { modal } from "./partials/modal.js"
+import { modal } from './partials/modal.js';
 import { modalContent } from "./partials/modal.js"
 import { _formElements } from "./partials/inputsData.js"
 import { _personal } from "./partials/selectandTextAreaValues.js"
@@ -50,6 +50,7 @@ class FormCreator {
 
   createForm() {
     const form = document.createElement("form")
+    form.classList.add("ui")
     form.classList.add("form")
 
     const createVisitButton = document.createElement("button")
@@ -126,24 +127,17 @@ class FormCreator {
   // Form render
 
   render() {
-    const container = document.createElement("div")
-    container.classList.add("form-wrapper")
-    document.getElementById("modal").appendChild(container)
-
+    const form = document.querySelector(".form-wrapper");
+    if (form) {
+      form.appendChild(this.createForm());
+    } else {
+      const container = document.createElement("div")
+      container.classList.add("form-wrapper")
+      document.getElementById("modal").appendChild(container)
     // hiding previous modal
-
-    modalContent.style.display = "none"
-
-    container.appendChild(this.createForm())
-
-    const closeModal = document.createElement("span")
-    closeModal.innerText = "Закрыть"
-    closeModal.classList.add("modal-close")
-    container.appendChild(closeModal)
-
-    closeModal.addEventListener("click", e => {
-      modal.style.display = "none"
-    })
+      modalContent.style.display = "none"
+      container.appendChild(this.createForm())
+    }
   }
 }
 

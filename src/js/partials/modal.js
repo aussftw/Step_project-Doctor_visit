@@ -2,17 +2,20 @@ const modalButton = document.getElementById("openModalButton")
 const modal = document.getElementById("modal")
 const closeModal = document.getElementById("closeModal")
 const modalContent = document.querySelector("#modalContentId")
+const form = document.querySelector(".form-wrapper");
 
 
 modalButton.addEventListener("click", e => {
-  // modal.style.display = "block"
   $('.ui.modal').modal('show');
 })
 
 closeModal.addEventListener("click", e => {
-  // modal.style.display = "none"
   $('.ui.modal').modal('hide');
-})
+  modalContent.style.display = "block";
+  const form = document.querySelector(".form-wrapper").innerHTML = '';
+});
 
 export { modal }
 export { modalContent }
+
+

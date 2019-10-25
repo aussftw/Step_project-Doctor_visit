@@ -1,4 +1,6 @@
-import { modal } from './partials/modal.js';
+import axios from "axios"
+
+import { modal } from "./partials/modal.js"
 import { modalContent } from "./partials/modal.js"
 import { _formElements } from "./partials/inputsData.js"
 import { _personal } from "./partials/selectandTextAreaValues.js"
@@ -62,6 +64,7 @@ class FormCreator {
     form.addEventListener("submit", e => {
       e.preventDefault()
       this.serialize()
+      this.sendData()
     })
 
     // inputs consturcor
@@ -124,17 +127,42 @@ class FormCreator {
     return obj
   }
 
+  sendData() {
+    const data = {
+      token: "569bc2174da3d8091f627c73",
+      title: "test",
+      description: "testing",
+      status: "open",
+      priority: "high",
+      content: {}
+    }
+
+    const authOptions = {
+      method: "POST",
+      url: "http://cards.danit.com.ua/cards",
+      data: JSON.stringify(data)
+    }
+
+    axios(authOptions)
+      .then(function(response) {
+        console.log(response.data)
+      })
+      .catch(function(error) {
+        console.log(error)
+      })
+  }
+
   // Form render
 
   render() {
-    const form = document.querySelector(".form-wrapper");
+    const form = document.querySelector(".form-wrapper")
     if (form) {
-      form.appendChild(this.createForm());
+      form.appendChild(this.createForm())
     } else {
       const container = document.createElement("div")
       container.classList.add("form-wrapper")
       document.getElementById("modal").appendChild(container)
-    // hiding previous modal
+      // hiding previous modal
       modalContent.style.display = "none"
       container.appendChild(this.createForm())
     }
@@ -181,6 +209,4 @@ class Cardiologist extends Visit {
   }
 }
 
-$('.ui.dropdown')
-    .dropdown()
-;
+$(".ui.dropdown").dropdown()

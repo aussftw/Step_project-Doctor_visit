@@ -9,8 +9,7 @@
     "openDocs": "start dist/index.html"
   },
   "dependencies": {
-    "axios": "^0.19.0",
-    "eslint-config-airbnb": "^18.0.1"
+    "axios": "^0.19.0"
   },
   "author": "statechny <statechnyi.s@gmail.com>",
   "devDependencies": {
@@ -28,7 +27,6 @@
     "cross-env": "^4.0.0",
     "css-mqpacker": "^5.0.1",
     "docdash": "^0.4.0",
-    "eslint": "^6.5.1",
     "expose-loader": "^0.7.3",
     "extract-text-webpack-plugin": "^2.0.0-rc.3",
     "fs": "0.0.2",

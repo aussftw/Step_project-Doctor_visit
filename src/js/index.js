@@ -1,40 +1,42 @@
+import axios from "axios"
 import { modal } from './partials/modal.js';
 import { modalContent } from "./partials/modal.js"
 import { _formElements } from "./partials/inputsData.js"
 import { _personal } from "./partials/selectandTextAreaValues.js"
 import { _priority } from "./partials/selectandTextAreaValues.js"
 import { _description } from "./partials/selectandTextAreaValues.js"
+
 //=========================== Doctor checker ===========================//
 
-const chooseDoctor = document.getElementById("chooseDoctorId")
-
-chooseDoctor.addEventListener("change", event => {
-  if (chooseDoctor.value === "Кардиолог") {
-    const cardiologistForm = new FormCreator(
-      _formElements.cardiologist,
-      _personal.cardiologist,
-      _description,
-      _priority
-    )
-    cardiologistForm.render()
-  } else if (chooseDoctor.value === "Терапевт") {
-    const therapistForm = new FormCreator(
-      _formElements.teraphist,
-      _personal.therapist,
-      _description,
-      _priority
-    )
-    therapistForm.render()
-  } else if (chooseDoctor.value === "Стоматолог") {
-    const dentistForm = new FormCreator(
-      _formElements.dentist,
-      _personal.dentist,
-      _description,
-      _priority
-    )
-    dentistForm.render()
-  }
-})
+// const chooseDoctor = document.getElementById("chooseDoctorId")
+//
+// chooseDoctor.addEventListener("change", event => {
+//   if (chooseDoctor.value === "Кардиолог") {
+//     const cardiologistForm = new FormCreator(
+//       _formElements.cardiologist,
+//       _personal.cardiologist,
+//       _description,
+//       _priority
+//     )
+//     cardiologistForm.render()
+//   } else if (chooseDoctor.value === "Терапевт") {
+//     const therapistForm = new FormCreator(
+//       _formElements.teraphist,
+//       _personal.therapist,
+//       _description,
+//       _priority
+//     )
+//     therapistForm.render()
+//   } else if (chooseDoctor.value === "Стоматолог") {
+//     const dentistForm = new FormCreator(
+//       _formElements.dentist,
+//       _personal.dentist,
+//       _description,
+//       _priority
+//     )
+//     dentistForm.render()
+//   }
+// })
 
 //=========================== Form constructor ===========================//
 

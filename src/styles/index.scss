@@ -1,6 +1,5 @@
 /* LIBS */
 @import 'libs/reset-normalize';
-//@import 'libs/semantic.min.css';
 @import '../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss';
 @import "../../node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
 @import "../../node_modules/@fortawesome/fontawesome-free/scss/brands.scss";
@@ -18,6 +17,7 @@
 
 /* COMPONENTS */
 @import 'components/common';
+@import 'components/header';
 
 
 
@@ -27,82 +27,6 @@
 
 
 
-.header-container {
-  display: flex;
-  justify-content: space-between;
-  background: linear-gradient(to right, rgb(146, 199, 255), rgb(196, 113, 241));
-  height: 200px;
-  font-family: 'Proxima Nova', serif, sans-serif;
-  border-bottom: 3px solid #084fc7;
-}
-
-.logo-container {
-  margin-left: 5%;
-}
-
-.logo-pic {
-  height: 200px;
-  width: 250px;
-  border-right: 3px solid #084fc7;
-  border-left: 3px solid #084fc7;
-  border-top: 3px solid #084fc7;
-  /* border-bottom: 3px solid #fff; */
-}
-
-.header-button-container {
-  margin-right: 5%;
-  margin-top: 64px;
-}
-
-.create-button {
-  width: 150px;
-  padding: 20px;
-  border-radius: 10px;
-  border: 3px solid #084fc7;
-  font-size: 1.3rem;
-  font-weight: 700;
-  background-color: #fff;
-  outline: none;
-  cursor: pointer;
-}
-
-.wrapper {
-  margin-top: 8%;
-  margin-bottom: 8%;
-  background: linear-gradient(to left, rgb(146, 199, 255), rgb(196, 113, 241));
-  width: 100%;
-  height: 300px;
-  border-top: 3px solid #084fc7;
-  border-bottom: 3px solid #084fc7;
-  position: relative;
-}
-
-.empty-container-text {
-  font-family: 'Proxima Nova', sans-serif;
-  font-size: 3rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-}
-
-.footer-wrapper {
-  background: linear-gradient(to right, rgb(146, 199, 255), rgb(196, 113, 241));
-  height: 80px;
-  position: relative;
-  border-top: 3px solid #084fc7;
-}
-
-.footer-text {
-  font-family: 'Proxima Nova', sans-serif;
-  font-size: 1.3rem;
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-}
 
 /*========================= modal-styles =========================*/
 
@@ -115,15 +39,12 @@
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(255, 255, 255, 0.7);
 }
 
 .modal-content {
-  background: linear-gradient(to right, rgb(146, 199, 255), rgb(196, 113, 241));
   margin: 20% auto;
   padding: 5rem;
   width: 30%;
-  border: 3px solid #084fc7;
   position: relative;
 }
 
@@ -132,11 +53,10 @@
   position: absolute;
   top: 0.1rem;
   right: 0.25rem;
-  color: #fff;
+  color: #000;
 }
 
 .modal-close:hover {
-  color: #084fc7;
   cursor: pointer;
 }
 

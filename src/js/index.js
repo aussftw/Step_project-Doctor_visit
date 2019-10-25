@@ -186,3 +186,7 @@ class Cardiologist extends Visit {
     super(reason, date, fullName)
   }
 }
+
+$('.ui.dropdown')
+    .dropdown()
+;

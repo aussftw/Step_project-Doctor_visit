@@ -1,5 +1,5 @@
 import axios from "axios"
-import { modal } from './partials/modal.js';
+import { modal } from "./partials/modal.js"
 import { modalContent } from "./partials/modal.js"
 import { _formElements } from "./partials/inputsData.js"
 import { _personal } from "./partials/selectandTextAreaValues.js"
@@ -10,34 +10,34 @@ import { _description } from "./partials/selectandTextAreaValues.js"
 
 export { selectDoctor }
 function selectDoctor() {
-const chooseDoctor = document.getElementById("chooseDoctorId")
-chooseDoctor.addEventListener("change", event => {
-  if (chooseDoctor.value === "Кардиолог") {
-    const cardiologistForm = new FormCreator(
-      _formElements.cardiologist,
-      _personal.cardiologist,
-      _description,
-      _priority
-    )
-    cardiologistForm.render()
-  } else if (chooseDoctor.value === "Терапевт") {
-    const therapistForm = new FormCreator(
-      _formElements.teraphist,
-      _personal.therapist,
-      _description,
-      _priority
-    )
-    therapistForm.render()
-  } else if (chooseDoctor.value === "Стоматолог") {
-    const dentistForm = new FormCreator(
-      _formElements.dentist,
-      _personal.dentist,
-      _description,
-      _priority
-    )
-    dentistForm.render()
-  }
-})
+  const chooseDoctor = document.getElementById("chooseDoctorId")
+  chooseDoctor.addEventListener("change", event => {
+    if (chooseDoctor.value === "Кардиолог") {
+      const cardiologistForm = new FormCreator(
+        _formElements.cardiologist,
+        _personal.cardiologist,
+        _description,
+        _priority
+      )
+      cardiologistForm.render()
+    } else if (chooseDoctor.value === "Терапевт") {
+      const therapistForm = new FormCreator(
+        _formElements.teraphist,
+        _personal.therapist,
+        _description,
+        _priority
+      )
+      therapistForm.render()
+    } else if (chooseDoctor.value === "Стоматолог") {
+      const dentistForm = new FormCreator(
+        _formElements.dentist,
+        _personal.dentist,
+        _description,
+        _priority
+      )
+      dentistForm.render()
+    }
+  })
 }
 
 //=========================== Form constructor ===========================//
@@ -60,6 +60,7 @@ class FormCreator {
     form.addEventListener("submit", e => {
       e.preventDefault()
       this.serialize()
+      this.sendData()
     })
 
     // inputs consturcor
@@ -71,7 +72,7 @@ class FormCreator {
       element.placeholder = this._formElements.val[i].placeholder
       element.name = this._formElements.val[i].name
       element.classList.add("inputData")
-      element.setAttribute("reqired", true)
+      element.setAttribute("reqired", false)
       form.append(element)
     }
 
@@ -100,11 +101,11 @@ class FormCreator {
 
     for (let i = 0; i < this._priority.val.length; i++) {
       const option = document.createElement(this._priority.elementName)
-      const optionName = document.createElement("p")
-      optionName.innerHTML = this._priority.val[i]
-      option.classList.add("select")
+      //const optionName = document.createElement()
+      option.innerHTML = this._priority.val[i]
+      //option.classList.add("select")
       selectPriority.append(option)
-      option.append(optionName)
+      // option.append(option)
     }
 
     for (let i = 0; i < this._description.val.length; i++) {
@@ -134,22 +135,46 @@ class FormCreator {
     return obj
   }
 
+  sendData() {
+    const data = {
+      token: "569bc2174da3",
+      title: "test",
+      description: "testing",
+      status: "open",
+      priority: "high",
+      content: {}
+    }
+
+    const authOptions = {
+      method: "POST",
+      url: "http://cards.danit.com.ua/cards",
+      data: JSON.stringify(data)
+    }
+
+    axios(authOptions)
+      .then(function(response) {
+        console.log(response.data)
+      })
+      .catch(function(error) {
+        console.log(error)
+      })
+  }
+
   // Form render
 
   render() {
-    const form = document.querySelector(".form-wrapper");
+    const form = document.querySelector(".form-wrapper")
     if (form) {
-      form.appendChild(this.createForm());
+      form.appendChild(this.createForm())
     } else {
       const container = document.createElement("div")
       container.classList.add("form-wrapper")
       document.getElementById("modal").appendChild(container)
-    // hiding previous modal
+      // hiding previous modal
       container.appendChild(this.createForm())
     }
     modalContent.style.display = "none"
-    $('.ui.dropdown').dropdown();
-
+    $(".ui.dropdown").dropdown()
   }
 }
 
@@ -193,6 +218,4 @@ class Cardiologist extends Visit {
   }
 }
 
-$('.ui.dropdown')
-    .dropdown()
-;
+$(".ui.dropdown").dropdown()

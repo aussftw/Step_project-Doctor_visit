@@ -1,16 +1,34 @@
+// const _formElement = {
+//   dentist:{
+//     elementName:"input",
+//     val:[{
+//       type:"text",
+//       placeholder:'Цель визита',
+//       name:"title",
+//     }]
+
+//   }
+// }
+
+
+
+
+
+
+
+
 const _formElements = {
   cardiologist: {
     elementName: "input",
-    val: [
-      {
+    val: [{
         type: "text",
-        placeholder: "Цель визита"
-        // reqired: true
+        placeholder: "Цель визита",
+        name: "title"
       },
       {
         type: "text",
-        placeholder: "Обычное давление"
-        // reqired: true
+        placeholder: "Обычное давление",
+        name: 'description'
       },
       {
         type: "text",
@@ -38,48 +56,50 @@ const _formElements = {
 
   teraphist: {
     elementName: "input",
-    val: [
-      {
+    val: [{
         type: "text",
         placeholder: "Цель визита",
-        name: "reason"
+        name: "title",
         // reqired: true
       },
       {
         type: "text",
         placeholder: "Возраст",
-        name: "age",
+
         // reqired: true
       },
       {
         type: "text",
         placeholder: "ФИО",
-        name: "name",
+
         // reqired: true
       }
     ]
   },
 
   dentist: {
+    doctor: "dentist",
+    title: "TEST",
     elementName: "input",
-    val: [
-      {
+    val: [{
         type: "text",
-        placeholder: "Цель визита"
-        // reqired: true
+        placeholder: "Цель визита",
+        name: 'title'
       },
       {
         type: "text",
-        placeholder: "Дата последнего посещения"
-        // reqired: true
+        placeholder: "Дата последнего посещения",
+        name:"last visit"
       },
       {
         type: "text",
-        placeholder: "ФИО"
-        // reqired: true
+        placeholder: "ФИО",
+        name:"full name"
       }
     ]
   }
 }
 
-export { _formElements }
+export {
+  _formElements
+}

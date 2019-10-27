@@ -66,9 +66,6 @@ function initLogInForm() {
 
 
 
-
-
-
 function serialize() {
   const data = {}
   const inputData = document.querySelectorAll(".inputData")
@@ -83,7 +80,7 @@ function serialize() {
 
   axios(authOptions)
       .then(function(response) {
-        console.log(response.data);
+        // console.log(response.data);
         if(response.data.token === '569bc2174da3') {
           $('.ui.modal').modal('hide');
           modalButton.innerText = 'Create Visit';

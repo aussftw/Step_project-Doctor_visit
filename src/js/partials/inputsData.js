@@ -1,26 +1,8 @@
-// const _formElement = {
-//   dentist:{
-//     elementName:"input",
-//     val:[{
-//       type:"text",
-//       placeholder:'Цель визита',
-//       name:"title",
-//     }]
-
-//   }
-// }
-
-
-
-
-
-
-
-
 const _formElements = {
   cardiologist: {
     elementName: "input",
-    val: [{
+    val: [
+      {
         type: "text",
         placeholder: "Цель визита",
         name: "title"
@@ -28,26 +10,30 @@ const _formElements = {
       {
         type: "text",
         placeholder: "Обычное давление",
-        name: 'description'
+        name: "description"
       },
       {
         type: "text",
-        placeholder: "Индекс массы тела"
+        placeholder: "Индекс массы тела",
+        name: "body mass index"
         // reqired: true
       },
       {
         type: "text",
-        placeholder: "Перенесенные заболевания сердечно-сосудистой системы"
+        placeholder: "Перенесенные заболевания сердечно-сосудистой системы",
+        name: "past diseases of the cardiovascular system"
         // reqired: true
       },
       {
         type: "text",
-        placeholder: "Возраст"
+        placeholder: "Возраст",
+        name: "age"
         // reqired: true
       },
       {
         type: "text",
-        placeholder: "ФИО"
+        placeholder: "ФИО",
+        name: "fullname"
         // reqired: true
       }
       // { type: "checkbox" }
@@ -56,22 +42,24 @@ const _formElements = {
 
   teraphist: {
     elementName: "input",
-    val: [{
+    val: [
+      {
         type: "text",
         placeholder: "Цель визита",
-        name: "title",
+        name: "title"
         // reqired: true
       },
       {
         type: "text",
         placeholder: "Возраст",
+        name: "age"
 
         // reqired: true
       },
       {
         type: "text",
         placeholder: "ФИО",
-
+        name: "fullname"
         // reqired: true
       }
     ]
@@ -79,27 +67,25 @@ const _formElements = {
 
   dentist: {
     doctor: "dentist",
-    title: "TEST",
     elementName: "input",
-    val: [{
+    val: [
+      {
         type: "text",
         placeholder: "Цель визита",
-        name: 'title'
+        name: "title"
       },
       {
         type: "text",
         placeholder: "Дата последнего посещения",
-        name:"last visit"
+        name: "last visit"
       },
       {
         type: "text",
         placeholder: "ФИО",
-        name:"full name"
+        name: "full name"
       }
     ]
   }
 }
 
-export {
-  _formElements
-}
+export { _formElements }

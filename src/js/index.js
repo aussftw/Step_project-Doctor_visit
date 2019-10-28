@@ -1,28 +1,14 @@
 import axios from "axios"
-import {
-  modal
-} from "./partials/modal.js"
-import {
-  modalContent
-} from "./partials/modal.js"
-import {
-  _formElements
-} from "./partials/inputsData.js"
-import {
-  _personal
-} from "./partials/selectandTextAreaValues.js"
-import {
-  _priority
-} from "./partials/selectandTextAreaValues.js"
-import {
-  _description
-} from "./partials/selectandTextAreaValues.js"
+import { modal } from "./partials/modal.js"
+import { modalContent } from "./partials/modal.js"
+import { _formElements } from "./partials/inputsData.js"
+import { _personal } from "./partials/selectandTextAreaValues.js"
+import { _priority } from "./partials/selectandTextAreaValues.js"
+import { _description } from "./partials/selectandTextAreaValues.js"
 
 //=========================== Doctor checker ===========================//
 
-export {
-  selectDoctor
-}
+export { selectDoctor }
 
 function selectDoctor() {
   const chooseDoctor = document.getElementById("chooseDoctorId")
@@ -59,11 +45,10 @@ function selectDoctor() {
 
 class FormCreator {
   constructor(formElemnts, personal, description, priority) {
-    ;
-    (this._formElements = formElemnts),
-    (this._personal = personal),
-    (this._description = description),
-    (this._priority = priority)
+    ;(this._formElements = formElemnts),
+      (this._personal = personal),
+      (this._description = description),
+      (this._priority = priority)
   }
 
   //create form to the memory
@@ -169,17 +154,17 @@ class FormCreator {
     }
 
     axios(authOptions)
-      .then(function (response) {
+      .then(function(response) {
         console.log(response)
-        return console.log(response.data.id);
+        return console.log(response.data.id)
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log(error)
       })
   }
 
   sendDataTest() {
-    console.log('keks');
+    console.log("keks")
     const obj = {
       token: "569bc2174da3",
       title: true,
@@ -188,14 +173,13 @@ class FormCreator {
     }
     const inputData = document.querySelectorAll(".inputData")
     inputData.forEach(elem => {
-      if(obj.hasOwnProperty(elem.name)) {
+      if (obj.hasOwnProperty(elem.name)) {
         obj[elem.name] = elem.value
+      } else {
+        obj.content[elem.name] = elem.value
       }
-      else {
-        obj.content[elem.name] = elem.value;
-      }
+      console.log(obj)
     })
-  
 
     const authOptions = {
       method: "POST",
@@ -209,42 +193,36 @@ class FormCreator {
     }
 
     axios(authOptions)
-      .then(function (response) {
-
-
-        return console.log(response.data.id);
-
+      .then(function(response) {
+        return console.log(response.data.id)
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log(error)
       })
 
     axios(authOptions2)
-      .then(function (response) {
-        return console.log(response.data);
+      .then(function(response) {
+        return console.log(response.data)
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log(error)
       })
-
-
-
   }
 
-  cardRenderTest(){
-  const card = document.createElement('div');
-  card.classList.add('card')
-  testArr = ['1','2','3'];
-  for (let i = 0; i < testArr.length; i++) {
-    const element = document.createElement('p')
+  cardRenderTest() {
+    const card = document.createElement("div")
+    card.classList.add("card")
+    testArr = ["1", "2", "3"]
+    for (let i = 0; i < testArr.length; i++) {
+      const element = document.createElement("p")
 
-    element.placeholder = this._formElements.val[i].placeholder
-    element.name = this._formElements.val[i].name
-    element.classList.add("inputData")
-    element.setAttribute("reqired", false)
-    form.append(element)
+      element.placeholder = this._formElements.val[i].placeholder
+      element.name = this._formElements.val[i].name
+      element.classList.add("inputData")
+      element.setAttribute("reqired", false)
+      form.append(element)
+    }
   }
-}
 
   // Form render
 
@@ -264,7 +242,6 @@ class FormCreator {
   }
 }
 
-
 // testData.forEach((item)=>{
 //   item.push.testArr
 //   console.log(testArr);
@@ -272,7 +249,6 @@ class FormCreator {
 
 // console.log(response.data);
 // console.log(response.config.data);
-
 
 // if(response.data.status === "Success") {
 //   const card = new Cardiologist(obj)

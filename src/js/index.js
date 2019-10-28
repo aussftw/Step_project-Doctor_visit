@@ -1,10 +1,4 @@
 import axios from "axios"
-import { modal } from "./partials/modal.js"
-import { modalContent } from "./partials/modal.js"
-import { _formElements } from "./partials/inputsData.js"
-import { _personal } from "./partials/selectandTextAreaValues.js"
-import { _priority } from "./partials/selectandTextAreaValues.js"
-import { _description } from "./partials/selectandTextAreaValues.js"
 
 //=========================== Doctor checker ===========================//
 

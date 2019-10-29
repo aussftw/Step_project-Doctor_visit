@@ -82,9 +82,10 @@ class FormCreator {
     selectDoctorByName.classList.add("select") // "ui", "dropdown"
     form.append(selectDoctorByName)
 
-    for (let i = 0; i < this._personal.val.length; i++) {
+    for (let i = 0; i < this._personal.textValue.length; i++) {
       const option = document.createElement(this._personal.elementName)
-      option.innerHTML = this._personal.val[i]
+      option.value = this._personal.textValue[i]
+      option.innerHTML = this._personal.textValue[i]
       selectDoctorByName.append(option)
     }
 
@@ -97,6 +98,8 @@ class FormCreator {
       option.innerHTML = this._priority.val[i]
       selectPriority.append(option)
     }
+
+    // text area constructor
 
     for (let i = 0; i < this._description.val.length; i++) {
       const description = document.createElement(this._description.elementName)
@@ -120,6 +123,7 @@ class FormCreator {
   sendData() {
     const obj = {
       token: "569bc2174da3",
+      doctor: "someone",
       title: true,
       description: true,
       status: "open",

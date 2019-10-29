@@ -6,11 +6,13 @@ const _formElements = {
         type: "text",
         placeholder: "Цель визита",
         name: "title"
+        // reqired: true
       },
       {
         type: "text",
         placeholder: "Обычное давление",
         name: "description"
+        // reqired: true
       },
       {
         type: "text",
@@ -73,16 +75,19 @@ const _formElements = {
         type: "text",
         placeholder: "Цель визита",
         name: "title"
+        // reqired: true
       },
       {
         type: "text",
         placeholder: "Дата последнего посещения",
         name: "last visit"
+        // reqired: true
       },
       {
         type: "text",
         placeholder: "ФИО",
         name: "full name"
+        // reqired: true
       }
     ]
   }

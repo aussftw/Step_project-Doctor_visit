@@ -60,9 +60,7 @@ class FormCreator {
 
     form.addEventListener("submit", e => {
       e.preventDefault()
-      this.serialize()
-      // this.sendData()
-      this.sendDataTest()
+      this.sendData()
     })
 
     // inputs consturcor
@@ -80,34 +78,24 @@ class FormCreator {
 
     // selects constructor
 
-    const select = document.createElement("select")
-    select.classList.add("select")
-    // select.classList.add("ui")
-    // select.classList.add("dropdown")
-    form.append(select)
+    const selectDoctorByName = document.createElement("select")
+    selectDoctorByName.classList.add("select") // "ui", "dropdown"
+    form.append(selectDoctorByName)
 
     for (let i = 0; i < this._personal.val.length; i++) {
       const option = document.createElement(this._personal.elementName)
-      const optionName = document.createElement("p")
-      optionName.innerHTML = this._personal.val[i]
-      option.classList.add("select")
-      select.append(option)
-      option.append(optionName)
+      option.innerHTML = this._personal.val[i]
+      selectDoctorByName.append(option)
     }
 
     const selectPriority = document.createElement("select")
-    selectPriority.classList.add("select")
-    // selectPriority.classList.add("ui")
-    // selectPriority.classList.add("dropdown")
+    selectPriority.classList.add("select") // "ui", "dropdown"
     form.append(selectPriority)
 
     for (let i = 0; i < this._priority.val.length; i++) {
       const option = document.createElement(this._priority.elementName)
-      //const optionName = document.createElement()
       option.innerHTML = this._priority.val[i]
-      //option.classList.add("select")
       selectPriority.append(option)
-      // option.append(option)
     }
 
     for (let i = 0; i < this._description.val.length; i++) {
@@ -127,48 +115,15 @@ class FormCreator {
     return form
   }
 
-  serialize() {
-    const obj = {}
-    const inputData = document.querySelectorAll(".inputData")
-    inputData.forEach(elem => {
-      obj[elem.name] = elem.value
-    })
-    // console.log(obj)
-    return obj
-  }
+  // send data to server
 
   sendData() {
-    const data = {
-      token: "569bc2174da3",
-      title: "test",
-      description: "testing",
-      status: "open",
-      priority: "high",
-      content: {}
-    }
-
-    const authOptions = {
-      method: "POST",
-      url: "http://cards.danit.com.ua/cards",
-      data: JSON.stringify(data)
-    }
-
-    axios(authOptions)
-      .then(function(response) {
-        console.log(response)
-        return console.log(response.data.id)
-      })
-      .catch(function(error) {
-        console.log(error)
-      })
-  }
-
-  sendDataTest() {
-    console.log("keks")
     const obj = {
       token: "569bc2174da3",
       title: true,
       description: true,
+      status: "open",
+      priority: "high",
       content: {}
     }
     const inputData = document.querySelectorAll(".inputData")
@@ -187,11 +142,6 @@ class FormCreator {
       data: JSON.stringify(obj)
     }
 
-    const authOptions2 = {
-      method: "GET",
-      url: "http://cards.danit.com.ua/cards?token=569bc2174da3"
-    }
-
     axios(authOptions)
       .then(function(response) {
         return console.log(response.data.id)
@@ -199,29 +149,6 @@ class FormCreator {
       .catch(function(error) {
         console.log(error)
       })
-
-    axios(authOptions2)
-      .then(function(response) {
-        return console.log(response.data)
-      })
-      .catch(function(error) {
-        console.log(error)
-      })
-  }
-
-  cardRenderTest() {
-    const card = document.createElement("div")
-    card.classList.add("card")
-    testArr = ["1", "2", "3"]
-    for (let i = 0; i < testArr.length; i++) {
-      const element = document.createElement("p")
-
-      element.placeholder = this._formElements.val[i].placeholder
-      element.name = this._formElements.val[i].name
-      element.classList.add("inputData")
-      element.setAttribute("reqired", false)
-      form.append(element)
-    }
   }
 
   // Form render
@@ -242,17 +169,6 @@ class FormCreator {
   }
 }
 
-// testData.forEach((item)=>{
-//   item.push.testArr
-//   console.log(testArr);
-// })
-
-// console.log(response.data);
-// console.log(response.config.data);
-
-// if(response.data.status === "Success") {
-//   const card = new Cardiologist(obj)
-// }
 //=========================== Card constructor ===========================//
 
 class Visit {
@@ -294,3 +210,79 @@ class Cardiologist extends Visit {
 }
 
 $(".ui.dropdown").dropdown()
+
+// Stash
+
+// testData.forEach((item)=>{
+//   item.push.testArr
+//   console.log(testArr);
+// })
+
+// console.log(response.data);
+// console.log(response.config.data);
+
+// if(response.data.status === "Success") {
+//   const card = new Cardiologist(obj)
+// }
+
+// const authOptions2 = {
+//   method: "GET",
+//   url: "http://cards.danit.com.ua/cards?token=569bc2174da3"
+// }
+
+// axios(authOptions2)
+//   .then(function(response) {
+//     return console.log(response.data)
+//   })
+//   .catch(function(error) {
+//     console.log(error)
+//   })
+
+// sendData() {
+//   const data = {
+//     token: "569bc2174da3",
+//     title: "test",
+//     description: "testing",
+
+//     content: {}
+//   }
+
+//   const authOptions = {
+//     method: "POST",
+//     url: "http://cards.danit.com.ua/cards",
+//     data: JSON.stringify(data)
+//   }
+
+//   axios(authOptions)
+//     .then(function(response) {
+//       console.log(response)
+//       return console.log(response.data.id)
+//     })
+//     .catch(function(error) {
+//       console.log(error)
+//     })
+// }
+
+// serialize() {
+//   const obj = {}
+//   const inputData = document.querySelectorAll(".inputData")
+//   inputData.forEach(elem => {
+//     obj[elem.name] = elem.value
+//   })
+//   return obj
+// }
+
+// cardRenderTest() {
+//   const card = document.createElement("div")
+//   card.classList.add("card")
+//   testArr = ["1", "2", "3"]
+//   for (let i = 0; i < testArr.length; i++) {
+//     const element = document.createElement("p")
+
+//     element.placeholder = this._formElements.val[i].placeholder
+//     element.name = this._formElements.val[i].name
+//     element.classList.add("inputData")
+//     element.setAttribute("reqired", false)
+//     form.append(element)
+//   }
+// }

@@ -149,6 +149,13 @@ class FormCreator {
       console.log(obj) // wtf??
     })
 
+    const visitDescription = document.querySelector(".description")
+    visitDescription.addEventListener("keyup", e => {
+      const descriptionValue = e.target.value
+      obj.description = descriptionValue
+      console.log(obj) // wtf??
+    })
+
     // const selectDoctorByName = document.querySelector(".select-dcotor-by-name")
     // selectDoctorByName.addEventListener("change", e => {
     //   obj.priority = e.target.value
@@ -176,6 +183,8 @@ class FormCreator {
 
   render() {
     const form = document.querySelector(".form-wrapper")
+
+    // wtf, checker??
     if (form) {
       form.appendChild(this.createForm())
     } else {

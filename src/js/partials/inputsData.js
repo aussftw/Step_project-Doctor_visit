@@ -4,32 +4,36 @@ const _formElements = {
     val: [
       {
         type: "text",
-        placeholder: "Цель визита"
+        placeholder: "Цель визита",
+        name: "title"
+      },
+      {
+        type: "text",
+        placeholder: "Обычное давление",
+        name: "description"
+      },
+      {
+        type: "text",
+        placeholder: "Индекс массы тела",
+        name: "body mass index"
         // reqired: true
       },
       {
         type: "text",
-        placeholder: "Обычное давление"
+        placeholder: "Перенесенные заболевания сердечно-сосудистой системы",
+        name: "past diseases of the cardiovascular system"
         // reqired: true
       },
       {
         type: "text",
-        placeholder: "Индекс массы тела"
+        placeholder: "Возраст",
+        name: "age"
         // reqired: true
       },
       {
         type: "text",
-        placeholder: "Перенесенные заболевания сердечно-сосудистой системы"
-        // reqired: true
-      },
-      {
-        type: "text",
-        placeholder: "Возраст"
-        // reqired: true
-      },
-      {
-        type: "text",
-        placeholder: "ФИО"
+        placeholder: "ФИО",
+        name: "fullname"
         // reqired: true
       }
       // { type: "checkbox" }
@@ -42,41 +46,43 @@ const _formElements = {
       {
         type: "text",
         placeholder: "Цель визита",
-        name: "reason"
+        name: "title"
         // reqired: true
       },
       {
         type: "text",
         placeholder: "Возраст",
-        name: "age",
+        name: "age"
+
         // reqired: true
       },
       {
         type: "text",
         placeholder: "ФИО",
-        name: "name",
+        name: "fullname"
         // reqired: true
       }
     ]
   },
 
   dentist: {
+    doctor: "dentist", // ??
     elementName: "input",
     val: [
       {
         type: "text",
-        placeholder: "Цель визита"
-        // reqired: true
+        placeholder: "Цель визита",
+        name: "title"
       },
       {
         type: "text",
-        placeholder: "Дата последнего посещения"
-        // reqired: true
+        placeholder: "Дата последнего посещения",
+        name: "last visit"
       },
       {
         type: "text",
-        placeholder: "ФИО"
-        // reqired: true
+        placeholder: "ФИО",
+        name: "full name"
       }
     ]
   }

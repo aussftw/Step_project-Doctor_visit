@@ -79,23 +79,26 @@ class FormCreator {
     // selects constructor
 
     const selectDoctorByName = document.createElement("select")
-    selectDoctorByName.classList.add("select") // "ui", "dropdown"
+    selectDoctorByName.classList.add("select-dcotor-by-name") // "ui", "dropdown"
     form.append(selectDoctorByName)
 
     for (let i = 0; i < this._personal.textValue.length; i++) {
       const option = document.createElement(this._personal.elementName)
       option.value = this._personal.textValue[i]
       option.innerHTML = this._personal.textValue[i]
+      option.classList.add("named-doctor")
       selectDoctorByName.append(option)
     }
 
     const selectPriority = document.createElement("select")
-    selectPriority.classList.add("select") // "ui", "dropdown"
+    selectPriority.classList.add("select-priority") // "ui", "dropdown"
     form.append(selectPriority)
 
     for (let i = 0; i < this._priority.val.length; i++) {
       const option = document.createElement(this._priority.elementName)
+      option.value = this._priority.val[i]
       option.innerHTML = this._priority.val[i]
+      option.classList.add("priority")
       selectPriority.append(option)
     }
 
@@ -127,9 +130,10 @@ class FormCreator {
       title: true,
       description: true,
       status: "open",
-      priority: "high",
+      priority: "",
       content: {}
     }
+
     const inputData = document.querySelectorAll(".inputData")
     inputData.forEach(elem => {
       if (obj.hasOwnProperty(elem.name)) {
@@ -137,8 +141,21 @@ class FormCreator {
       } else {
         obj.content[elem.name] = elem.value
       }
-      console.log(obj)
     })
+
+    const selectPriority = document.querySelector(".select-priority")
+    selectPriority.addEventListener("change", e => {
+      obj.priority = e.target.value
+      console.log(obj) // wtf??
+    })
+
+    // const selectDoctorByName = document.querySelector(".select-dcotor-by-name")
+    // selectDoctorByName.addEventListener("change", e => {
+    //   obj.priority = e.target.value
+    //   console.log(obj)
+    // })
+
+    console.log(obj)
 
     const authOptions = {
       method: "POST",

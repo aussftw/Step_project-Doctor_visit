@@ -9,13 +9,13 @@ const _formElements = {
         // reqired: true
       },
       {
-        type: "text",
+        type: "number",
         placeholder: "Обычное давление",
         name: "description"
         // reqired: true
       },
       {
-        type: "text",
+        type: "number",
         placeholder: "Индекс массы тела",
         name: "body mass index"
         // reqired: true
@@ -78,7 +78,7 @@ const _formElements = {
         // reqired: true
       },
       {
-        type: "text",
+        type: "date",
         placeholder: "Дата последнего посещения",
         name: "last visit"
         // reqired: true

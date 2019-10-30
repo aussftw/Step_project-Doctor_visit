@@ -5,36 +5,48 @@ import { _formElements } from "./partials/inputsData.js"
 import { _personal } from "./partials/selectandTextAreaValues.js"
 import { _priority } from "./partials/selectandTextAreaValues.js"
 import { _description } from "./partials/selectandTextAreaValues.js"
+import { cards } from "./partials/cards.js"
+
+import { renderBoard } from "./partials/board.js"
+
+renderBoard()
 
 //=========================== Doctor checker ===========================//
 
-export { selectDoctor }
+//export { selectDoctor }
 
-function selectDoctor() {
+export function selectDoctor() {
   const chooseDoctor = document.getElementById("chooseDoctorId")
   chooseDoctor.addEventListener("change", event => {
     if (chooseDoctor.value === "Кардиолог") {
+      const type = "cardiologist"
       const cardiologistForm = new FormCreator(
         _formElements.cardiologist,
         _personal.cardiologist,
         _description,
-        _priority
+        _priority,
+        type // is that legit??
       )
       cardiologistForm.render()
     } else if (chooseDoctor.value === "Терапевт") {
+      const type = "Therapist"
       const therapistForm = new FormCreator(
         _formElements.teraphist,
         _personal.therapist,
         _description,
-        _priority
+        _priority,
+        type // is that legit??
       )
       therapistForm.render()
     } else if (chooseDoctor.value === "Стоматолог") {
+      //or i need to create here new visit and init??
+      const type = "dentist"
       const dentistForm = new FormCreator(
         _formElements.dentist,
         _personal.dentist,
         _description,
-        _priority
+        _priority,
+        type // is that legit??
       )
       dentistForm.render()
     }
@@ -44,11 +56,12 @@ function selectDoctor() {
 //=========================== Form constructor ===========================//
 
 class FormCreator {
-  constructor(formElemnts, personal, description, priority) {
+  constructor(formElemnts, personal, description, priority, type) {
     ;(this._formElements = formElemnts),
       (this._personal = personal),
       (this._description = description),
-      (this._priority = priority)
+      (this._priority = priority),
+      (this.type = type)
   }
 
   //create form to the memory
@@ -94,6 +107,21 @@ class FormCreator {
     selectPriority.classList.add("select-priority") // "ui", "dropdown"
     form.append(selectPriority)
 
+    //??3
+
+    // let selectedPriority = " "
+    // function selected() {
+    //   selectPriority.addEventListener("change", e => {
+    //     selectedPriority = e.target.value
+
+    //     console.log(selectedPriority)
+    //     return selectedPriority
+    //   })
+    // }
+    // let selectedData = selected()
+    // //console.log(selectedData)
+    // console.log(selectedPriority)
+
     for (let i = 0; i < this._priority.val.length; i++) {
       const option = document.createElement(this._priority.elementName)
       option.value = this._priority.val[i]
@@ -123,16 +151,18 @@ class FormCreator {
 
   // send data to server
 
-  sendData() {
+  async sendData() {
     const obj = {
       token: "569bc2174da3",
       doctor: "someone",
       title: true,
-      description: true,
+      description: "",
       status: "open",
       priority: "",
       content: {}
     }
+
+    console.log(obj)
 
     const inputData = document.querySelectorAll(".inputData")
     inputData.forEach(elem => {
@@ -143,18 +173,16 @@ class FormCreator {
       }
     })
 
-    const selectPriority = document.querySelector(".select-priority")
-    selectPriority.addEventListener("change", e => {
-      obj.priority = e.target.value
-      console.log(obj) // wtf??
-    })
-
+    // ??2
     const visitDescription = document.querySelector(".description")
-    visitDescription.addEventListener("keyup", e => {
-      const descriptionValue = e.target.value
-      obj.description = descriptionValue
-      console.log(obj) // wtf??
-    })
+    obj.description = visitDescription.value
+    // console.log(obj)
+
+    //?? 1
+
+    const selectPriority = document.querySelector(".select-priority")
+    obj.priority = selectPriority.value
+    // console.log(obj) // wtf??
 
     // const selectDoctorByName = document.querySelector(".select-dcotor-by-name")
     // selectDoctorByName.addEventListener("change", e => {
@@ -162,21 +190,45 @@ class FormCreator {
     //   console.log(obj)
     // })
 
-    console.log(obj)
-
     const authOptions = {
       method: "POST",
       url: "http://cards.danit.com.ua/cards",
-      data: JSON.stringify(obj)
+      data: JSON.stringify(obj),
+      headers: {
+        Authorization: "Bearer 569bc2174da3"
+      }
     }
 
-    axios(authOptions)
+    const res = await axios(authOptions)
       .then(function(response) {
         return console.log(response.data.id)
       })
       .catch(function(error) {
         console.log(error)
       })
+
+    cards.push(obj)
+    console.log(cards)
+
+    this.checkDoctor(this.type, obj)
+    // console.log(this.checkDoctor(this.type, obj))
+    $(".ui.modal").modal("hide")
+  }
+
+  // switch ?
+
+  checkDoctor(type, obj) {
+    if (type === "cardio") {
+      const cardio = new CardiologistVisit(obj)
+      // console.log(cardio)
+    } else if (type === "dentist") {
+      const dentist = new DentistVisit(obj)
+      dentist.createCard(obj)
+      // console.log(dentist)
+    } else {
+      const therapist = new TherapistVisit(obj)
+      // console.log(therapist)
+    }
   }
 
   // Form render
@@ -202,11 +254,7 @@ class FormCreator {
 //=========================== Card constructor ===========================//
 
 class Visit {
-  constructor(reason, date, fullName) {
-    this.reason = reason
-    this.date = date
-    this.fullName = fullName
-  }
+  constructor() {}
 
   createCard() {
     console.log("created")
@@ -221,21 +269,56 @@ class Visit {
   }
 }
 
-class Dentist extends Visit {
+class DentistVisit extends Visit {
+  constructor(obj) {
+    super()
+    this.name = obj.content["full name"]
+    this.lastVisit = obj.content["last visit"]
+    this.description = obj.description
+    this.priority = obj.priority
+    this.doctor = obj.doctor
+  }
+  createCard(obj) {
+    const card = new Card(obj)
+    card.render()
+    console.log("11")
+  }
+  // const card = new Card()
+  // Card.render()
+}
+
+class TherapistVisit extends Visit {
   constructor(reason, date, fullName, ...other) {
     super(reason, date, fullName)
   }
 }
 
-class Therapist extends Visit {
+class CardiologistVisit extends Visit {
   constructor(reason, date, fullName, ...other) {
     super(reason, date, fullName)
   }
 }
 
-class Cardiologist extends Visit {
-  constructor(reason, date, fullName, ...other) {
-    super(reason, date, fullName)
+class Card {
+  constructor(obj) {
+    this.name = obj.content["full name"]
+    this.lastVisit = obj.content["last visit"]
+    this.description = obj.description
+    this.priority = obj.priority
+    this.doctor = obj.doctor
+  }
+  render() {
+    const container = document.querySelector(`.cards-container`)
+    container.innerHTML = `
+    <div>
+    <input value=${this.name}>
+    <input value=${this.lastVisit}>
+    <input value=${this.description}>
+    <input value=${this.priority}>
+    <input value=${this.doctor}>
+    </div>
+    `
+    console.log(container)
   }
 }
 

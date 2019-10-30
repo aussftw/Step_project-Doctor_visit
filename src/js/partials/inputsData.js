@@ -11,7 +11,7 @@ const _formElements = {
       {
         type: "number",
         placeholder: "Обычное давление",
-        name: "description"
+        name: "presure"
         // reqired: true
       },
       {

@@ -215,13 +215,13 @@ class FormCreator {
   checkDoctor(type, obj) {
     if (type === "cardio") {
       const cardio = new CardiologistVisit(obj)
+      cardio.render(obj)
     } else if (type === "dentist") {
-      const visit = new Visit(obj)
-      visit.render(obj)
       const dentist = new DentistVisit(obj)
-      dentist.createCard(obj)
+      dentist.render(obj)
     } else {
       const therapist = new TherapistVisit(obj)
+      therapist.render(obj)
     }
   }
 
@@ -324,58 +324,73 @@ class Visit {
     this.description = obj.description
 
   }
-  render() {
-    const container = document.querySelector(`.cards-container`)
-    container.innerHTML = `
-    <div>
-    <input value=${this.name}>
-    <input value=${this.goal}>
-    <input value=${this.description}>
-        </div>
-    `
-    console.log(container)
-  }
-}
 
+}
 
 class DentistVisit extends Visit {
   constructor(obj) {
     super(obj)
-    console.log(obj)
-    // this.name = obj.content["full name"]
     this.lastVisit = obj.content["last visit"]
-    // this.description = obj.description
     this.priority = obj.priority
     this.doctor = obj.doctor
-    console.log(this.doctor);
-    console.log(this.name);
-
   }
-  createCard(container, obj) {
-    // const card = new Card(obj)
-    // card.render()
+  render(container) {
     const card = document.createElement('div')
     card.innerHTML = `
-    <div>
+        <input value=${this.name}>
+    <input value=${this.goal}>
+    <input value=${this.description}>
      <input value=${this.priority}>
     <input value=${this.doctor}>
-    </div>
-    `
-    console.log(card)
-    container.append(card)
-
+        `
+    console.log(card);
   }
 }
 
 class TherapistVisit extends Visit {
   constructor(obj) {
-    super()
+    super(obj)
+    this.lastVisit = obj.content["last visit"]
+    this.priority = obj.priority
+    this.doctor = obj.doctor
+  }
+  render(container) {
+    const card = document.createElement('div')
+    card.innerHTML = `
+        <input value=${this.name}>
+    <input value=${this.goal}>
+    <input value=${this.description}>
+     <input value=${this.priority}>
+    <input value=${this.doctor}>
+        `
+    console.log(card);
   }
 }
 
 class CardiologistVisit extends Visit {
   constructor(obj) {
-    super()
+    super(obj)
+    this.doctor = obj.doctor
+    this.priority = obj.priority
+    this.presure = obj.content.presure
+    this.indexMass = obj.content["body mass index"]
+    this.diseases = obj.content["past diseases of the cardiovascular system"]
+    this.age = obj.content.age
+  }
+  render(obj) {
+    console.log(obj);
+    const card = document.createElement('div')
+    card.innerHTML = `
+        <input value=${this.name}>
+    <input value=${this.goal}>
+    <input value=${this.description}>
+     <input value=${this.priority}>
+     <input value=${this.doctor}>
+     <input value=${this.presure}>
+     <input value=${this.indexMass}>
+     <input value=${this.diseases}>
+        `
+    console.log(card);
   }
 }
 

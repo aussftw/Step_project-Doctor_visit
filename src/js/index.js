@@ -7,6 +7,10 @@ import { _priority } from "./partials/selectandTextAreaValues.js"
 import { _description } from "./partials/selectandTextAreaValues.js"
 import { cards } from "./partials/cards.js"
 
+import { renderBoard } from "./partials/board.js"
+
+renderBoard()
+
 //=========================== Doctor checker ===========================//
 
 //export { selectDoctor }

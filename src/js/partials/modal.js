@@ -6,7 +6,7 @@ const closeModal = document.getElementById("closeModal")
 const modalContent = document.querySelector("#modalContentId")
 const form = document.querySelector(".form-wrapper")
 let isLogin = true
-renderBoard()
+// renderBoard()
 
 modalButton.addEventListener("click", e => {
   if (isLogin) {
@@ -76,7 +76,7 @@ function serialize() {
       if (response.data.token === "569bc2174da3") {
         $(".ui.modal").modal("hide")
         modalButton.innerText = "Create Visit"
-        renderBoard()
+        // renderBoard()
         return (isLogin = true)
       }
     })
@@ -85,40 +85,39 @@ function serialize() {
     })
 }
 
-function renderBoard() {
-  const board = document.querySelector(".board")
-  board.innerHTML = `
-      <div class="container">
-        <h1> Hello John Doe</h1>
-        <form action="">
-            <div class="ui action input">
-                <input type="text" placeholder="Search...">
-                <select class="ui compact selection dropdown">
-                    <option selected="" value="all">All</option>
-                    <option value="articles">Open</option>
-                    <option value="products">Done</option>
-                </select>
-                <select class="ui compact selection dropdown">
-                    <option selected=""  value="all">All</option>
-                    <option value="articles">High</option>
-                    <option value="products">Normal</option>
-                    <option value="products">Low</option>
-                </select>
-                <div type="submit" class="ui button">Search</div>
-            </div>
-        </form>
+// function renderBoard() {
+//   const board = document.querySelector(".board")
+//   board.innerHTML = `
+//       <div class="container">
+//         <h1> Hello John Doe</h1>
+//         <form action="">
+//             <div class="ui action input">
+//                 <input type="text" placeholder="Search...">
+//                 <select class="ui compact selection dropdown">
+//                     <option selected="" value="all">All</option>
+//                     <option value="articles">Open</option>
+//                     <option value="products">Done</option>
+//                 </select>
+//                 <select class="ui compact selection dropdown">
+//                     <option selected=""  value="all">All</option>
+//                     <option value="articles">High</option>
+//                     <option value="products">Normal</option>
+//                     <option value="products">Low</option>
+//                 </select>
+//                 <div type="submit" class="ui button">Search</div>
+//             </div>
+//         </form>
 
-
-        <div class="cards-container ui segment">
-            <p class="empty-container-text">No items have been added</p>
-            <p class="empty-container-text">No items have been added</p>
-            <p class="empty-container-text">No items have been added</p>
-            <p class="empty-container-text">No items have been added</p>
-            <p class="empty-container-text">No items have been added</p>
-        </div>
-    </div>
-  `
-}
+//         <div class="cards-container ui segment">
+//             <p class="empty-container-text">No items have been added</p>
+//             <p class="empty-container-text">No items have been added</p>
+//             <p class="empty-container-text">No items have been added</p>
+//             <p class="empty-container-text">No items have been added</p>
+//             <p class="empty-container-text">No items have been added</p>
+//         </div>
+//     </div>
+//   `
+// }
 
 export { modal }
 export { modalContent }

@@ -1,13 +1,29 @@
 import axios from "axios"
-import { modal } from "./partials/modal.js"
-import { modalContent } from "./partials/modal.js"
-import { _formElements } from "./partials/inputsData.js"
-import { _personal } from "./partials/selectandTextAreaValues.js"
-import { _priority } from "./partials/selectandTextAreaValues.js"
-import { _description } from "./partials/selectandTextAreaValues.js"
-import { cards } from "./partials/cards.js"
+import {
+  modal
+} from "./partials/modal.js"
+import {
+  modalContent
+} from "./partials/modal.js"
+import {
+  _formElements
+} from "./partials/inputsData.js"
+import {
+  _personal
+} from "./partials/selectandTextAreaValues.js"
+import {
+  _priority
+} from "./partials/selectandTextAreaValues.js"
+import {
+  _description
+} from "./partials/selectandTextAreaValues.js"
+import {
+  cards
+} from "./partials/cards.js"
 
-import { renderBoard } from "./partials/board.js"
+import {
+  renderBoard
+} from "./partials/board.js"
 
 renderBoard()
 
@@ -57,11 +73,12 @@ export function selectDoctor() {
 
 class FormCreator {
   constructor(formElemnts, personal, description, priority, type) {
-    ;(this._formElements = formElemnts),
-      (this._personal = personal),
-      (this._description = description),
-      (this._priority = priority),
-      (this.type = type)
+    ;
+    (this._formElements = formElemnts),
+    (this._personal = personal),
+    (this._description = description),
+    (this._priority = priority),
+    (this.type = type)
   }
 
   //create form to the memory
@@ -180,10 +197,10 @@ class FormCreator {
     }
 
     const res = await axios(authOptions)
-      .then(function(response) {
+      .then(function (response) {
         return console.log(response.data.id)
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error)
       })
 
@@ -199,6 +216,8 @@ class FormCreator {
     if (type === "cardio") {
       const cardio = new CardiologistVisit(obj)
     } else if (type === "dentist") {
+      const visit = new Visit(obj)
+      visit.render(obj)
       const dentist = new DentistVisit(obj)
       dentist.createCard(obj)
     } else {
@@ -228,34 +247,123 @@ class FormCreator {
 
 //=========================== Card constructor ===========================//
 
+// class Visit {
+//   constructor() {}
+
+//   createCard() {
+//     console.log("created")
+//   }
+
+//   cardDrag() {
+//     console.log("draggged")
+//   }
+
+//   cardDrop() {
+//     console.log("dropped")
+//   }
+// }
+
+// class DentistVisit extends Visit {
+//   constructor() {
+//     super()
+
+//   }
+//   createCard(obj) {
+//     const card = new Card(obj)
+//     card.render()
+//   }
+// }
+
+// class TherapistVisit extends Visit {
+//   constructor(obj) {
+//     super()
+//   }
+// }
+
+// class CardiologistVisit extends Visit {
+//   constructor(obj) {
+//     super()
+//   }
+// }
+
+// class Card {
+//   constructor(obj) {
+//     this.name = obj.content["full name"]
+//     this.lastVisit = obj.content["last visit"]
+//     this.description = obj.description
+//     this.priority = obj.priority
+//     this.doctor = obj.doctor
+//   }
+//   render() {
+//     const container = document.querySelector(`.cards-container`)
+//     container.innerHTML = `
+//     <div>
+//     <input value=${this.name}>
+//     <input value=${this.lastVisit}>
+//     <input value=${this.description}>
+//     <input value=${this.priority}>
+//     <input value=${this.doctor}>
+//     </div>
+//     `
+//     console.log(container)
+//   }
+// }
+
+// $(".ui.dropdown").dropdown()
+
+
+// ===============================
+// ===============================
+
+
 class Visit {
-  constructor() {}
+  constructor(obj) {
+    console.log(obj);
+    this.name = obj.content["full name"]
+    this.goal = obj.title
+    this.description = obj.description
 
-  createCard() {
-    console.log("created")
   }
-
-  cardDrag() {
-    console.log("draggged")
-  }
-
-  cardDrop() {
-    console.log("dropped")
+  render() {
+    const container = document.querySelector(`.cards-container`)
+    container.innerHTML = `
+    <div>
+    <input value=${this.name}>
+    <input value=${this.goal}>
+    <input value=${this.description}>
+        </div>
+    `
+    console.log(container)
   }
 }
 
+
 class DentistVisit extends Visit {
-  constructor() {
-    super()
+  constructor(obj) {
+    super(obj)
+    console.log(obj)
     // this.name = obj.content["full name"]
-    // this.lastVisit = obj.content["last visit"]
+    this.lastVisit = obj.content["last visit"]
     // this.description = obj.description
-    // this.priority = obj.priority
-    // this.doctor = obj.doctor
+    this.priority = obj.priority
+    this.doctor = obj.doctor
+    console.log(this.doctor);
+    console.log(this.name);
+
   }
-  createCard(obj) {
-    const card = new Card(obj)
-    card.render()
+  createCard(container, obj) {
+    // const card = new Card(obj)
+    // card.render()
+    const card = document.createElement('div')
+    card.innerHTML = `
+    <div>
+     <input value=${this.priority}>
+    <input value=${this.doctor}>
+    </div>
+    `
+    console.log(card)
+    container.append(card)
+
   }
 }
 
@@ -271,30 +379,29 @@ class CardiologistVisit extends Visit {
   }
 }
 
-class Card {
-  constructor(obj) {
-    this.name = obj.content["full name"]
-    this.lastVisit = obj.content["last visit"]
-    this.description = obj.description
-    this.priority = obj.priority
-    this.doctor = obj.doctor
-  }
-  render() {
-    const container = document.querySelector(`.cards-container`)
-    container.innerHTML = `
-    <div>
-    <input value=${this.name}>
-    <input value=${this.lastVisit}>
-    <input value=${this.description}>
-    <input value=${this.priority}>
-    <input value=${this.doctor}>
-    </div>
-    `
-    console.log(container)
-  }
-}
 
 $(".ui.dropdown").dropdown()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Stash
 

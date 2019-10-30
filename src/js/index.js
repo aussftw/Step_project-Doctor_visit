@@ -92,7 +92,7 @@ class FormCreator {
     // selects constructor
 
     const selectDoctorByName = document.createElement("select")
-    selectDoctorByName.classList.add("select-dcotor-by-name") // "ui", "dropdown"
+    selectDoctorByName.classList.add("select-dcotor-by-name")
     form.append(selectDoctorByName)
 
     for (let i = 0; i < this._personal.textValue.length; i++) {
@@ -104,23 +104,8 @@ class FormCreator {
     }
 
     const selectPriority = document.createElement("select")
-    selectPriority.classList.add("select-priority") // "ui", "dropdown"
+    selectPriority.classList.add("select-priority")
     form.append(selectPriority)
-
-    //??3
-
-    // let selectedPriority = " "
-    // function selected() {
-    //   selectPriority.addEventListener("change", e => {
-    //     selectedPriority = e.target.value
-
-    //     console.log(selectedPriority)
-    //     return selectedPriority
-    //   })
-    // }
-    // let selectedData = selected()
-    // //console.log(selectedData)
-    // console.log(selectedPriority)
 
     for (let i = 0; i < this._priority.val.length; i++) {
       const option = document.createElement(this._priority.elementName)
@@ -173,16 +158,11 @@ class FormCreator {
       }
     })
 
-    // ??2
     const visitDescription = document.querySelector(".description")
     obj.description = visitDescription.value
-    // console.log(obj)
-
-    //?? 1
 
     const selectPriority = document.querySelector(".select-priority")
     obj.priority = selectPriority.value
-    // console.log(obj) // wtf??
 
     // const selectDoctorByName = document.querySelector(".select-dcotor-by-name")
     // selectDoctorByName.addEventListener("change", e => {
@@ -215,19 +195,14 @@ class FormCreator {
     $(".ui.modal").modal("hide")
   }
 
-  // switch ?
-
   checkDoctor(type, obj) {
     if (type === "cardio") {
       const cardio = new CardiologistVisit(obj)
-      // console.log(cardio)
     } else if (type === "dentist") {
       const dentist = new DentistVisit(obj)
       dentist.createCard(obj)
-      // console.log(dentist)
     } else {
       const therapist = new TherapistVisit(obj)
-      // console.log(therapist)
     }
   }
 
@@ -270,32 +245,29 @@ class Visit {
 }
 
 class DentistVisit extends Visit {
-  constructor(obj) {
+  constructor() {
     super()
-    this.name = obj.content["full name"]
-    this.lastVisit = obj.content["last visit"]
-    this.description = obj.description
-    this.priority = obj.priority
-    this.doctor = obj.doctor
+    // this.name = obj.content["full name"]
+    // this.lastVisit = obj.content["last visit"]
+    // this.description = obj.description
+    // this.priority = obj.priority
+    // this.doctor = obj.doctor
   }
   createCard(obj) {
     const card = new Card(obj)
     card.render()
-    console.log("11")
   }
-  // const card = new Card()
-  // Card.render()
 }
 
 class TherapistVisit extends Visit {
-  constructor(reason, date, fullName, ...other) {
-    super(reason, date, fullName)
+  constructor(obj) {
+    super()
   }
 }
 
 class CardiologistVisit extends Visit {
-  constructor(reason, date, fullName, ...other) {
-    super(reason, date, fullName)
+  constructor(obj) {
+    super()
   }
 }
 

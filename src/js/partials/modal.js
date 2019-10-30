@@ -6,6 +6,7 @@ const closeModal = document.getElementById("closeModal")
 const modalContent = document.querySelector("#modalContentId")
 const form = document.querySelector(".form-wrapper")
 let isLogin = true
+renderBoard()
 
 modalButton.addEventListener("click", e => {
   if (isLogin) {

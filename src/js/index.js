@@ -15,31 +15,34 @@ export function selectDoctor() {
   const chooseDoctor = document.getElementById("chooseDoctorId")
   chooseDoctor.addEventListener("change", event => {
     if (chooseDoctor.value === "Кардиолог") {
+      const type = "cardiologist"
       const cardiologistForm = new FormCreator(
         _formElements.cardiologist,
         _personal.cardiologist,
         _description,
         _priority,
-        CardiologistVisit // is that legit??
+        type // is that legit??
       )
       cardiologistForm.render()
     } else if (chooseDoctor.value === "Терапевт") {
+      const type = "Therapist"
       const therapistForm = new FormCreator(
         _formElements.teraphist,
         _personal.therapist,
         _description,
         _priority,
-        TherapistVisit // is that legit??
+        type // is that legit??
       )
       therapistForm.render()
     } else if (chooseDoctor.value === "Стоматолог") {
       //or i need to create here new visit and init??
+      const type = "dentist"
       const dentistForm = new FormCreator(
         _formElements.dentist,
         _personal.dentist,
         _description,
         _priority,
-        DentistVisit // is that legit??
+        type // is that legit??
       )
       dentistForm.render()
     }
@@ -49,12 +52,12 @@ export function selectDoctor() {
 //=========================== Form constructor ===========================//
 
 class FormCreator {
-  constructor(formElemnts, personal, description, priority, visit) {
+  constructor(formElemnts, personal, description, priority, type) {
     ;(this._formElements = formElemnts),
       (this._personal = personal),
       (this._description = description),
-      (this._priority = priority)
-    this.visit = visit
+      (this._priority = priority),
+      (this.type = type)
   }
 
   //create form to the memory
@@ -97,7 +100,7 @@ class FormCreator {
     }
 
     const selectPriority = document.createElement("select")
-    selectPriority.classList.add("select-priority", "ui", "dropdown") // "ui", "dropdown"
+    selectPriority.classList.add("select-priority") // "ui", "dropdown"
     form.append(selectPriority)
 
     //??3
@@ -144,16 +147,18 @@ class FormCreator {
 
   // send data to server
 
-  sendData() {
+  async sendData() {
     const obj = {
       token: "569bc2174da3",
       doctor: "someone",
-      title: true, /// ??
+      title: true,
       description: "",
       status: "open",
       priority: "",
       content: {}
     }
+
+    console.log(obj)
 
     const inputData = document.querySelectorAll(".inputData")
     inputData.forEach(elem => {
@@ -164,18 +169,16 @@ class FormCreator {
       }
     })
 
-    // ??1
+    // ??2
     const visitDescription = document.querySelector(".description")
-    visitDescription.value = obj.description
-    console.log(obj)
+    obj.description = visitDescription.value
+    // console.log(obj)
 
-    //?? 2
+    //?? 1
 
     const selectPriority = document.querySelector(".select-priority")
-    selectPriority.addEventListener("change", e => {
-      obj.priority = e.target.value
-      console.log(obj) // wtf??
-    })
+    obj.priority = selectPriority.value
+    // console.log(obj) // wtf??
 
     // const selectDoctorByName = document.querySelector(".select-dcotor-by-name")
     // selectDoctorByName.addEventListener("change", e => {
@@ -186,10 +189,13 @@ class FormCreator {
     const authOptions = {
       method: "POST",
       url: "http://cards.danit.com.ua/cards",
-      data: JSON.stringify(obj)
+      data: JSON.stringify(obj),
+      headers: {
+        Authorization: "Bearer 569bc2174da3"
+      }
     }
 
-    axios(authOptions)
+    const res = await axios(authOptions)
       .then(function(response) {
         return console.log(response.data.id)
       })
@@ -199,6 +205,26 @@ class FormCreator {
 
     cards.push(obj)
     console.log(cards)
+
+    this.checkDoctor(this.type, obj)
+    // console.log(this.checkDoctor(this.type, obj))
+    $(".ui.modal").modal("hide")
+  }
+
+  // switch ?
+
+  checkDoctor(type, obj) {
+    if (type === "cardio") {
+      const cardio = new CardiologistVisit(obj)
+      // console.log(cardio)
+    } else if (type === "dentist") {
+      const dentist = new DentistVisit(obj)
+      dentist.createCard(obj)
+      // console.log(dentist)
+    } else {
+      const therapist = new TherapistVisit(obj)
+      // console.log(therapist)
+    }
   }
 
   // Form render
@@ -240,9 +266,21 @@ class Visit {
 }
 
 class DentistVisit extends Visit {
-  constructor(reason, date, fullName, ...other) {
-    super(reason, date, fullName)
+  constructor(obj) {
+    super()
+    this.name = obj.content["full name"]
+    this.lastVisit = obj.content["last visit"]
+    this.description = obj.description
+    this.priority = obj.priority
+    this.doctor = obj.doctor
   }
+  createCard(obj) {
+    const card = new Card(obj)
+    card.render()
+    console.log("11")
+  }
+  // const card = new Card()
+  // Card.render()
 }
 
 class TherapistVisit extends Visit {
@@ -254,6 +292,29 @@ class TherapistVisit extends Visit {
 class CardiologistVisit extends Visit {
   constructor(reason, date, fullName, ...other) {
     super(reason, date, fullName)
+  }
+}
+
+class Card {
+  constructor(obj) {
+    this.name = obj.content["full name"]
+    this.lastVisit = obj.content["last visit"]
+    this.description = obj.description
+    this.priority = obj.priority
+    this.doctor = obj.doctor
+  }
+  render() {
+    const container = document.querySelector(`.cards-container`)
+    container.innerHTML = `
+    <div>
+    <input value=${this.name}>
+    <input value=${this.lastVisit}>
+    <input value=${this.description}>
+    <input value=${this.priority}>
+    <input value=${this.doctor}>
+    </div>
+    `
+    console.log(container)
   }
 }
 

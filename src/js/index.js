@@ -5,12 +5,13 @@ import { _formElements } from "./partials/inputsData.js"
 import { _personal } from "./partials/selectandTextAreaValues.js"
 import { _priority } from "./partials/selectandTextAreaValues.js"
 import { _description } from "./partials/selectandTextAreaValues.js"
+import { cards } from "./partials/cards.js"
 
 //=========================== Doctor checker ===========================//
 
-export { selectDoctor }
+//export { selectDoctor }
 
-function selectDoctor() {
+export function selectDoctor() {
   const chooseDoctor = document.getElementById("chooseDoctorId")
   chooseDoctor.addEventListener("change", event => {
     if (chooseDoctor.value === "Кардиолог") {
@@ -94,6 +95,21 @@ class FormCreator {
     selectPriority.classList.add("select-priority") // "ui", "dropdown"
     form.append(selectPriority)
 
+    //??3
+
+    // let selectedPriority = " "
+    // function selected() {
+    //   selectPriority.addEventListener("change", e => {
+    //     selectedPriority = e.target.value
+
+    //     console.log(selectedPriority)
+    //     return selectedPriority
+    //   })
+    // }
+    // let selectedData = selected()
+    // //console.log(selectedData)
+    // console.log(selectedPriority)
+
     for (let i = 0; i < this._priority.val.length; i++) {
       const option = document.createElement(this._priority.elementName)
       option.value = this._priority.val[i]
@@ -127,8 +143,8 @@ class FormCreator {
     const obj = {
       token: "569bc2174da3",
       doctor: "someone",
-      title: true,
-      description: true,
+      title: true, /// ??
+      description: "",
       status: "open",
       priority: "",
       content: {}
@@ -143,16 +159,16 @@ class FormCreator {
       }
     })
 
+    // ??1
+    const visitDescription = document.querySelector(".description")
+    visitDescription.value = obj.description
+    console.log(obj)
+
+    //?? 2
+
     const selectPriority = document.querySelector(".select-priority")
     selectPriority.addEventListener("change", e => {
       obj.priority = e.target.value
-      console.log(obj) // wtf??
-    })
-
-    const visitDescription = document.querySelector(".description")
-    visitDescription.addEventListener("keyup", e => {
-      const descriptionValue = e.target.value
-      obj.description = descriptionValue
       console.log(obj) // wtf??
     })
 
@@ -161,8 +177,6 @@ class FormCreator {
     //   obj.priority = e.target.value
     //   console.log(obj)
     // })
-
-    console.log(obj)
 
     const authOptions = {
       method: "POST",
@@ -177,6 +191,9 @@ class FormCreator {
       .catch(function(error) {
         console.log(error)
       })
+
+    cards.push(obj)
+    console.log(cards)
   }
 
   // Form render

@@ -19,7 +19,8 @@ export function selectDoctor() {
         _formElements.cardiologist,
         _personal.cardiologist,
         _description,
-        _priority
+        _priority,
+        CardiologistVisit // is that legit??
       )
       cardiologistForm.render()
     } else if (chooseDoctor.value === "Терапевт") {
@@ -27,15 +28,18 @@ export function selectDoctor() {
         _formElements.teraphist,
         _personal.therapist,
         _description,
-        _priority
+        _priority,
+        TherapistVisit // is that legit??
       )
       therapistForm.render()
     } else if (chooseDoctor.value === "Стоматолог") {
+      //or i need to create here new visit and init??
       const dentistForm = new FormCreator(
         _formElements.dentist,
         _personal.dentist,
         _description,
-        _priority
+        _priority,
+        DentistVisit // is that legit??
       )
       dentistForm.render()
     }
@@ -45,11 +49,12 @@ export function selectDoctor() {
 //=========================== Form constructor ===========================//
 
 class FormCreator {
-  constructor(formElemnts, personal, description, priority) {
+  constructor(formElemnts, personal, description, priority, visit) {
     ;(this._formElements = formElemnts),
       (this._personal = personal),
       (this._description = description),
       (this._priority = priority)
+    this.visit = visit
   }
 
   //create form to the memory
@@ -92,7 +97,7 @@ class FormCreator {
     }
 
     const selectPriority = document.createElement("select")
-    selectPriority.classList.add("select-priority") // "ui", "dropdown"
+    selectPriority.classList.add("select-priority", "ui", "dropdown") // "ui", "dropdown"
     form.append(selectPriority)
 
     //??3
@@ -219,11 +224,7 @@ class FormCreator {
 //=========================== Card constructor ===========================//
 
 class Visit {
-  constructor(reason, date, fullName) {
-    this.reason = reason
-    this.date = date
-    this.fullName = fullName
-  }
+  constructor() {}
 
   createCard() {
     console.log("created")
@@ -238,19 +239,19 @@ class Visit {
   }
 }
 
-class Dentist extends Visit {
+class DentistVisit extends Visit {
   constructor(reason, date, fullName, ...other) {
     super(reason, date, fullName)
   }
 }
 
-class Therapist extends Visit {
+class TherapistVisit extends Visit {
   constructor(reason, date, fullName, ...other) {
     super(reason, date, fullName)
   }
 }
 
-class Cardiologist extends Visit {
+class CardiologistVisit extends Visit {
   constructor(reason, date, fullName, ...other) {
     super(reason, date, fullName)
   }

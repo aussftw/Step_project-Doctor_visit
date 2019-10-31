@@ -1,6 +1,3 @@
-import { cards } from "./cards"
-
-renderBoard()
 
 
 
@@ -30,19 +27,4 @@ export function renderBoard() {
         </div>
     </div>
   `
-  const conatiner = document.querySelector(".cards-container")
-  cards.forEach(item => {
-    const card = document.createElement("div")
-    console.log(item)
-    card.innerHTML = `
-      <div>
-        <input value=${item.doctor}>
-        <input value=${item.description}>
-        <input value=${item.status}>
-        <input value=${item.priority}>
-        <input value=${item.content.bp}>
-      </div>
-  `
-    conatiner.append(card)
-  })
 }

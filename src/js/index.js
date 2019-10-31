@@ -17,9 +17,7 @@ import {
 import {
   _description
 } from "./partials/selectandTextAreaValues.js"
-import {
-  cards
-} from "./partials/cards.js"
+
 
 import {
   renderBoard
@@ -156,7 +154,7 @@ class FormCreator {
   async sendData() {
     const obj = {
       token: "569bc2174da3",
-      doctor: "someone",
+      doctor: "",
       title: true,
       description: "",
       status: "open",
@@ -217,9 +215,6 @@ class FormCreator {
       .catch(function (error) {
         console.log(error)
       })
-
-    cards.push(obj)
-    console.log(cards)
 
     this.checkDoctor(this.type, obj)
     // console.log(this.checkDoctor(this.type, obj))
@@ -335,9 +330,9 @@ class Visit {
     this.name = obj.content["full name"]
     this.goal = obj.title
     this.description = obj.description
-    
+
   }
-  
+
 }
 
 class DentistVisit extends Visit {

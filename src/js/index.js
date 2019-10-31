@@ -363,12 +363,13 @@ class TherapistVisit extends Visit {
      <input value=${this.priority}>
     <input value=${this.doctor}>
         `
-    console.log(card);
+    // console.log(card);
   }
 }
 
 class CardiologistVisit extends Visit {
   constructor(obj) {
+    console.log(obj);
     super(obj)
     this.doctor = obj.doctor
     this.priority = obj.priority

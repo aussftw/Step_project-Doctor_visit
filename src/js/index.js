@@ -164,7 +164,7 @@ class FormCreator {
       content: {}
     }
 
-    console.log(obj)
+    // console.log(obj)
 
     const inputData = document.querySelectorAll(".inputData")
     inputData.forEach(elem => {
@@ -196,8 +196,22 @@ class FormCreator {
       }
     }
 
+    // requestLogin(data) {
+    //   axios.post('http://cards.danit.com.ua/login', data, {
+    //   })
+    //       .then((response) => {
+    //        return (response.data.token);
+    //       })
+    //       .catch((error) => {
+    //         console.log(error);
+    //       });
+    // }
+
+
+
     const res = await axios(authOptions)
       .then(function (response) {
+        console.log(response.data);
         return console.log(response.data.id)
       })
       .catch(function (error) {
@@ -213,7 +227,7 @@ class FormCreator {
   }
 
   checkDoctor(type, obj) {
-    if (type === "cardio") {
+    if (type === "cardiologist") {
       const cardio = new CardiologistVisit(obj)
       cardio.render(obj)
     } else if (type === "dentist") {
@@ -318,13 +332,12 @@ class FormCreator {
 
 class Visit {
   constructor(obj) {
-    console.log(obj);
     this.name = obj.content["full name"]
     this.goal = obj.title
     this.description = obj.description
-
+    
   }
-
+  
 }
 
 class DentistVisit extends Visit {
@@ -337,18 +350,19 @@ class DentistVisit extends Visit {
   render(container) {
     const card = document.createElement('div')
     card.innerHTML = `
-        <input value=${this.name}>
+    <input value=${this.name}>
     <input value=${this.goal}>
     <input value=${this.description}>
-     <input value=${this.priority}>
+    <input value=${this.priority}>
     <input value=${this.doctor}>
-        `
+    `
     console.log(card);
   }
 }
 
 class TherapistVisit extends Visit {
   constructor(obj) {
+    // console.log(obj);
     super(obj)
     this.lastVisit = obj.content["last visit"]
     this.priority = obj.priority
@@ -363,7 +377,7 @@ class TherapistVisit extends Visit {
      <input value=${this.priority}>
     <input value=${this.doctor}>
         `
-    // console.log(card);
+    // console.log(card); 
   }
 }
 

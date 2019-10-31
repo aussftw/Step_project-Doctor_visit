@@ -5,12 +5,14 @@ const modal = document.getElementById("modal")
 const closeModal = document.getElementById("closeModal")
 const modalContent = document.querySelector("#modalContentId")
 const form = document.querySelector(".form-wrapper")
-let isLogin = true
+let isLogin = false
+const token = "569bc2174da3"
 // renderBoard()
 
 modalButton.addEventListener("click", e => {
   if (isLogin) {
     initDoctorsSelector()
+    getData()
   } else {
     initLogInForm()
   }
@@ -72,7 +74,7 @@ function serialize() {
 
   axios(authOptions)
     .then(function(response) {
-      // console.log(response.data);
+      console.log(response.data);
       if (response.data.token === "569bc2174da3") {
         $(".ui.modal").modal("hide")
         modalButton.innerText = "Create Visit"
@@ -84,6 +86,26 @@ function serialize() {
       console.log(error)
     })
 }
+
+
+function getData(){
+  axios.get('http://cards.danit.com.ua/cards?token=569bc2174da3',  {
+    // headers: `{ Authorization: Bearer ${token} }`
+    // header:{"Bearer":"569bc2174da3"}
+    headers:{'Authorization':"Bearer " + token}
+  })
+      .then((response) => {
+         console.log(response);
+         console.log(response.data);
+      })
+      .catch((error) => {
+         console.log(error);
+      });
+}
+
+
+
+
 
 // function renderBoard() {
 //   const board = document.querySelector(".board")

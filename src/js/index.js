@@ -19,12 +19,6 @@ import {
 } from "./partials/selectandTextAreaValues.js"
 
 
-import {
-  renderBoard
-} from "./partials/board.js"
-
-renderBoard()
-
 //=========================== Doctor checker ===========================//
 
 //export { selectDoctor }
@@ -372,7 +366,7 @@ class TherapistVisit extends Visit {
      <input value=${this.priority}>
     <input value=${this.doctor}>
         `
-    // console.log(card); 
+    // console.log(card);
   }
 }
 

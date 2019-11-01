@@ -127,3 +127,12 @@ textarea {
   margin: 0 auto;
   margin-top: 1rem;
 }
+
+.cards-container {
+  display: flex!important;
+  flex-wrap: wrap!important;
+}
+.card {
+  width: calc(20% - 30px);
+  margin: 15px 15px;
+}

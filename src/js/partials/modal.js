@@ -8,6 +8,7 @@ import {
 import {
   getForm
 } from './filters.js'
+import { renderCards } from './renderCards'
 
 
 const modalButton = document.getElementById("openModalButton")
@@ -49,12 +50,6 @@ function Autorisationlogin() {
     e.preventDefault()
     serialize()
   })
-
-  getData()
-   //TODO
-  getForm()
-  
-
 }
 
 
@@ -100,13 +95,11 @@ function serialize() {
 
   axios(authOptions)
     .then(function (response) {
-      console.log(response.data);
       if (response.data.token === "569bc2174da3") {
         $(".ui.modal").modal("hide")
         modalButton.innerText = "Create Visit"
-
-       
-         renderBoard()
+        renderBoard()
+        getForm()
         getData()
         return (login.isLogin = true)
 
@@ -125,28 +118,10 @@ function getData() {
       }
     })
     .then((response) => {
-      console.log(response);
-      console.log(response.data);
       return response
     })
     .then((response) => {
-      const conatiner = document.querySelector(".cards-container")
-      response.data.forEach((item, i, array) => {
-        const card = document.createElement("div")
-
-        card.classList.add("card")
-
-        card.innerHTML = `
-          <input value=${i}>
-          <input value=${item.doctor}>
-          <input value=${item.description}>
-          <input value=${item.status}>
-          <input value=${item.priority}>
-          <input value=${item.content.presure}>
-      `
-        conatiner.append(card)
-      })
-
+      renderCards(response.data)
     })
     .catch((error) => {
       console.log(error);

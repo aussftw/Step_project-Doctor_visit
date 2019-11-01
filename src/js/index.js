@@ -19,7 +19,7 @@ import {
 } from "./partials/selectandTextAreaValues.js"
 
 // import {
-//   priority  
+//   priority
 // } from "./partials/filters.js"
 
 
@@ -97,6 +97,8 @@ class FormCreator {
       element.type = this._formElements.val[i].type
       element.placeholder = this._formElements.val[i].placeholder
       element.name = this._formElements.val[i].name
+      element.style.display = this._formElements.val[i].style
+      element.value = this._formElements.val[i].value
       element.classList.add("inputData")
       element.setAttribute("reqired", false)
       form.append(element)
@@ -169,6 +171,7 @@ class FormCreator {
       } else {
         obj.content[elem.name] = elem.value
       }
+      console.log(obj);
     })
 
     const visitDescription = document.querySelector(".description")
@@ -177,11 +180,8 @@ class FormCreator {
     const selectPriority = document.querySelector(".select-priority")
     obj.priority = selectPriority.value
 
-    // const selectDoctorByName = document.querySelector(".select-dcotor-by-name")
-    // selectDoctorByName.addEventListener("change", e => {
-    //   obj.priority = e.target.value
-    //   console.log(obj)
-    // })
+    const selectDoctorByName = document.querySelector(".select-dcotor-by-name")
+      obj.doctor = selectDoctorByName.value
 
     const authOptions = {
       method: "POST",
@@ -192,16 +192,6 @@ class FormCreator {
       }
     }
 
-    // requestLogin(data) {
-    //   axios.post('http://cards.danit.com.ua/login', data, {
-    //   })
-    //       .then((response) => {
-    //        return (response.data.token);
-    //       })
-    //       .catch((error) => {
-    //         console.log(error);
-    //       });
-    // }
 
 
 
@@ -222,6 +212,7 @@ class FormCreator {
   checkDoctor(type, obj) {
     if (type === "cardiologist") {
       const cardio = new CardiologistVisit(obj)
+      obj.content.type = "cardiologist"
       cardio.render(obj)
     } else if (type === "dentist") {
       const dentist = new DentistVisit(obj)
@@ -254,74 +245,6 @@ class FormCreator {
 
 //=========================== Card constructor ===========================//
 
-// class Visit {
-//   constructor() {}
-
-//   createCard() {
-//     console.log("created")
-//   }
-
-//   cardDrag() {
-//     console.log("draggged")
-//   }
-
-//   cardDrop() {
-//     console.log("dropped")
-//   }
-// }
-
-// class DentistVisit extends Visit {
-//   constructor() {
-//     super()
-
-//   }
-//   createCard(obj) {
-//     const card = new Card(obj)
-//     card.render()
-//   }
-// }
-
-// class TherapistVisit extends Visit {
-//   constructor(obj) {
-//     super()
-//   }
-// }
-
-// class CardiologistVisit extends Visit {
-//   constructor(obj) {
-//     super()
-//   }
-// }
-
-// class Card {
-//   constructor(obj) {
-//     this.name = obj.content["full name"]
-//     this.lastVisit = obj.content["last visit"]
-//     this.description = obj.description
-//     this.priority = obj.priority
-//     this.doctor = obj.doctor
-//   }
-//   render() {
-//     const container = document.querySelector(`.cards-container`)
-//     container.innerHTML = `
-//     <div>
-//     <input value=${this.name}>
-//     <input value=${this.lastVisit}>
-//     <input value=${this.description}>
-//     <input value=${this.priority}>
-//     <input value=${this.doctor}>
-//     </div>
-//     `
-//     console.log(container)
-//   }
-// }
-
-// $(".ui.dropdown").dropdown()
-
-
-// ===============================
-// ===============================
-
 
 
 
@@ -342,16 +265,19 @@ class DentistVisit extends Visit {
     this.priority = obj.priority
     this.doctor = obj.doctor
   }
-  render(container) {
+  render() {
+    const container = document.querySelector(".cards-container")
     const card = document.createElement('div')
     card.innerHTML = `
-    <input value=${this.name}>
-    <input value=${this.goal}>
-    <input value=${this.description}>
-    <input value=${this.priority}>
-    <input value=${this.doctor}>
+    <input value="${this.name}">
+    <input value="${this.goal}">
+    <input value="${this.description}">
+    <input value="${this.priority}">
+    <input value="${this.doctor}">
+    <input value="${this.lastVisit}">
     `
     console.log(card);
+    container.append(card)
   }
 }
 
@@ -359,20 +285,21 @@ class TherapistVisit extends Visit {
   constructor(obj) {
     // console.log(obj);
     super(obj)
-    this.lastVisit = obj.content["last visit"]
     this.priority = obj.priority
     this.doctor = obj.doctor
   }
-  render(container) {
+  render() {
+    const container = document.querySelector(".cards-container")
     const card = document.createElement('div')
     card.innerHTML = `
-        <input value=${this.name}>
-    <input value=${this.goal}>
-    <input value=${this.description}>
-     <input value=${this.priority}>
-    <input value=${this.doctor}>
+        <input value="${this.name}">
+    <input value="${this.goal}">
+    <input value="${this.description}">
+     <input value="${this.priority}">
+    <input value="${this.doctor}">
         `
     // console.log(card);
+    container.append(card)
   }
 }
 
@@ -387,19 +314,20 @@ class CardiologistVisit extends Visit {
     this.diseases = obj.content["past diseases of the cardiovascular system"]
     this.age = obj.content.age
   }
-  render(obj) {
-    console.log(obj);
+  render() {
+    const container = document.querySelector(".cards-container")
     const card = document.createElement('div')
     card.innerHTML = `
-        <input value=${this.name}>
-    <input value=${this.goal}>
-    <input value=${this.description}>
-     <input value=${this.priority}>
-     <input value=${this.doctor}>
-     <input value=${this.presure}>
-     <input value=${this.indexMass}>
-     <input value=${this.diseases}>
+      <input value="${this.name}">
+    <input value="${this.goal}">
+    <input value="${this.description}">
+     <input value="${this.priority}">
+     <input value="${this.doctor}">
+     <input value="${this.presure}">
+     <input value="${this.indexMass}">
+     <input value="${this.diseases}">
         `
+    container.append(card)
     console.log(card);
   }
 }

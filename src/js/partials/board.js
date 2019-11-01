@@ -9,14 +9,14 @@ export function renderBoard() {
                 <input id='textArea' type="text" placeholder="Search...">
                 <select id='statusSelect' class="ui compact selection dropdown">
                     <option selected="" value="all">All</option>
-                    <option value="articles">Open</option>
-                    <option value="products">Done</option>
+                    <option value="open">Open</option>
+                    <option value="done">Done</option>
                 </select>
                 <select id='prioritySelect' class="ui compact selection dropdown">
                     <option selected=""  value="all">All</option>
-                    <option value="articles">High</option>
-                    <option value="products">Normal</option>
-                    <option value="products">Low</option>
+                    <option value="important">Important</option>
+                    <option value="medium">medium</option>
+                    <option value="low">Low</option>
                 </select>
                 <button type="submit" class="ui button">Search</button>
             </div>

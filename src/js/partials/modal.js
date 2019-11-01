@@ -16,9 +16,14 @@ const closeModal = document.getElementById("closeModal")
 const modalContent = document.querySelector("#modalContentId")
 const form = document.querySelector(".form-wrapper")
 
+
+
+import { renderBoard } from "../partials/board.js"
+
+
+
 const token = "569bc2174da3"
 
-// renderBoard()
 
 modalButton.addEventListener("click", e => {
   if (login.isLogin) {
@@ -44,10 +49,12 @@ function Autorisationlogin() {
     e.preventDefault()
     serialize()
   })
+
   getData()
    //TODO
   getForm()
   
+
 }
 
 
@@ -97,8 +104,12 @@ function serialize() {
       if (response.data.token === "569bc2174da3") {
         $(".ui.modal").modal("hide")
         modalButton.innerText = "Create Visit"
-        // renderBoard()
+
+       
+         renderBoard()
+        getData()
         return (login.isLogin = true)
+
       }
     })
     .catch(function (error) {
@@ -122,17 +133,16 @@ function getData() {
       const conatiner = document.querySelector(".cards-container")
       response.data.forEach((item, i, array) => {
         const card = document.createElement("div")
-        // console.log(item)
-        // console.log(array);
+
+        card.classList.add("card")
+
         card.innerHTML = `
-          <div>
-            <input value=${i}>
-            <input value=${item.doctor}>
-            <input value=${item.description}>
-            <input value=${item.status}>
-            <input value=${item.priority}>
-            <input value=${item.content.presure}>
-          </div>
+          <input value=${i}>
+          <input value=${item.doctor}>
+          <input value=${item.description}>
+          <input value=${item.status}>
+          <input value=${item.priority}>
+          <input value=${item.content.presure}>
       `
         conatiner.append(card)
       })
@@ -141,27 +151,6 @@ function getData() {
     .catch((error) => {
       console.log(error);
     });
-}
-
-function pushData(data) {
-  console.log(data);
-  console.log(data[0].doctor);
-  cards.push({
-    doctor: data.doctor,
-    title: data.title,
-    description: data.description,
-    status: data.status,
-    priority: data.priority,
-    // content: {
-    //   presure: data.content.presure,
-    //   age: data.content.age,
-    //   weight: data.content.weight,
-    //   "body mass index": data.content['body mass index'],
-    //   "past diseases of the cardiovascular system": data.content["past diseases of the cardiovascular system"],
-    //   "fullname": data.content["fullname"]
-    // }
-  })
-  console.log(cards);
 }
 
 
@@ -186,41 +175,6 @@ function deleteCard() {
 
 deleteCard()
 
-
-
-// function renderBoard() {
-//   const board = document.querySelector(".board")
-//   board.innerHTML = `
-//       <div class="container">
-//         <h1> Hello John Doe</h1>
-//         <form action="">
-//             <div class="ui action input">
-//                 <input type="text" placeholder="Search...">
-//                 <select class="ui compact selection dropdown">
-//                     <option selected="" value="all">All</option>
-//                     <option value="articles">Open</option>
-//                     <option value="products">Done</option>
-//                 </select>
-//                 <select class="ui compact selection dropdown">
-//                     <option selected=""  value="all">All</option>
-//                     <option value="articles">High</option>
-//                     <option value="products">Normal</option>
-//                     <option value="products">Low</option>
-//                 </select>
-//                 <div type="submit" class="ui button">Search</div>
-//             </div>
-//         </form>
-
-//         <div class="cards-container ui segment">
-//             <p class="empty-container-text">No items have been added</p>
-//             <p class="empty-container-text">No items have been added</p>
-//             <p class="empty-container-text">No items have been added</p>
-//             <p class="empty-container-text">No items have been added</p>
-//             <p class="empty-container-text">No items have been added</p>
-//         </div>
-//     </div>
-//   `
-// }
 
 export {
   modal

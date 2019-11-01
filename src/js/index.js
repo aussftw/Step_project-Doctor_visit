@@ -22,16 +22,6 @@ import {
 //   priority  
 // } from "./partials/filters.js"
 
-import {
-  renderBoard
-} from "./partials/board.js"
-
-
-
-
-renderBoard()
-
-
 
 //=========================== Doctor checker ===========================//
 
@@ -382,7 +372,7 @@ class TherapistVisit extends Visit {
      <input value=${this.priority}>
     <input value=${this.doctor}>
         `
-    // console.log(card); 
+    // console.log(card);
   }
 }
 

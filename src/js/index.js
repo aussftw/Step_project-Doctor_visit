@@ -18,6 +18,10 @@ import {
   _description
 } from "./partials/selectandTextAreaValues.js"
 
+// import {
+//   priority  
+// } from "./partials/filters.js"
+
 
 //=========================== Doctor checker ===========================//
 
@@ -317,6 +321,8 @@ class FormCreator {
 
 // ===============================
 // ===============================
+
+
 
 
 class Visit {

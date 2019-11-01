@@ -2,20 +2,31 @@ import axios from "axios"
 import {
   selectDoctor
 } from "../index"
+import {
+  login
+} from './login.js'
+import {
+  getForm
+} from './filters.js'
+
 
 const modalButton = document.getElementById("openModalButton")
 const modal = document.getElementById("modal")
 const closeModal = document.getElementById("closeModal")
 const modalContent = document.querySelector("#modalContentId")
 const form = document.querySelector(".form-wrapper")
+
+
+
 import { renderBoard } from "../partials/board.js"
 
-let isLogin = false
+
+
 const token = "569bc2174da3"
 
 
 modalButton.addEventListener("click", e => {
-  if (isLogin) {
+  if (login.isLogin) {
     initDoctorsSelector()
 
   } else {
@@ -31,14 +42,23 @@ closeModal.addEventListener("click", e => {
   const form = (document.querySelector(".form-wrapper").innerHTML = "")
 })
 
-function login() {
+function Autorisationlogin() {
   const data = {}
   const loginForm = document.querySelector(".login-form")
   loginForm.addEventListener("submit", e => {
     e.preventDefault()
     serialize()
   })
+
+  getData()
+   //TODO
+  getForm()
+  
+
 }
+
+
+
 
 function initDoctorsSelector() {
   $(".ui.modal").modal("show")
@@ -63,7 +83,7 @@ function initLogInForm() {
     <button type="submit" class="login_btn ui blue button large">login</button>
     </form>
     `
-  login()
+  Autorisationlogin()
 }
 
 function serialize() {
@@ -84,9 +104,12 @@ function serialize() {
       if (response.data.token === "569bc2174da3") {
         $(".ui.modal").modal("hide")
         modalButton.innerText = "Create Visit"
-        renderBoard()
+
+       
+         renderBoard()
         getData()
-        return (isLogin = true)
+        return (login.isLogin = true)
+
       }
     })
     .catch(function (error) {
@@ -110,7 +133,9 @@ function getData() {
       const conatiner = document.querySelector(".cards-container")
       response.data.forEach((item, i, array) => {
         const card = document.createElement("div")
+
         card.classList.add("card")
+
         card.innerHTML = `
           <input value=${i}>
           <input value=${item.doctor}>

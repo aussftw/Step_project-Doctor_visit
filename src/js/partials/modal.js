@@ -1,16 +1,22 @@
 import axios from "axios"
-import { selectDoctor } from "../index"
+import {
+  selectDoctor
+} from "../index"
+
 const modalButton = document.getElementById("openModalButton")
 const modal = document.getElementById("modal")
 const closeModal = document.getElementById("closeModal")
 const modalContent = document.querySelector("#modalContentId")
 const form = document.querySelector(".form-wrapper")
-let isLogin = true
+let isLogin = false
+const token = "569bc2174da3"
+
 // renderBoard()
 
 modalButton.addEventListener("click", e => {
   if (isLogin) {
     initDoctorsSelector()
+    
   } else {
     initLogInForm()
   }
@@ -31,6 +37,7 @@ function login() {
     e.preventDefault()
     serialize()
   })
+  getData()
 }
 
 function initDoctorsSelector() {
@@ -46,6 +53,7 @@ function initDoctorsSelector() {
   $(".ui.dropdown").dropdown()
   selectDoctor()
 }
+
 function initLogInForm() {
   $(".ui.modal").modal("show")
   modalContent.innerHTML = `
@@ -71,8 +79,8 @@ function serialize() {
   }
 
   axios(authOptions)
-    .then(function(response) {
-      // console.log(response.data);
+    .then(function (response) {
+      console.log(response.data);
       if (response.data.token === "569bc2174da3") {
         $(".ui.modal").modal("hide")
         modalButton.innerText = "Create Visit"
@@ -80,10 +88,92 @@ function serialize() {
         return (isLogin = true)
       }
     })
-    .catch(function(error) {
+    .catch(function (error) {
       console.log(error)
     })
 }
+
+
+function getData() {
+  axios.get('http://cards.danit.com.ua/cards?token=569bc2174da3', {
+      headers: {
+        'Authorization': "Bearer " + token
+      }
+    })
+    .then((response) => {
+      console.log(response);
+      console.log(response.data);
+      return response
+    })
+    .then((response) => {
+      const conatiner = document.querySelector(".cards-container")
+      response.data.forEach((item, i, array) => {
+        const card = document.createElement("div")
+        console.log(item)
+        console.log(array);
+        card.innerHTML = `
+          <div>
+            <input value=${i}>
+            <input value=${item.doctor}>
+            <input value=${item.description}>
+            <input value=${item.status}>
+            <input value=${item.priority}>
+            <input value=${item.content.presure}>
+          </div>
+      `
+        conatiner.append(card)
+      })
+
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+function pushData(data) {
+  console.log(data);
+  console.log(data[0].doctor);
+  cards.push({
+    doctor: data.doctor,
+    title: data.title,
+    description: data.description,
+    status: data.status,
+    priority: data.priority,
+    // content: {
+    //   presure: data.content.presure,
+    //   age: data.content.age,
+    //   weight: data.content.weight,
+    //   "body mass index": data.content['body mass index'],
+    //   "past diseases of the cardiovascular system": data.content["past diseases of the cardiovascular system"],
+    //   "fullname": data.content["fullname"]
+    // }
+  })
+  console.log(cards);
+}
+
+
+function deleteCard() {
+  return new Promise((resolve, reject) => {
+    const token = '569bc2174da3';
+    const authOptions = {
+      method: 'DELETE',
+      url: 'http://cards.danit.com.ua/cards/55',
+      headers: {
+        'Authorization': "Bearer " + token
+      }
+    }
+    axios(authOptions).then((response) => {
+        resolve(response);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  })
+}
+
+deleteCard()
+
+
 
 // function renderBoard() {
 //   const board = document.querySelector(".board")
@@ -119,5 +209,9 @@ function serialize() {
 //   `
 // }
 
-export { modal }
-export { modalContent }
+export {
+  modal
+}
+export {
+  modalContent
+}

@@ -110,7 +110,7 @@ const _formElements = {
       {
         type: "text",
         placeholder: "ФИО",
-        name: "full name",
+        name: "fullname",
         value: "",
         // reqired: true
       },

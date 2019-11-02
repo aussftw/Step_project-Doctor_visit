@@ -9,20 +9,14 @@ import {
   getForm
 } from './filters.js'
 import { renderCards } from './renderCards'
+import { renderBoard } from "../partials/board.js"
+
 
 
 const modalButton = document.getElementById("openModalButton")
 const modal = document.getElementById("modal")
 const closeModal = document.getElementById("closeModal")
 const modalContent = document.querySelector("#modalContentId")
-const form = document.querySelector(".form-wrapper")
-
-
-
-import { renderBoard } from "../partials/board.js"
-
-
-
 const token = "569bc2174da3"
 
 
@@ -40,10 +34,10 @@ modalButton.addEventListener("click", e => {
 closeModal.addEventListener("click", e => {
   $(".ui.modal").modal("hide")
   modalContent.style.display = "block"
-  const form = (document.querySelector(".form-wrapper").innerHTML = "")
+  const form = document.querySelector(".form-wrapper").innerHTML = ""
 })
 
-function Autorisationlogin() {
+function Autorisation() {
   const data = {}
   const loginForm = document.querySelector(".login-form")
   loginForm.addEventListener("submit", e => {
@@ -78,7 +72,7 @@ function initLogInForm() {
     <button type="submit" class="login_btn ui blue button large">login</button>
     </form>
     `
-  Autorisationlogin()
+  Autorisation()
 }
 
 function serialize() {
@@ -102,7 +96,6 @@ function serialize() {
         getForm()
         getData()
         return (login.isLogin = true)
-
       }
     })
     .catch(function (error) {
@@ -111,7 +104,7 @@ function serialize() {
 }
 
 
-function getData() {
+export function getData() {
   axios.get('http://cards.danit.com.ua/cards?token=569bc2174da3', {
       headers: {
         'Authorization': "Bearer " + token
@@ -129,31 +122,7 @@ function getData() {
 }
 
 
-function deleteCard() {
-  return new Promise((resolve, reject) => {
-    const token = '569bc2174da3';
-    const authOptions = {
-      method: 'DELETE',
-      url: 'http://cards.danit.com.ua/cards/55',
-      headers: {
-        'Authorization': "Bearer " + token
-      }
-    }
-    axios(authOptions).then((response) => {
-        resolve(response);
-      })
-      .catch((error) => {
-        reject(error);
-      });
-  })
-}
-
-deleteCard()
 
 
-export {
-  modal
-}
-export {
-  modalContent
-}
+export { modal }
+export { modalContent }

@@ -1,3 +1,6 @@
+import {showMore} from "./showMore";
+import {deleteCard} from "./deleteCard";
+
 
 
 export function renderCards(data) {
@@ -5,11 +8,15 @@ export function renderCards(data) {
     container.innerHTML = ""
     data.forEach( item => {
         const card = document.createElement("div")
+        card.classList.add('ui', 'card')
+        card.setAttribute ('data-id' , `${item.id}`);
         render(item, card)
         container.append(card)
     })
+    $(".ui.dropdown").dropdown()
+    showMore()
+    deleteCard()
 }
-
 
 
 function render(data, card) {
@@ -20,37 +27,87 @@ function render(data, card) {
     } else {
         renderDentist(data, card)
     }
-        console.log(data.content.doctorType);
 }
 
 
 function renderCardiologist(item, card) {
-        card.classList.add("card")
         card.innerHTML = `
-          <input value="${item.title}">
-          <input value="${item.content.presure}">
-          <input value="${item.content['body mass index']}">
-          <input value="${item.content['past diseases of the cardiovascular system']}">
-          <input value="${item.content.age}">
-          <input value="${item.content['full name']}">
-      `
+            <div class="card__content">
+                <input disabled value="${item.content['fullname']}">
+                <input disabled value="${item.doctor}">
+            </div>
+            <div class="card__content card__content--hidden">
+              <input disabled value="${item.title}">
+              <input disabled value="${item.content.presure}">
+              <input disabled value="${item.content['body mass index']}">
+              <input disabled value="${item.content['past diseases of the cardiovascular system']}">
+              <input disabled value="${item.content.age}">
+              <input disabled value="${item.description}">
+            </div>
+            <div class="extra content">
+                <button type="button" class="ui button show-more">Показать больше</button>
+                <div class="ui icon top left pointing dropdown button">
+                    <i class="ellipsis vertical icon"></i>
+                    <div class="menu">
+                        <div class="item-edit item">Редактировать</div>
+                        <div class="item-delete item">Удалить</div>
+                        <div class="item-change item">Изменить статус</div>
+                    </div>
+                </div>
+            </div>
+        `
 }
 
 function renderTeraphist(item, card) {
-        card.classList.add("card")
         card.innerHTML = `
-          <input value="${item.title}">
-          <input value="${item.content.age}">
-          <input value="${item.content['full name']}">
+            <div class="card__content">
+                <input disabled value="${item.content['fullname']}">
+                <input disabled value="${item.doctor}">
+            </div>
+            <div class="card__content card__content--hidden">
+              <input disabled value="${item.title}">
+              <input disabled value="${item.content.age}">
+              <input disabled value="${item.description}">
+            </div>
+            <div class="extra content">
+                    <button type="button" class="ui button show-more">Показать больше</button>
+                    <div class="ui icon top left pointing dropdown button">
+                        <i class="ellipsis vertical icon"></i>
+                        <div class="menu">
+                            <div class="item-edit item">Редактировать</div>
+                            <div class="item-delete item">Удалить</div>
+                            <div class="item-change item">Изменить статус</div>
+                        </div>
+                    </div>
+            </div>
       `
 }
 
 function renderDentist(item, card) {
-        card.classList.add("card")
         card.innerHTML = `
-          <input value="${item.title}">
-          <input value="${item.content['last visit']}">
-          <input value="${item.content['full name']}">
+          <div class="card__content">
+                <input disabled value="${item.content['fullname']}">
+                <input disabled value="${item.doctor}">
+            </div>
+            <div class="card__content card__content--hidden">
+              <input disabled value="${item.title}">
+              <input disabled value="${item.content['last visit']}">
+              <input disabled value="${item.description}">
+            </div>
+            <div class="extra content">
+                    <button type="button" class="ui button show-more">Показать больше</button>
+                    <div class="ui icon top left pointing dropdown button">
+                        <i class="ellipsis vertical icon"></i>
+                        <div class="menu">
+                            <div class="item-edit item">Редактировать</div>
+                            <div class="item-delete item">Удалить</div>
+                            <div class="item-change item">Изменить статус</div>
+                        </div>
+                    </div>
+            </div>
       `
 }
+
+
+
 

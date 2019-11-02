@@ -17,6 +17,8 @@ import {
 import {
   _description
 } from "./partials/selectandTextAreaValues.js"
+import {showMore} from "./partials/showMore";
+import {deleteCard} from "./partials/deleteCard";
 
 // import {
 //   priority
@@ -265,19 +267,36 @@ class DentistVisit extends Visit {
     this.priority = obj.priority
     this.doctor = obj.doctor
   }
-  render() {
+  render(obj) {
     const container = document.querySelector(".cards-container")
     const card = document.createElement('div')
+    card.classList.add('ui', 'card')
     card.innerHTML = `
-    <input value="${this.name}">
-    <input value="${this.goal}">
-    <input value="${this.description}">
-    <input value="${this.priority}">
-    <input value="${this.doctor}">
-    <input value="${this.lastVisit}">
+    <div class="card__content">
+                <input disabled value="${obj.content['fullname']}">
+                <input disabled value="${this.doctor}">
+            </div>
+            <div class="card__content card__content--hidden">
+              <input disabled value="${obj.title}">
+              <input disabled value="${this.lastVisit}">
+              <input disabled value="${this.description}">
+            </div>
+            <div class="extra content">
+                    <button type="button" class="ui button show-more">Показать больше</button>
+                    <div class="ui icon top left pointing dropdown button">
+                        <i class="ellipsis vertical icon"></i>
+                        <div class="menu">
+                            <div class="item-edit item">Редактировать</div>
+                            <div class="item-delete item">Удалить</div>
+                            <div class="item-change item">Изменить статус</div>
+                        </div>
+                    </div>
+            </div>
     `
-    console.log(card);
     container.append(card)
+    $(".ui.dropdown").dropdown()
+    showMore()
+    deleteCard()
   }
 }
 
@@ -291,12 +310,28 @@ class TherapistVisit extends Visit {
   render() {
     const container = document.querySelector(".cards-container")
     const card = document.createElement('div')
+    card.classList.add('ui', 'card')
     card.innerHTML = `
-        <input value="${this.name}">
-    <input value="${this.goal}">
-    <input value="${this.description}">
-     <input value="${this.priority}">
-    <input value="${this.doctor}">
+        <div class="card__content">
+                <input disabled value="${this.content['fullname']}">
+                <input disabled value="${this.doctor}">
+            </div>
+            <div class="card__content card__content--hidden">
+              <input disabled value="${this.title}">
+              <input disabled value="${this.content.age}">
+              <input disabled value="${this.description}">
+            </div>
+            <div class="extra content">
+                    <button type="button" class="ui button show-more">Показать больше</button>
+                    <div class="ui icon top left pointing dropdown button">
+                        <i class="ellipsis vertical icon"></i>
+                        <div class="menu">
+                            <div class="item-edit item">Редактировать</div>
+                            <div class="item-delete item">Удалить</div>
+                            <div class="item-change item">Изменить статус</div>
+                        </div>
+                    </div>
+            </div>
         `
     // console.log(card);
     container.append(card)
@@ -317,15 +352,31 @@ class CardiologistVisit extends Visit {
   render() {
     const container = document.querySelector(".cards-container")
     const card = document.createElement('div')
+    card.classList.add('ui', 'card')
     card.innerHTML = `
-      <input value="${this.name}">
-    <input value="${this.goal}">
-    <input value="${this.description}">
-     <input value="${this.priority}">
-     <input value="${this.doctor}">
-     <input value="${this.presure}">
-     <input value="${this.indexMass}">
-     <input value="${this.diseases}">
+     <div class="card__content">
+                <input disabled value="${this.content['fullname']}">
+                <input disabled value="${this.doctor}">
+            </div>
+            <div class="card__content card__content--hidden">
+              <input disabled value="${this.title}">
+              <input disabled value="${this.content.presure}">
+              <input disabled value="${this.content['body mass index']}">
+              <input disabled value="${this.content['past diseases of the cardiovascular system']}">
+              <input disabled value="${this.content.age}">
+              <input disabled value="${this.description}">
+            </div>
+            <div class="extra content">
+                <button type="button" class="ui button show-more">Показать больше</button>
+                <div class="ui icon top left pointing dropdown button">
+                    <i class="ellipsis vertical icon"></i>
+                    <div class="menu">
+                        <div class="item-edit item">Редактировать</div>
+                        <div class="item-delete item">Удалить</div>
+                        <div class="item-change item">Изменить статус</div>
+                    </div>
+                </div>
+            </div>
         `
     container.append(card)
     console.log(card);

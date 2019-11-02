@@ -133,6 +133,24 @@ textarea {
   flex-wrap: wrap!important;
 }
 .card {
-  width: calc(20% - 30px);
-  margin: 15px 15px;
+  width: calc(25% - 30px) !important;
+  margin: 15px 15px !important;
+  &.show {
+    & .card__content {
+      &--hidden {
+        display: block;
+      }
+    }
+  }
+  &__content {
+    &--hidden {
+      display: none;
+    }
+  }
+}
+
+.extra-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

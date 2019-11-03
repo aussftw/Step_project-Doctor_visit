@@ -1,6 +1,5 @@
 # Step-project Online Shop
 
-
 ###Authors
 
 Student 1: Alexander Kamsinkiy: [https://github.com/aussftw](https://github.com/aussftw)
@@ -9,19 +8,28 @@ Student 2: Glib Slivko: [https://github.com/GlebSlivko](https://github.com/GlebS
 
 Student 3: Sergey Statechny: [https://github.com/statechny](https://github.com/statechny)
 
-
+Modal & Login - Sergey Statechny <br />
+Form Constructor - Alexander Kamsinkiy & Glib Slivko <br />
+Cards render - Sergey Statechny, Alexander Kamsinkiy & Glib Slivko <br />
+Delete Card - Sergey Statechny & Glib Slivko <br />
+Cards Filter - Sergey Statechny, Alexander Kamsinkiy & Glib Slivko <br />
+Documentation - Alexander Kamsinkiy & Sergey Statechny <br />
+Webpack Build, Semantic UI intrgration - Sergey Statechny <br />
+Bugfixes, encapsulation and testing - Sergey Statechny, Alexander Kamsinkiy & Glib Slivko <br />
+<br />
+Mentoring - Bogdan Lyamzin, Taras Bashuk & Rostislav Komendyak <br />
 
 ## Overview
 
-* [Installation](#markdown-header-installation)
-* [WebStorm configuration](#markdown-header-webstorm-configuration)
-* [NPM scripts](#markdown-header-npm-scripts)
-* [File structure](#file-structure)
-* [JS structure explanation](#js-structure-explanation)
-* [Public API](#markdown-header-public-api)
-* [Common scripts](#common-scripts)
-* [JSDoc](#markdown-header-jsdoc)
-* [Notes](#markdown-header-notes)
+- [Installation](#markdown-header-installation)
+- [WebStorm configuration](#markdown-header-webstorm-configuration)
+- [NPM scripts](#markdown-header-npm-scripts)
+- [File structure](#file-structure)
+- [JS structure explanation](#js-structure-explanation)
+- [Public API](#markdown-header-public-api)
+- [Common scripts](#common-scripts)
+- [JSDoc](#markdown-header-jsdoc)
+- [Notes](#markdown-header-notes)
 
 ## Installation
 
@@ -30,11 +38,13 @@ In order to start working with project, you must:
 #### Install dependencies
 
 npm
+
 ```
 npm i
 ```
 
 yarn
+
 ```
 yarn install
 ```
@@ -42,16 +52,19 @@ yarn install
 ## WebStorm configuration
 
 Turn off 'Safe write' option
+
 ```
 Preferences | Appearance & Behavior | System Settings | Use "safe write"
 ```
 
 Change ECMAScript version
+
 ```
 Preferences | Languages & Frameworks | Javascript | Javascript language version: "ECMAScript6"
 ```
 
 Enable JSCS linter
+
 ```
 Preferences | Languages & Frameworks | Javascript | Code Quality Tools | JSCS | "Enable"
 ```
@@ -182,6 +195,7 @@ npm run-script compileDocs
 ```
 
 Open docs
+
 ```
 npm run-script openDocs
 ```
@@ -195,8 +209,9 @@ npm run-script openDocs
 
 ## Built with
 
-* [Gulp](http://gulpjs.com/)
-* [Pug](https://github.com/pugjs/pug)
-* [Webpack](https://webpack.js.org/)
-* [Sass](http://sass-lang.com/)
-* [Babel](https://babeljs.io/)
+- [Gulp](http://gulpjs.com/)
+- [Pug](https://github.com/pugjs/pug)
+- [Webpack](https://webpack.js.org/)
+- [Sass](http://sass-lang.com/)
+- [Babel](https://babeljs.io/)
+- [SemanticUI](https://semantic-ui.com/)

@@ -58,26 +58,7 @@
   cursor: pointer;
 }
 
-//select {
-//  -webkit-appearance: none;
-//  -moz-appearance: none;
-//  appearance: none;
-//}
 
-//.modal-select {
-//  height: 5rem;
-//  background-color: #fff;
-//  border: 1px solid #084fc7;
-//  font-size: 1.3rem;
-//  font-family: 'Proxima Nova', serif;
-//  padding: 1rem;
-//  outline: none;
-//  cursor: pointer;
-//  position: absolute;
-//  left: 50%;
-//  margin-right: -50%;
-//  transform: translate(-50%, -50%);
-//}
 
 
 /*========================= form-styles =========================*/
@@ -143,6 +124,20 @@ textarea {
     }
   }
   &__content {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    & input {
+      border: none;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    & label {
+      font-size: 14px;
+      display: block !important;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
     &--hidden {
       display: none;
     }
@@ -153,4 +148,15 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+
+.compact.selection {
+  width: 120px;
+}
+
+
+.footer-wrapper {
+  text-align: center;
+  padding: 40px 0;
 }

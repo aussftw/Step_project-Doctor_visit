@@ -1,5 +1,6 @@
 import {showMore} from "./showMore";
 import {deleteCard} from "./deleteCard";
+import {changeStatus} from "./changeStatus";
 
 
 
@@ -10,12 +11,16 @@ export function renderCards(data) {
         const card = document.createElement("div")
         card.classList.add('ui', 'card')
         card.setAttribute ('data-id' , `${item.id}`);
+        card.setAttribute ('data-type' , `${item.content.doctorType }`);
+        card.setAttribute ('data-status' , `${item.status }`);
         render(item, card)
         container.append(card)
     })
+    const cards = document.querySelectorAll('.card')
     $(".ui.dropdown").dropdown()
-    showMore()
+    showMore(cards)
     deleteCard()
+    changeStatus()
 }
 
 
@@ -34,17 +39,17 @@ function renderCardiologist(item, card) {
         card.innerHTML = `
             <div class="card__content">
                 <label>Пациент</label>
-                <input disabled value="${item.content['fullname']}">
+                <input name ="fullname" disabled value="${item.content['fullname']}">
                 <label>Доктор</label>
-                <input disabled value="${item.doctor}">
+                <input name ="doctor" disabled value="${item.doctor}">
             </div>
             <div class="card__content card__content--hidden">
-              <input disabled value="${item.title}">
-              <input disabled value="${item.content.presure}">
-              <input disabled value="${item.content['body mass index']}">
-              <input disabled value="${item.content['past diseases of the cardiovascular system']}">
-              <input disabled value="${item.content.age}">
-              <input disabled value="${item.description}">
+              <input name ="title" disabled value="${item.title}">
+              <input name ="presure" disabled value="${item.content.presure}">
+              <input name ="body mass index" disabled value="${item.content['body mass index']}">
+              <input name ="past diseases of the cardiovascular system" disabled value="${item.content['past diseases of the cardiovascular system']}">
+              <input name ="age" disabled value="${item.content.age}">
+              <input name ="description" disabled value="${item.description}">
             </div>
             <div class="extra content">
                 <button type="button" class="ui button show-more">Показать больше</button>
@@ -53,7 +58,18 @@ function renderCardiologist(item, card) {
                     <div class="menu">
                         <div class="item-edit item">Редактировать</div>
                         <div class="item-delete item">Удалить</div>
-                        <div class="item-change item">Изменить статус</div>
+                        <div class="item-change item">
+                          <i class="dropdown icon"></i>
+                          <span class="text">Изменить статус</span>
+                          <div class="menu">
+                            <div class="item item-change" data-status="open">
+                              Open
+                            </div>
+                            <div class="item item-change" data-status="done">
+                              Done
+                            </div>
+                          </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -97,7 +113,7 @@ function renderDentist(item, card) {
             </div>
             <div class="card__content card__content--hidden">
               <input disabled value="${item.title}">
-              <input disabled value="${item.content['last visit']}">
+              <input disabled value="${item.content['last visit'] ? item.content['last visit'] : 'не указано'}">
               <input disabled value="${item.description}">
             </div>
             <div class="extra content">

@@ -20,14 +20,9 @@ import {
 import {showMore} from "./partials/showMore";
 import {deleteCard} from "./partials/deleteCard";
 
-// import {
-//   priority
-// } from "./partials/filters.js"
-
 
 //=========================== Doctor checker ===========================//
 
-//export { selectDoctor }
 
 export function selectDoctor() {
   const chooseDoctor = document.getElementById("chooseDoctorId")
@@ -173,7 +168,6 @@ class FormCreator {
       } else {
         obj.content[elem.name] = elem.value
       }
-      console.log(obj);
     })
 
     const visitDescription = document.querySelector(".description")
@@ -207,8 +201,9 @@ class FormCreator {
       })
 
     this.checkDoctor(this.type, obj)
-    // console.log(this.checkDoctor(this.type, obj))
     $(".ui.modal").modal("hide")
+    const form = document.querySelector(".form-wrapper").innerHTML = ""
+    modalContent.style.display = "block"
   }
 
   checkDoctor(type, obj) {
@@ -252,10 +247,11 @@ class FormCreator {
 
 class Visit {
   constructor(obj) {
-    this.name = obj.content["full name"]
-    this.goal = obj.title
+    this.name = obj.content["fullname"]
+    this.title = obj.title
     this.description = obj.description
-
+    this.doctor = obj.doctor
+    this.priority = obj.priority
   }
 
 }
@@ -264,21 +260,22 @@ class DentistVisit extends Visit {
   constructor(obj) {
     super(obj)
     this.lastVisit = obj.content["last visit"]
-    this.priority = obj.priority
-    this.doctor = obj.doctor
+    this.content = obj.content
   }
   render(obj) {
     const container = document.querySelector(".cards-container")
     const card = document.createElement('div')
     card.classList.add('ui', 'card')
     card.innerHTML = `
-    <div class="card__content">
-                <input disabled value="${obj.content['fullname']}">
+            <div class="card__content">
+                <label>Пациент</label>
+                <input disabled value="${this.name}">
+                <label>Доктор</label>
                 <input disabled value="${this.doctor}">
             </div>
             <div class="card__content card__content--hidden">
-              <input disabled value="${obj.title}">
-              <input disabled value="${this.lastVisit}">
+              <input disabled value="${this.title}">
+              <input disabled value="${this.lastVisit} ? ${this.lastVisit} : 'не указано'">
               <input disabled value="${this.description}">
             </div>
             <div class="extra content">
@@ -295,17 +292,15 @@ class DentistVisit extends Visit {
     `
     container.append(card)
     $(".ui.dropdown").dropdown()
-    showMore()
+    // showMore(card)
     deleteCard()
   }
 }
 
 class TherapistVisit extends Visit {
   constructor(obj) {
-    // console.log(obj);
     super(obj)
-    this.priority = obj.priority
-    this.doctor = obj.doctor
+    this.age = obj.content.age
   }
   render() {
     const container = document.querySelector(".cards-container")
@@ -313,12 +308,13 @@ class TherapistVisit extends Visit {
     card.classList.add('ui', 'card')
     card.innerHTML = `
         <div class="card__content">
-                <input disabled value="${this.content['fullname']}">
+                 <label>Пациент</label>
+                <input disabled value="${this.name}">
+                <label>Доктор</label>
                 <input disabled value="${this.doctor}">
-            </div>
             <div class="card__content card__content--hidden">
               <input disabled value="${this.title}">
-              <input disabled value="${this.content.age}">
+              <input disabled value="${this.age}">
               <input disabled value="${this.description}">
             </div>
             <div class="extra content">
@@ -333,17 +329,16 @@ class TherapistVisit extends Visit {
                     </div>
             </div>
         `
-    // console.log(card);
     container.append(card)
+    $(".ui.dropdown").dropdown()
+    // showMore(card)
+    deleteCard()
   }
 }
 
 class CardiologistVisit extends Visit {
   constructor(obj) {
-    console.log(obj);
     super(obj)
-    this.doctor = obj.doctor
-    this.priority = obj.priority
     this.presure = obj.content.presure
     this.indexMass = obj.content["body mass index"]
     this.diseases = obj.content["past diseases of the cardiovascular system"]
@@ -355,15 +350,17 @@ class CardiologistVisit extends Visit {
     card.classList.add('ui', 'card')
     card.innerHTML = `
      <div class="card__content">
-                <input disabled value="${this.content['fullname']}">
+                <label>Пациент</label>
+                <input disabled value="${this.name}">
+                <label>Доктор</label>
                 <input disabled value="${this.doctor}">
             </div>
             <div class="card__content card__content--hidden">
               <input disabled value="${this.title}">
-              <input disabled value="${this.content.presure}">
-              <input disabled value="${this.content['body mass index']}">
-              <input disabled value="${this.content['past diseases of the cardiovascular system']}">
-              <input disabled value="${this.content.age}">
+              <input disabled value="${this.presure}">
+              <input disabled value="${this.indexMass}">
+              <input disabled value="${this.diseases}">
+              <input disabled value="${this.age}">
               <input disabled value="${this.description}">
             </div>
             <div class="extra content">
@@ -379,7 +376,9 @@ class CardiologistVisit extends Visit {
             </div>
         `
     container.append(card)
-    console.log(card);
+    $(".ui.dropdown").dropdown()
+    // showMore(card)
+    deleteCard()
   }
 }
 

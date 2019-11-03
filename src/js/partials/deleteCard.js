@@ -1,17 +1,16 @@
 import axios from "axios"
-// import {renderCards} from "./renderCards";
-import { getData } from "./modal";
 
 export function deleteCard() {
     const cards = document.querySelectorAll('.card')
     cards.forEach(card => {
         card.addEventListener('click', (e) => {
             let button = e.target
-            let currentCardId = e.currentTarget
-            let id = currentCardId.dataset.id
+            let currentCard = e.currentTarget
+            let id = currentCard.dataset.id
             if (button.classList.contains('item-delete')) {
                 deleteItem(id)
-                console.log(id);
+                deleteItem(899)
+                currentCard.remove()
             }
         })
     })
@@ -31,9 +30,6 @@ function deleteItem(id) {
     axios(authOptions).then((response) => {
         resolve(response);
       })
-        .then((response) => {
-            getData()
-        })
       .catch((error) => {
         reject(error);
       });

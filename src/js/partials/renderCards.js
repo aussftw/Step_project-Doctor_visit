@@ -33,7 +33,9 @@ function render(data, card) {
 function renderCardiologist(item, card) {
         card.innerHTML = `
             <div class="card__content">
+                <label>Пациент</label>
                 <input disabled value="${item.content['fullname']}">
+                <label>Доктор</label>
                 <input disabled value="${item.doctor}">
             </div>
             <div class="card__content card__content--hidden">
@@ -61,7 +63,9 @@ function renderCardiologist(item, card) {
 function renderTeraphist(item, card) {
         card.innerHTML = `
             <div class="card__content">
+                <label>Пациент</label>
                 <input disabled value="${item.content['fullname']}">
+                <label>Доктор</label>
                 <input disabled value="${item.doctor}">
             </div>
             <div class="card__content card__content--hidden">
@@ -86,7 +90,9 @@ function renderTeraphist(item, card) {
 function renderDentist(item, card) {
         card.innerHTML = `
           <div class="card__content">
+                <label>Пациент</label>
                 <input disabled value="${item.content['fullname']}">
+                <label>Доктор</label>
                 <input disabled value="${item.doctor}">
             </div>
             <div class="card__content card__content--hidden">

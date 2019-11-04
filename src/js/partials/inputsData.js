@@ -6,52 +6,44 @@ const _formElements = {
         type: "text",
         placeholder: "Цель визита",
         name: "title",
-        value: "",
-        // reqired: true
+        value: ""
       },
       {
         type: "number",
         placeholder: "Обычное давление",
         name: "presure",
-        value: "",
-        // reqired: true
+        value: ""
       },
       {
         type: "number",
         placeholder: "Индекс массы тела",
         name: "body mass index",
-        value: "",
-        // reqired: true
+        value: ""
       },
       {
         type: "text",
         placeholder: "Перенесенные заболевания сердечно-сосудистой системы",
         name: "past diseases of the cardiovascular system",
-        value: "",
-        // reqired: true
+        value: ""
       },
       {
         type: "text",
         placeholder: "Возраст",
         name: "age",
-        value: "",
-        // reqired: true
+        value: ""
       },
       {
         type: "text",
         placeholder: "ФИО",
         name: "fullname",
-        value: "",
-        // reqired: true
+        value: ""
       },
       {
         type: "text",
         name: "doctorType",
         style: "none",
         value: "cardiologist"
-        // reqired: true
-      },
-      // { type: "checkbox" }
+      }
     ]
   },
 
@@ -63,30 +55,25 @@ const _formElements = {
         placeholder: "Цель визита",
         name: "title",
         value: ""
-        // reqired: true
       },
       {
         type: "text",
         placeholder: "Возраст",
         name: "age",
         value: ""
-
-        // reqired: true
       },
       {
         type: "text",
         placeholder: "ФИО",
         name: "fullname",
         value: ""
-        // reqired: true
       },
       {
         type: "text",
         name: "doctorType",
         style: "none",
         value: "teraphist"
-        // reqired: true
-      },
+      }
     ]
   },
 
@@ -97,30 +84,26 @@ const _formElements = {
         type: "text",
         placeholder: "Цель визита",
         name: "title",
-        value: "",
-        // reqired: true
+        value: ""
       },
       {
         type: "date",
         placeholder: "Дата последнего посещения",
         name: "last visit",
-        value: "",
-        // reqired: true
+        value: ""
       },
       {
         type: "text",
         placeholder: "ФИО",
         name: "fullname",
-        value: "",
-        // reqired: true
+        value: ""
       },
       {
         type: "text",
         name: "doctorType",
         style: "none",
         value: "dentist"
-        // reqired: true
-      },
+      }
     ]
   }
 }

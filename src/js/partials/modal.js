@@ -1,17 +1,9 @@
 import axios from "axios"
-import {
-  selectDoctor
-} from "../index"
-import {
-  login
-} from './login.js'
-import {
-  getForm
-} from './filters.js'
-import { renderCards } from './renderCards'
+import { selectDoctor } from "../index"
+import { login } from "./login.js"
+import { getForm } from "./filters.js"
+import { renderCards } from "./renderCards"
 import { renderBoard } from "../partials/board.js"
-
-
 
 const modalButton = document.getElementById("openModalButton")
 const modal = document.getElementById("modal")
@@ -19,11 +11,9 @@ const closeModal = document.getElementById("closeModal")
 const modalContent = document.querySelector("#modalContentId")
 const token = "569bc2174da3"
 
-
 modalButton.addEventListener("click", e => {
   if (login.isLogin) {
     initDoctorsSelector()
-
   } else {
     initLogInForm()
   }
@@ -34,7 +24,7 @@ modalButton.addEventListener("click", e => {
 closeModal.addEventListener("click", e => {
   $(".ui.modal").modal("hide")
   modalContent.style.display = "block"
-  const form = document.querySelector(".form-wrapper").innerHTML = ""
+  const form = (document.querySelector(".form-wrapper").innerHTML = "")
 })
 
 function Autorisation() {
@@ -45,9 +35,6 @@ function Autorisation() {
     serialize()
   })
 }
-
-
-
 
 function initDoctorsSelector() {
   $(".ui.modal").modal("show")
@@ -67,8 +54,8 @@ function initLogInForm() {
   $(".ui.modal").modal("show")
   modalContent.innerHTML = `
     <form class="ui form login-form">
-    <input type="email" placeholder="Email" name="email" class="inputData" reqired="true">
-    <input type="password" placeholder="Пароль" name="password" class="inputData" reqired="true">
+    <input type="email" placeholder="Email" name="email" class="inputData" value="shagronaus@gmail.com" reqired="true">
+    <input type="password" placeholder="Пароль" name="password" class="inputData" value="Fec5732#" reqired="true">
     <button type="submit" class="login_btn ui blue button large">login</button>
     </form>
     `
@@ -88,7 +75,7 @@ function serialize() {
   }
 
   axios(authOptions)
-    .then(function (response) {
+    .then(function(response) {
       if (response.data.token === "569bc2174da3") {
         $(".ui.modal").modal("hide")
         modalButton.innerText = "Create Visit"
@@ -98,31 +85,28 @@ function serialize() {
         return (login.isLogin = true)
       }
     })
-    .catch(function (error) {
+    .catch(function(error) {
       console.log(error)
     })
 }
 
-
 export function getData() {
-  axios.get('http://cards.danit.com.ua/cards?token=569bc2174da3', {
+  axios
+    .get("http://cards.danit.com.ua/cards?token=569bc2174da3", {
       headers: {
-        'Authorization': "Bearer " + token
+        Authorization: "Bearer " + token
       }
     })
-    .then((response) => {
+    .then(response => {
       return response
     })
-    .then((response) => {
+    .then(response => {
       renderCards(response.data)
     })
-    .catch((error) => {
-      console.log(error);
-    });
+    .catch(error => {
+      console.log(error)
+    })
 }
-
-
-
 
 export { modal }
 export { modalContent }

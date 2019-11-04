@@ -172,8 +172,7 @@ class FormCreator {
 
     const res = await axios(authOptions)
       .then(function(response) {
-        console.log(response.data)
-        return console.log(response.data.id)
+        return response.data.id
       })
       .catch(function(error) {
         console.log(error)
@@ -239,7 +238,8 @@ class DentistVisit extends Visit {
   render(obj) {
     const container = document.querySelector(".cards-container")
     const card = document.createElement("div")
-    card.classList.add("ui", "card")
+    card.classList.add("ui", "card", "forDrag")
+    card.setAttribute("draggable", "true")
     card.innerHTML = `
             <div class="card__content">
                 <label>Пациент</label>
@@ -276,6 +276,11 @@ class DentistVisit extends Visit {
             </div>
     `
     container.append(card)
+    // const dragCard = document.querySelectorAll(".forDrag")
+    // dragCard.forEach(item => {
+    //   item.addEventListener("dragstart", drag)
+    // })
+
     $(".ui.dropdown").dropdown()
     // showMore(card)
     deleteCard()
@@ -290,7 +295,8 @@ class TherapistVisit extends Visit {
   render() {
     const container = document.querySelector(".cards-container")
     const card = document.createElement("div")
-    card.classList.add("ui", "card")
+    card.classList.add("ui", "card", "forDrag")
+    card.setAttribute("draggable", "true")
     card.innerHTML = `
         <div class="card__content">
                  <label>Пациент</label>
@@ -326,6 +332,26 @@ class TherapistVisit extends Visit {
             </div>
         `
     container.append(card)
+
+    // container.addEventListener("drop", drop)
+    // container.addEventListener("dragover", allowDrop)
+
+    // const dragCard = document.querySelectorAll(".forDrag")
+    // dragCard.forEach(item => {
+    //   item.addEventListener("dragstart", drag)
+    // })
+    // function allowDrop(e) {
+    //   e.preventDefault()
+    // }
+    // function drag(e) {
+    //   e.dataTransfer.setData("text", e.target.id)
+    // }
+    // function drop(e) {
+    //   e.preventDefault()
+    //   const data = e.dataTransfer.getData("text")
+    //   this.appendChild(document.getElementById(data))
+    // }
+
     $(".ui.dropdown").dropdown()
     // showMore(card)
     deleteCard()
@@ -343,7 +369,8 @@ class CardiologistVisit extends Visit {
   render() {
     const container = document.querySelector(".cards-container")
     const card = document.createElement("div")
-    card.classList.add("ui", "card")
+    card.classList.add("ui", "card", "forDrag")
+    card.setAttribute("draggable", "true")
     card.innerHTML = `
      <div class="card__content">
                 <label>Пациент</label>
@@ -385,6 +412,10 @@ class CardiologistVisit extends Visit {
             
         `
     container.append(card)
+    // const dragCard = document.querySelectorAll(".forDrag")
+    // dragCard.forEach(item => {
+    //   item.addEventListener("dragstart", drag)
+    // })
     $(".ui.dropdown").dropdown()
     // showMore(card)
     deleteCard()

@@ -9,7 +9,7 @@ const _formElements = {
         value: ""
       },
       {
-        type: "number",
+        type: "text",
         placeholder: "Обычное давление",
         name: "presure",
         value: ""

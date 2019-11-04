@@ -4,17 +4,40 @@ import { changeStatus } from "./changeStatus"
 
 export function renderCards(data) {
   const container = document.querySelector(".cards-container")
+
   container.innerHTML = ""
+
   data.forEach(item => {
     const card = document.createElement("div")
     card.classList.add("ui", "card")
     card.setAttribute("data-id", `${item.id}`)
     card.setAttribute("data-type", `${item.content.doctorType}`)
     card.setAttribute("data-status", `${item.status}`)
+    card.setAttribute("draggable", "true")
+
     render(item, card)
     container.append(card)
   })
+
   const cards = document.querySelectorAll(".card")
+  cards.forEach(item => {
+    item.addEventListener("dragstart", drag)
+  })
+  function allowDrop(e) {
+    e.preventDefault()
+  }
+  function drag(e) {
+    e.dataTransfer.setData("text", e.target.id)
+  }
+  function drop(e) {
+    e.preventDefault()
+    const extraData = e.dataTransfer.getData("text")
+    this.appendChild(document.getElementById(extraData))
+  }
+
+  container.addEventListener("drop", drop)
+  container.addEventListener("dragover", allowDrop)
+
   $(".ui.dropdown").dropdown()
   showMore(cards)
   deleteCard()
@@ -32,6 +55,7 @@ function render(data, card) {
 }
 
 function renderCardiologist(item, card) {
+  card.setAttribute("draggable", "true")
   card.innerHTML = `
             <div class="card__content">
                 <label>Пациент</label>

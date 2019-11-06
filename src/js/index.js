@@ -1,28 +1,14 @@
 import axios from "axios"
-import {
-  modal
-} from "./partials/modal.js"
-import {
-  modalContent
-} from "./partials/modal.js"
-import {
-  _formElements
-} from "./partials/inputsData.js"
-import {
-  _personal
-} from "./partials/selectandTextAreaValues.js"
-import {
-  _priority
-} from "./partials/selectandTextAreaValues.js"
-import {
-  _description
-} from "./partials/selectandTextAreaValues.js"
-import {showMore} from "./partials/showMore";
-import {deleteCard} from "./partials/deleteCard";
-
+import { modal } from "./partials/modal.js"
+import { modalContent } from "./partials/modal.js"
+import { _formElements } from "./partials/inputsData.js"
+import { _personal } from "./partials/selectandTextAreaValues.js"
+import { _priority } from "./partials/selectandTextAreaValues.js"
+import { _description } from "./partials/selectandTextAreaValues.js"
+import { showMore } from "./partials/showMore"
+import { deleteCard } from "./partials/deleteCard"
 
 //=========================== Doctor checker ===========================//
-
 
 export function selectDoctor() {
   const chooseDoctor = document.getElementById("chooseDoctorId")
@@ -34,7 +20,7 @@ export function selectDoctor() {
         _personal.cardiologist,
         _description,
         _priority,
-        type // is that legit??
+        type
       )
       cardiologistForm.render()
     } else if (chooseDoctor.value === "Терапевт") {
@@ -44,18 +30,17 @@ export function selectDoctor() {
         _personal.therapist,
         _description,
         _priority,
-        type // is that legit??
+        type
       )
       therapistForm.render()
     } else if (chooseDoctor.value === "Стоматолог") {
-      //or i need to create here new visit and init??
       const type = "dentist"
       const dentistForm = new FormCreator(
         _formElements.dentist,
         _personal.dentist,
         _description,
         _priority,
-        type // is that legit??
+        type
       )
       dentistForm.render()
     }
@@ -66,12 +51,11 @@ export function selectDoctor() {
 
 class FormCreator {
   constructor(formElemnts, personal, description, priority, type) {
-    ;
-    (this._formElements = formElemnts),
-    (this._personal = personal),
-    (this._description = description),
-    (this._priority = priority),
-    (this.type = type)
+    ;(this._formElements = formElemnts),
+      (this._personal = personal),
+      (this._description = description),
+      (this._priority = priority),
+      (this.type = type)
   }
 
   //create form to the memory
@@ -97,7 +81,7 @@ class FormCreator {
       element.style.display = this._formElements.val[i].style
       element.value = this._formElements.val[i].value
       element.classList.add("inputData")
-      element.setAttribute("reqired", false)
+      element.setAttribute("required", "")
       form.append(element)
     }
 
@@ -159,8 +143,6 @@ class FormCreator {
       content: {}
     }
 
-    // console.log(obj)
-
     const inputData = document.querySelectorAll(".inputData")
     inputData.forEach(elem => {
       if (obj.hasOwnProperty(elem.name)) {
@@ -177,7 +159,7 @@ class FormCreator {
     obj.priority = selectPriority.value
 
     const selectDoctorByName = document.querySelector(".select-dcotor-by-name")
-      obj.doctor = selectDoctorByName.value
+    obj.doctor = selectDoctorByName.value
 
     const authOptions = {
       method: "POST",
@@ -188,21 +170,17 @@ class FormCreator {
       }
     }
 
-
-
-
     const res = await axios(authOptions)
-      .then(function (response) {
-        console.log(response.data);
-        return console.log(response.data.id)
+      .then(function(response) {
+        return response.data.id
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log(error)
       })
 
     this.checkDoctor(this.type, obj)
     $(".ui.modal").modal("hide")
-    const form = document.querySelector(".form-wrapper").innerHTML = ""
+    const form = (document.querySelector(".form-wrapper").innerHTML = "")
     modalContent.style.display = "block"
   }
 
@@ -225,7 +203,6 @@ class FormCreator {
   render() {
     const form = document.querySelector(".form-wrapper")
 
-    // wtf, checker??
     if (form) {
       form.appendChild(this.createForm())
     } else {
@@ -242,9 +219,6 @@ class FormCreator {
 
 //=========================== Card constructor ===========================//
 
-
-
-
 class Visit {
   constructor(obj) {
     this.name = obj.content["fullname"]
@@ -253,7 +227,6 @@ class Visit {
     this.doctor = obj.doctor
     this.priority = obj.priority
   }
-
 }
 
 class DentistVisit extends Visit {
@@ -264,8 +237,8 @@ class DentistVisit extends Visit {
   }
   render(obj) {
     const container = document.querySelector(".cards-container")
-    const card = document.createElement('div')
-    card.classList.add('ui', 'card')
+    const card = document.createElement("div")
+    card.classList.add("ui", "card")
     card.innerHTML = `
             <div class="card__content">
                 <label>Пациент</label>
@@ -274,23 +247,34 @@ class DentistVisit extends Visit {
                 <input disabled value="${this.doctor}">
             </div>
             <div class="card__content card__content--hidden">
-              <input disabled value="${this.title}">
+              <input disabled value="${this.title} ? ${this.title} : 'не указано'">
               <input disabled value="${this.lastVisit} ? ${this.lastVisit} : 'не указано'">
-              <input disabled value="${this.description}">
+              <input disabled value="${this.description} ? ${this.description} : 'не указано'">
             </div>
             <div class="extra content">
-                    <button type="button" class="ui button show-more">Показать больше</button>
-                    <div class="ui icon top left pointing dropdown button">
-                        <i class="ellipsis vertical icon"></i>
-                        <div class="menu">
-                            <div class="item-edit item">Редактировать</div>
-                            <div class="item-delete item">Удалить</div>
-                            <div class="item-change item">Изменить статус</div>
+                <button type="button" class="ui button show-more">Показать больше</button>
+                <div class="ui icon top left pointing dropdown button">
+                    <i class="ellipsis vertical icon"></i>
+                    <div class="menu">
+                        <div class="item-delete item">Удалить</div>
+                        <div class="item-change item">
+                          <i class="dropdown icon"></i>
+                          <span class="text">Изменить статус</span>
+                          <div class="menu">
+                            <div class="item item-change" data-status="open">
+                              Open
+                            </div>
+                            <div class="item item-change" data-status="done">
+                              Done
+                            </div>
+                          </div>
                         </div>
                     </div>
+                </div>
             </div>
     `
     container.append(card)
+
     $(".ui.dropdown").dropdown()
     // showMore(card)
     deleteCard()
@@ -304,8 +288,8 @@ class TherapistVisit extends Visit {
   }
   render() {
     const container = document.querySelector(".cards-container")
-    const card = document.createElement('div')
-    card.classList.add('ui', 'card')
+    const card = document.createElement("div")
+    card.classList.add("ui", "card")
     card.innerHTML = `
         <div class="card__content">
                  <label>Пациент</label>
@@ -313,23 +297,34 @@ class TherapistVisit extends Visit {
                 <label>Доктор</label>
                 <input disabled value="${this.doctor}">
             <div class="card__content card__content--hidden">
-              <input disabled value="${this.title}">
-              <input disabled value="${this.age}">
-              <input disabled value="${this.description}">
+              <input disabled value="${this.title} ? ${this.title} : 'не указано'">
+              <input disabled value="${this.age} ? ${this.age} : 'не указано'">
+              <input disabled value="${this.description} ? ${this.description} : 'не указано'">
             </div>
-            <div class="extra content">
-                    <button type="button" class="ui button show-more">Показать больше</button>
-                    <div class="ui icon top left pointing dropdown button">
-                        <i class="ellipsis vertical icon"></i>
-                        <div class="menu">
-                            <div class="item-edit item">Редактировать</div>
-                            <div class="item-delete item">Удалить</div>
-                            <div class="item-change item">Изменить статус</div>
+           <div class="extra content">
+                <button type="button" class="ui button show-more">Показать больше</button>
+                <div class="ui icon top left pointing dropdown button">
+                    <i class="ellipsis vertical icon"></i>
+                    <div class="menu">
+                        <div class="item-delete item">Удалить</div>
+                        <div class="item-change item">
+                          <i class="dropdown icon"></i>
+                          <span class="text">Изменить статус</span>
+                          <div class="menu">
+                            <div class="item item-change" data-status="open">
+                              Open
+                            </div>
+                            <div class="item item-change" data-status="done">
+                              Done
+                            </div>
+                          </div>
                         </div>
                     </div>
+                </div>
             </div>
         `
     container.append(card)
+
     $(".ui.dropdown").dropdown()
     // showMore(card)
     deleteCard()
@@ -346,8 +341,8 @@ class CardiologistVisit extends Visit {
   }
   render() {
     const container = document.querySelector(".cards-container")
-    const card = document.createElement('div')
-    card.classList.add('ui', 'card')
+    const card = document.createElement("div")
+    card.classList.add("ui", "card")
     card.innerHTML = `
      <div class="card__content">
                 <label>Пациент</label>
@@ -356,21 +351,31 @@ class CardiologistVisit extends Visit {
                 <input disabled value="${this.doctor}">
             </div>
             <div class="card__content card__content--hidden">
-              <input disabled value="${this.title}">
-              <input disabled value="${this.presure}">
-              <input disabled value="${this.indexMass}">
-              <input disabled value="${this.diseases}">
-              <input disabled value="${this.age}">
-              <input disabled value="${this.description}">
+              <input disabled value="${this.title} ? ${this.title} : 'не указано'">
+              <input disabled value="${this.presure} ? ${this.presure} : 'не указано'">
+              <input disabled value="${this.indexMass} ? ${this.indexMass} : 'не указано'">
+              <input disabled value="${this.diseases} ? ${this.diseases} : 'не указано'">
+              <input disabled value="${this.age} ? ${this.age} : 'не указано'">
+              <input disabled value="${this.description} ? ${this.description} : 'не указано'">
             </div>
             <div class="extra content">
                 <button type="button" class="ui button show-more">Показать больше</button>
                 <div class="ui icon top left pointing dropdown button">
                     <i class="ellipsis vertical icon"></i>
                     <div class="menu">
-                        <div class="item-edit item">Редактировать</div>
                         <div class="item-delete item">Удалить</div>
-                        <div class="item-change item">Изменить статус</div>
+                        <div class="item-change item">
+                          <i class="dropdown icon"></i>
+                          <span class="text">Изменить статус</span>
+                          <div class="menu">
+                            <div class="item item-change" data-status="open">
+                              Open
+                            </div>
+                            <div class="item item-change" data-status="done">
+                              Done
+                            </div>
+                          </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -382,102 +387,4 @@ class CardiologistVisit extends Visit {
   }
 }
 
-
 $(".ui.dropdown").dropdown()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Stash
-
-// testData.forEach((item)=>{
-//   item.push.testArr
-//   console.log(testArr);
-// })
-
-// console.log(response.data);
-// console.log(response.config.data);
-
-// if(response.data.status === "Success") {
-//   const card = new Cardiologist(obj)
-// }
-
-// const authOptions2 = {
-//   method: "GET",
-//   url: "http://cards.danit.com.ua/cards?token=569bc2174da3"
-// }
-
-// axios(authOptions2)
-//   .then(function(response) {
-//     return console.log(response.data)
-//   })
-//   .catch(function(error) {
-//     console.log(error)
-//   })
-
-// sendData() {
-//   const data = {
-//     token: "569bc2174da3",
-//     title: "test",
-//     description: "testing",
-
-//     content: {}
-//   }
-
-//   const authOptions = {
-//     method: "POST",
-//     url: "http://cards.danit.com.ua/cards",
-//     data: JSON.stringify(data)
-//   }
-
-//   axios(authOptions)
-//     .then(function(response) {
-//       console.log(response)
-//       return console.log(response.data.id)
-//     })
-//     .catch(function(error) {
-//       console.log(error)
-//     })
-// }
-
-// serialize() {
-//   const obj = {}
-//   const inputData = document.querySelectorAll(".inputData")
-//   inputData.forEach(elem => {
-//     obj[elem.name] = elem.value
-//   })
-//   return obj
-// }
-
-// cardRenderTest() {
-//   const card = document.createElement("div")
-//   card.classList.add("card")
-//   testArr = ["1", "2", "3"]
-//   for (let i = 0; i < testArr.length; i++) {
-//     const element = document.createElement("p")
-
-//     element.placeholder = this._formElements.val[i].placeholder
-//     element.name = this._formElements.val[i].name
-//     element.classList.add("inputData")
-//     element.setAttribute("reqired", false)
-//     form.append(element)
-//   }
-// }

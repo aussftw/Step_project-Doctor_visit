@@ -2,11 +2,11 @@
 
 ###Authors
 
-Student 1: Alexander Kamsinkiy: [https://github.com/aussftw](https://github.com/aussftw)
+Team Leader/engeineer: Alexander Kamsinkiy: [https://github.com/aussftw](https://github.com/aussftw)
 
-Student 2: Glib Slivko: [https://github.com/GlebSlivko](https://github.com/GlebSlivko)
+Engineer/tester: Glib Slivko: [https://github.com/GlebSlivko](https://github.com/GlebSlivko)
 
-Student 3: Sergey Statechny: [https://github.com/statechny](https://github.com/statechny)
+Engineer/designer: Sergey Statechny: [https://github.com/statechny](https://github.com/statechny)
 
 Modal & Login - Sergey Statechny <br />
 Form Constructor - Alexander Kamsinkiy & Glib Slivko <br />

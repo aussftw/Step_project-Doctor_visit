@@ -102,7 +102,6 @@ export function getData() {
     })
     .then(response => {
       renderCards(response.data)
-      console.log(response.data)
     })
     .catch(error => {
       console.log(error)

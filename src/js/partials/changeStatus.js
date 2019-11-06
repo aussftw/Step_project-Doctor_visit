@@ -37,6 +37,7 @@ function changeData(id, value, type) {
   //     data.content[elem.name] = elem.value
   //   }
   // })
+
   return new Promise((resolve, reject) => {
     const token = "569bc2174da3"
     const authOptions = {
@@ -50,8 +51,6 @@ function changeData(id, value, type) {
     axios(authOptions)
       .then(response => {
         resolve(response.data)
-        console.log(response.data)
-        console.log(inputData)
       })
       .catch(error => {
         reject(error)

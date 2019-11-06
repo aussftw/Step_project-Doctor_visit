@@ -238,8 +238,7 @@ class DentistVisit extends Visit {
   render(obj) {
     const container = document.querySelector(".cards-container")
     const card = document.createElement("div")
-    card.classList.add("ui", "card", "forDrag")
-    card.setAttribute("draggable", "true")
+    card.classList.add("ui", "card")
     card.innerHTML = `
             <div class="card__content">
                 <label>Пациент</label>
@@ -257,7 +256,6 @@ class DentistVisit extends Visit {
                 <div class="ui icon top left pointing dropdown button">
                     <i class="ellipsis vertical icon"></i>
                     <div class="menu">
-                        <div class="item-edit item">Редактировать</div>
                         <div class="item-delete item">Удалить</div>
                         <div class="item-change item">
                           <i class="dropdown icon"></i>
@@ -276,10 +274,6 @@ class DentistVisit extends Visit {
             </div>
     `
     container.append(card)
-    // const dragCard = document.querySelectorAll(".forDrag")
-    // dragCard.forEach(item => {
-    //   item.addEventListener("dragstart", drag)
-    // })
 
     $(".ui.dropdown").dropdown()
     // showMore(card)
@@ -295,8 +289,7 @@ class TherapistVisit extends Visit {
   render() {
     const container = document.querySelector(".cards-container")
     const card = document.createElement("div")
-    card.classList.add("ui", "card", "forDrag")
-    card.setAttribute("draggable", "true")
+    card.classList.add("ui", "card")
     card.innerHTML = `
         <div class="card__content">
                  <label>Пациент</label>
@@ -313,7 +306,6 @@ class TherapistVisit extends Visit {
                 <div class="ui icon top left pointing dropdown button">
                     <i class="ellipsis vertical icon"></i>
                     <div class="menu">
-                        <div class="item-edit item">Редактировать</div>
                         <div class="item-delete item">Удалить</div>
                         <div class="item-change item">
                           <i class="dropdown icon"></i>
@@ -333,25 +325,6 @@ class TherapistVisit extends Visit {
         `
     container.append(card)
 
-    // container.addEventListener("drop", drop)
-    // container.addEventListener("dragover", allowDrop)
-
-    // const dragCard = document.querySelectorAll(".forDrag")
-    // dragCard.forEach(item => {
-    //   item.addEventListener("dragstart", drag)
-    // })
-    // function allowDrop(e) {
-    //   e.preventDefault()
-    // }
-    // function drag(e) {
-    //   e.dataTransfer.setData("text", e.target.id)
-    // }
-    // function drop(e) {
-    //   e.preventDefault()
-    //   const data = e.dataTransfer.getData("text")
-    //   this.appendChild(document.getElementById(data))
-    // }
-
     $(".ui.dropdown").dropdown()
     // showMore(card)
     deleteCard()
@@ -369,8 +342,7 @@ class CardiologistVisit extends Visit {
   render() {
     const container = document.querySelector(".cards-container")
     const card = document.createElement("div")
-    card.classList.add("ui", "card", "forDrag")
-    card.setAttribute("draggable", "true")
+    card.classList.add("ui", "card")
     card.innerHTML = `
      <div class="card__content">
                 <label>Пациент</label>
@@ -391,7 +363,6 @@ class CardiologistVisit extends Visit {
                 <div class="ui icon top left pointing dropdown button">
                     <i class="ellipsis vertical icon"></i>
                     <div class="menu">
-                        <div class="item-edit item">Редактировать</div>
                         <div class="item-delete item">Удалить</div>
                         <div class="item-change item">
                           <i class="dropdown icon"></i>
@@ -408,14 +379,8 @@ class CardiologistVisit extends Visit {
                     </div>
                 </div>
             </div>
-            
-            
         `
     container.append(card)
-    // const dragCard = document.querySelectorAll(".forDrag")
-    // dragCard.forEach(item => {
-    //   item.addEventListener("dragstart", drag)
-    // })
     $(".ui.dropdown").dropdown()
     // showMore(card)
     deleteCard()

@@ -1,4 +1,3 @@
-
 export function renderBoard() {
   const board = document.querySelector(".board")
   board.innerHTML = `

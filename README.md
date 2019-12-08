@@ -16,8 +16,7 @@ Cards Filter - Sergey Statechny, Alexander Kamsinkiy & Glib Slivko <br />
 Documentation - Alexander Kamsinkiy & Sergey Statechny <br />
 Webpack Build, Semantic UI intrgration - Sergey Statechny <br />
 Bugfixes, encapsulation and testing - Sergey Statechny, Alexander Kamsinkiy & Glib Slivko <br />
-<br />
-Mentoring - Bogdan Lyamzin, Taras Bashuk & Rostislav Komendyak <br />
+
 
 ## Overview
 

@@ -55,7 +55,7 @@ function initLogInForm() {
   modalContent.innerHTML = `
     <form class="ui form login-form">
     <input type="email" placeholder="Email" name="email" class="inputData" value="shagronaus@gmail.com" reqired="true">
-    <input type="password" placeholder="Пароль" name="password" class="inputData" value="Fec5732#" reqired="true">
+    <input type="password" placeholder="Пароль" name="password" class="inputData" value="" reqired="true">
     <button type="submit" class="login_btn ui blue button large">login</button>
     </form>
     `
